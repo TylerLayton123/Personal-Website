@@ -1,12 +1,36 @@
 import React from 'react';
-import './Header.css'; // We'll create this CSS file
-import settingsImage from '../assets/images/settings-button.png'; // Import your custom image
+import './Header.css'; 
+import { Link } from 'react-router-dom';
+import settingsImage from '../assets/images/settings-button.png'; 
+import myLogo from '../assets/images/logoImage.png';
+import schoolLogo from '../assets/images/schoolLogo.png';
 
 const Header = () => {
   return (
     <header className="header">
-      <div className="logo-container">
-        <div className="logo">TL</div>
+      <div className="left-group"> 
+        <div className="logo-container">
+          <Link to="/">
+            <img 
+              src={myLogo} 
+              alt="TaskLeap Logo" 
+              className="logo-image"
+            />
+          </Link>
+        </div>
+        <div className="school-container">
+          <a 
+            href="https://www.rpi.edu/" 
+            target="_blank" 
+            rel="noopener noreferrer"
+          >
+            <img 
+              src={schoolLogo} 
+              alt="RPI Logo" 
+              className="school-logo"
+            />
+          </a>
+        </div>
       </div>
       <div className="settings-container">
         <button className="settings-btn">
