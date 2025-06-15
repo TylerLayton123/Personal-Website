@@ -108,12 +108,12 @@ const ParticleBackground = () => {
       mouseY = null;
     };
     
-    const handleClick = (e) => {
-      const rect = canvas.getBoundingClientRect();
-      mouseX = e.clientX - rect.left;
-      mouseY = e.clientY - rect.top;
-      radius = 50;
-    };
+    // const handleClick = (e) => {
+    //   const rect = canvas.getBoundingClientRect();
+    //   mouseX = e.clientX - rect.left;
+    //   mouseY = e.clientY - rect.top;
+    //   radius = 50;
+    // };
     
     canvas.addEventListener('mousemove', handleMouseMove);
     canvas.addEventListener('mouseleave', handleMouseLeave);
@@ -196,6 +196,14 @@ const ParticleBackground = () => {
           }
         }
       }
+      
+      // Create fade effect at the bottom
+      const fadeHeight = height * 0.15; // 15% of height for fade
+      const fadeGradient = ctx.createLinearGradient(0, height - fadeHeight, 0, height);
+      fadeGradient.addColorStop(0, 'rgba(0, 0, 0, 0)');
+      fadeGradient.addColorStop(1, '#0a0a14');
+      ctx.fillStyle = fadeGradient;
+      ctx.fillRect(0, height - fadeHeight, width, fadeHeight);
       
       // Update click effect
       if (radius > 0) {

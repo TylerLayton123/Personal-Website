@@ -1,19 +1,30 @@
-import React from 'react';
-import './Header.css'; 
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import settingsImage from '../assets/images/settings-button.png'; 
 import myLogo from '../assets/images/logoImage.png';
 import schoolLogo from '../assets/images/schoolLogo.png';
+import './Header.css';
 
 const Header = () => {
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 10);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   return (
-    <header className="header">
+    <header className={`header ${isScrolled ? 'scrolled' : ''}`}>
       <div className="left-group"> 
         <div className="logo-container">
           <Link to="/">
             <img 
               src={myLogo} 
-              alt="TaskLeap Logo" 
+              alt="Tyler Layton Logo" 
               className="logo-image"
             />
           </Link>

@@ -2,18 +2,33 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem 2rem;
-  background-color: rgb(10, 38, 71);
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  position: sticky;
+  padding: 1.5rem 2rem;
+  position: fixed;
   top: 0;
-  z-index: 100;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+  
+  /* Initial transparent state */
+  background-color: transparent;
+  box-shadow: none;
 }
 
-.left-group { /* New container for both logos */
+.header.scrolled {
+  /* Glass effect when scrolled */
+  background: rgba(10, 38, 71, 0.85);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  padding: 0.8rem 2rem;
+  border-bottom: 1px solid rgba(44, 116, 179, 0.3);
+}
+
+.left-group {
   display: flex;
   align-items: center;
-  gap: 15px; /* Space between your logo and school logo */
+  gap: 15px;
 }
 
 .logo-container {
@@ -29,7 +44,14 @@
   filter: 
     drop-shadow(0 0 2px rgba(255, 255, 255, 0.7))
     drop-shadow(0 0 4px rgba(255, 255, 255, 0.5));
-  transition: filter 0.3s ease;
+  transition: all 0.3s ease;
+}
+
+.header.scrolled .logo-image {
+  height: 45px;
+  filter: 
+    drop-shadow(0 0 2px rgba(255, 255, 255, 0.5))
+    drop-shadow(0 0 3px rgba(255, 255, 255, 0.3));
 }
 
 .logo-image:hover {
@@ -49,7 +71,12 @@
   width: auto; 
   object-fit: contain;
   filter: drop-shadow(0 0 4px rgba(255, 255, 255, 0.9));
-  transition: filter 0.3s ease;
+  transition: all 0.3s ease;
+}
+
+.header.scrolled .school-logo {
+  height: 45px;
+  filter: drop-shadow(0 0 2px rgba(255, 255, 255, 0.7));
 }
 
 .school-logo:hover {
@@ -76,8 +103,12 @@
   transition: background-color 0.3s ease;
 }
 
+.header.scrolled .settings-btn {
+  background-color: rgba(255, 255, 255, 0.08);
+}
+
 .settings-btn:hover {
-  background-color: rgba(255, 255, 255, 0.1);
+  background-color: rgba(255, 255, 255, 0.15);
 }
 
 .settings-icon {
