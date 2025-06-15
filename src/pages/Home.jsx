@@ -2,6 +2,7 @@ import React from 'react';
 import Header from '../components/Header';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
+import ParticleBackground from '../components/ParticleBackground';
 import '../App.css';
 import '../components/Header.css';
 import '../pages/Home.css';
@@ -40,22 +41,25 @@ const Home = () => {
       <Header />
       
       <div className="hero-section">
+        <ParticleBackground />
         <div className="name-overlay">
           <h1>Tyler Layton</h1>
           <p>Software Developer & Designer</p>
         </div>
       </div>
       
-      <div className="nav-cards-container">
-        {navBar.map((card, index) => (
-          <Navbar 
-            key={index}
-            title={card.title}
-            icon={card.icon}
-            path={card.path}
-            color={card.color}
-          />
-        ))}
+      <div className="content-section">
+        <div className="nav-cards-container">
+          {navBar.map((card, index) => (
+            <Navbar 
+              key={index}
+              title={card.title}
+              icon={card.icon}
+              path={card.path}
+              color={card.color}
+            />
+          ))}
+        </div>
       </div>
       
       <Footer />

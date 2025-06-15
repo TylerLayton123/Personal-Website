@@ -1,46 +1,73 @@
+/* Home.css */
 .home-page {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  background-color: #000;
+  color: #fff;
+  overflow-x: hidden;
 }
 
 .hero-section {
   position: relative;
-  height: 70vh;
-  /* background: linear-gradient(rgba(10, 38, 71, 0.7), rgba(10, 38, 71, 0.7)), 
-              url('https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80') center/cover no-repeat; */
+  height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
-  color: white;
-  padding: 0 1rem;
+  overflow: hidden;
+}
+
+.particle-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
 }
 
 .name-overlay {
-  background: rgba(10, 38, 71, 0.8);
-  padding: 2rem 3rem;
-  border-radius: 10px;
-  max-width: 600px;
+  background: rgba(10, 38, 71, 0.85);
+  padding: 3rem 4rem;
+  border-radius: 12px;
+  max-width: 700px;
   animation: fadeInUp 1s ease-out;
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(44, 116, 179, 0.3);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  z-index: 1;
+  margin: 0 1rem;
 }
 
 .name-overlay h1 {
-  font-size: 3.5rem;
-  margin-bottom: 1rem;
+  font-size: 4rem;
+  margin-bottom: 1.5rem;
   letter-spacing: 1px;
+  background: linear-gradient(to right, #fff, #8ab4f8);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }
 
 .name-overlay p {
-  font-size: 1.5rem;
+  font-size: 1.8rem;
   opacity: 0.9;
+  color: #c5d9f9;
+}
+
+.content-section {
+  background: #0a0a14;
+  padding: 4rem 1rem;
+  position: relative;
+  z-index: 2;
+  border-top: 1px solid rgba(44, 116, 179, 0.2);
 }
 
 .nav-cards-container {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 2rem;
-  padding: 3rem 2rem;
   max-width: 1200px;
   margin: 0 auto;
   width: 100%;
@@ -58,12 +85,14 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+  background: linear-gradient(145deg, rgba(20, 20, 30, 0.9), rgba(10, 20, 40, 0.95));
+  border: 1px solid rgba(44, 116, 179, 0.3);
 }
 
 .nav-card:hover {
   transform: translateY(-10px);
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 10px 25px rgba(32, 82, 149, 0.4);
 }
 
 .nav-icon {
@@ -89,19 +118,31 @@
 
 @media (max-width: 768px) {
   .hero-section {
-    height: 60vh;
+    height: 80vh;
+  }
+  
+  .name-overlay {
+    padding: 2rem;
   }
   
   .name-overlay h1 {
-    font-size: 2.5rem;
+    font-size: 2.8rem;
   }
   
   .name-overlay p {
-    font-size: 1.2rem;
+    font-size: 1.4rem;
   }
   
   .nav-cards-container {
     grid-template-columns: 1fr;
-    padding: 2rem 1rem;
+    padding: 0 1rem;
   }
+}
+
+/* Footer adjustments */
+.footer {
+  background: #0a0a14;
+  border-top: 1px solid rgba(44, 116, 179, 0.2);
+  padding: 2rem 1rem;
+  z-index: 3;
 }
