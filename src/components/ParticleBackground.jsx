@@ -108,16 +108,9 @@ const ParticleBackground = () => {
       mouseY = null;
     };
     
-    // const handleClick = (e) => {
-    //   const rect = canvas.getBoundingClientRect();
-    //   mouseX = e.clientX - rect.left;
-    //   mouseY = e.clientY - rect.top;
-    //   radius = 50;
-    // };
     
     canvas.addEventListener('mousemove', handleMouseMove);
     canvas.addEventListener('mouseleave', handleMouseLeave);
-    // canvas.addEventListener('click', handleClick);
     
     // Animation loop
     let time = 0;
@@ -165,13 +158,6 @@ const ParticleBackground = () => {
             particle.x += dx * force * 0.1;
             particle.y += dy * force * 0.1;
           }
-          
-          // Click effect
-          if (radius > 0 && distance < radius + 50) {
-            const force = (radius + 50 - distance) / 50;
-            particle.x += dx * force * 0.2;
-            particle.y += dy * force * 0.2;
-          }
         }
         
         particle.update(width, height);
@@ -205,12 +191,6 @@ const ParticleBackground = () => {
       ctx.fillStyle = fadeGradient;
       ctx.fillRect(0, height - fadeHeight, width, fadeHeight);
       
-      // Update click effect
-      if (radius > 0) {
-        radius += 2;
-        if (radius > 200) radius = 0;
-      }
-      
       animationFrameId = requestAnimationFrame(animate);
     };
     
@@ -226,7 +206,6 @@ const ParticleBackground = () => {
       window.removeEventListener('resize', setCanvasSize);
       canvas.removeEventListener('mousemove', handleMouseMove);
       canvas.removeEventListener('mouseleave', handleMouseLeave);
-    //   canvas.removeEventListener('click', handleClick);
     };
   }, []);
   

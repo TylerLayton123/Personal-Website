@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Header from '../components/Header';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
@@ -7,6 +7,17 @@ import '../App.css';
 import '../components/Header.css';
 import '../pages/Home.css';
 import '../components/Footer.css';
+
+// Constants for typing animation
+const FULL_NAME = "Tyler Layton";
+const TITLES = [
+  "Software Developer",
+  "Computer Scientist",
+  "Computer Systems Engineer",
+  // "Skiier",
+  "Masters Student"
+  // "Outdoors-Man"
+];
 
 const Home = () => {
   const navBar = [
@@ -36,15 +47,128 @@ const Home = () => {
     }
   ];
 
+  // State for typing animation
+  const [nameText, setNameText] = useState('');
+  const [titleText, setTitleText] = useState('');
+  const [showCursor, setShowCursor] = useState(true);
+  
+  // Refs for animation control
+  const nameAnimationRef = useRef(null);
+  const titleAnimationRef = useRef(null);
+  const cursorAnimationRef = useRef(null);
+  const currentTitleIndexRef = useRef(0);
+  const isNameCompleteRef = useRef(false);
+  const isTitleCompleteRef = useRef(false);
+  const isDeletingRef = useRef(false);
+
+  useEffect(() => {
+    // Clear any existing animations
+    clearTimeout(nameAnimationRef.current);
+    clearTimeout(titleAnimationRef.current);
+    clearInterval(cursorAnimationRef.current);
+    
+    // Reset states
+    setNameText('');
+    setTitleText('');
+    setShowCursor(true);
+    currentTitleIndexRef.current = 0;
+    isNameCompleteRef.current = false;
+    isTitleCompleteRef.current = false;
+    isDeletingRef.current = false;
+    
+    // Cursor blinking effect
+    cursorAnimationRef.current = setInterval(() => {
+      setShowCursor(prev => !prev);
+    }, 700);
+    
+    // Start the typing animation
+    nameAnimationRef.current = setTimeout(typeName, 1000); // Initial delay
+    
+    return () => {
+      clearTimeout(nameAnimationRef.current);
+      clearTimeout(titleAnimationRef.current);
+      clearInterval(cursorAnimationRef.current);
+    };
+  }, []);
+
+  // Typing animation functions
+  const typeName = () => {
+    let nameIndex = 0;
+    
+    const typeChar = () => {
+      if (nameIndex < FULL_NAME.length) {
+        setNameText(FULL_NAME.substring(0, nameIndex + 1));
+        nameIndex++;
+        nameAnimationRef.current = setTimeout(typeChar, 100);
+      } else {
+        isNameCompleteRef.current = true;
+        setTimeout(startTitle, 1500);
+      }
+    };
+    
+    typeChar();
+  };
+  
+  const startTitle = () => {
+    let titleIndex = 0;
+    const currentTitle = TITLES[currentTitleIndexRef.current];
+    isTitleCompleteRef.current = false;
+    isDeletingRef.current = false;
+    
+    const typeChar = () => {
+      if (titleIndex < currentTitle.length) {
+        setTitleText(currentTitle.substring(0, titleIndex + 1));
+        titleIndex++;
+        titleAnimationRef.current = setTimeout(typeChar, 70); 
+      } else {
+        isTitleCompleteRef.current = true;
+        // Start cycling titles after a pause
+        setTimeout(startTitleCycling, 4000);
+      }
+    };
+    
+    typeChar();
+  };
+  
+  const startTitleCycling = () => {
+    let titleIndex = TITLES[currentTitleIndexRef.current].length;
+    isDeletingRef.current = true;
+    
+    const deleteTitle = () => {
+      if (titleIndex > 0) {
+        setTitleText(TITLES[currentTitleIndexRef.current].substring(0, titleIndex - 1));
+        titleIndex--;
+        titleAnimationRef.current = setTimeout(deleteTitle, 40); // Faster deletion
+      } else {
+        // Move to next title after deletion
+        currentTitleIndexRef.current = (currentTitleIndexRef.current + 1) % TITLES.length;
+        isDeletingRef.current = false;
+        setTimeout(startTitle, 200);
+      }
+    };
+    
+    // Start deleting
+    deleteTitle();
+  };
+
   return (
     <div className="home-page">
       <Header />
-      
       <div className="hero-section">
         <ParticleBackground />
         <div className="name-overlay">
-          <h1>Tyler Layton</h1>
-          <p>Software Developer & Designer</p>
+          <div className="typing-container">
+            <h1 className="typing-text">
+              <span className="text-content">{nameText}</span>
+              {!isNameCompleteRef.current && <span className="cursor">|</span>}
+            </h1>
+            <p className="typing-subtext">
+              <span className="text-content">
+                {titleText || '\u00A0'}
+                {isNameCompleteRef.current && <span className="cursor">|</span>}
+              </span>
+            </p>
+          </div>
         </div>
       </div>
       
