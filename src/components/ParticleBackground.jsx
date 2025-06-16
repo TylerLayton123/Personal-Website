@@ -95,7 +95,6 @@ const ParticleBackground = () => {
     // Mouse interaction
     let mouseX = null;
     let mouseY = null;
-    let radius = 0;
     
     const handleMouseMove = (e) => {
       const rect = canvas.getBoundingClientRect();
