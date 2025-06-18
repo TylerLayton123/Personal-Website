@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import settingsImage from '../assets/images/settings-button.png'; 
 import myLogo from '../assets/images/logoImage.png';
 import schoolLogo from '../assets/images/schoolLogo.png';
+import resumePDF from '../assets/Resume24-25.pdf';
 import './Header.css';
 
 const Header = () => {
@@ -16,6 +17,11 @@ const Header = () => {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  const openResume = () => {
+    // Replace with your actual resume URL
+    window.open(resumePDF, '_blank');
+  };
 
   return (
     <header className={`header ${isScrolled ? 'scrolled' : ''}`}>
@@ -43,14 +49,24 @@ const Header = () => {
           </a>
         </div>
       </div>
-      <div className="settings-container">
-        <button className="settings-btn">
-          <img 
-            src={settingsImage} 
-            alt="Settings" 
-            className="settings-icon"
-          />
-        </button>
+      <div className="header-right">
+        <div className="resume-container">
+          <button 
+            className="resume-btn"
+            onClick={openResume}
+          >
+            Resume
+          </button>
+        </div>
+        <div className="settings-container">
+          <button className="settings-btn">
+            <img 
+              src={settingsImage} 
+              alt="Settings" 
+              className="settings-icon"
+            />
+          </button>
+        </div>
       </div>
     </header>
   );

@@ -85,6 +85,43 @@
     drop-shadow(0 0 1px rgba(255, 255, 255, 0.5));
 }
 
+/* Add to Header.css */
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.resume-container {
+  display: flex;
+  align-items: center;
+}
+
+.resume-btn {
+  background-color: white;
+  color: #0a2647;
+  padding: 8px 20px;
+  border-radius: 30px;
+  border: none;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+}
+
+.header.scrolled .resume-btn {
+  background-color: white;
+  color: #0a2647;
+}
+
+.resume-btn:hover {
+  background-color: #0a2647;
+  color: white;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  transform: translateY(-1px);
+}
+
 .settings-container {
   display: flex;
   align-items: center;
