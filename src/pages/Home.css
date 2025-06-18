@@ -177,3 +177,118 @@
   padding: 2rem 1rem;
   z-index: 3;
 }
+
+
+
+/* pciture and about section */
+/* Add these styles to your Home.css file */
+.about-section {
+  background: linear-gradient(to bottom, rgba(10, 10, 20, 0.7), #0a0a14);
+  padding: 4rem 1rem;
+  position: relative;
+  z-index: 2;
+}
+
+.about-container {
+  display: flex;
+  flex-direction: column;
+  max-width: 1200px;
+  margin: 0 auto;
+  gap: 2.5rem;
+  align-items: center;
+}
+
+.about-image {
+  flex: 1;
+  max-width: 350px;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(44, 116, 179, 0.3);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.about-image:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 35px rgba(32, 82, 149, 0.6);
+}
+
+.about-image img {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: transform 0.4s ease;
+}
+
+.about-image:hover img {
+  transform: scale(1.03);
+}
+
+.about-text {
+  flex: 1.5;
+  padding: 0 1rem;
+}
+
+.about-text h2 {
+  font-size: 2.5rem;
+  margin-bottom: 1.5rem;
+  color: #fff;
+  text-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
+  background: linear-gradient(to right, #8ab4f8, #c5d9f9);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  font-weight: 600;
+}
+
+.about-text p {
+  font-size: 1.2rem;
+  line-height: 1.8;
+  color: #c5d9f9;
+  margin-bottom: 1.5rem;
+  text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+}
+
+/* Responsive adjustments */
+@media (min-width: 768px) {
+  .about-container {
+    flex-direction: row;
+    gap: 3rem;
+  }
+  
+  .about-text {
+    padding: 0;
+  }
+}
+
+@media (max-width: 767px) {
+  .about-section {
+    padding: 3rem 1rem;
+  }
+  
+  .about-image {
+    max-width: 300px;
+  }
+  
+  .about-text h2 {
+    font-size: 2.2rem;
+  }
+  
+  .about-text p {
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .about-image {
+    max-width: 250px;
+  }
+  
+  .about-text h2 {
+    font-size: 2rem;
+  }
+  
+  .about-text p {
+    font-size: 1rem;
+  }
+}

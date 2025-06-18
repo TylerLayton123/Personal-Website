@@ -3,6 +3,7 @@ import Header from '../components/Header';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import ParticleBackground from '../components/ParticleBackground';
+import myPhoto from '../assets/images/myPhoto2.PNG';
 import '../App.css';
 import '../components/Header.css';
 import '../pages/Home.css';
@@ -154,6 +155,7 @@ const Home = () => {
   return (
     <div className="home-page">
       <Header />
+      {/* particle background with name */}
       <div className="hero-section">
         <ParticleBackground />
         <div className="name-overlay">
@@ -171,7 +173,38 @@ const Home = () => {
           </div>
         </div>
       </div>
+
+      {/* about section */}
+      <div className="about-section">
+        <div className="about-container">
+          <div className="about-image">
+            <img src={myPhoto} alt="Tyler Layton" />
+          </div>
+          <div className="about-text">
+            <h2>About Me</h2>
+            <p>
+              I am a current graduate student at Rensselaer Polytechnic Institute with a BS in Computer
+              Science and Computer Systems Engineering. With knowledge in many different programming languages 
+              and frameworks, I am passionate about learning as much as I can about technology and how it works.
+            </p>
+            <p>
+              My academic journey is complemented by practical experience in both industry and research 
+              settings, where I've developed skills in full-stack development, algorithm optimization, and 
+              embedded systems development. 
+            </p>
+            <p>
+              When I'm not coding, you can find me exploring the outdoors, skiing, or hanging out with the friends I 
+              have made. 
+            </p>
+            <p>
+              This website is an accumulation of all my hard work throughtout my time at RPI as well as 
+              other things I am passionate about. Please explore my projects, class work, and journey below. Thank you!
+            </p>
+          </div>
+        </div>
+      </div>
       
+      {/* content section */}
       <div className="content-section">
         <div className="nav-cards-container">
           {navBar.map((card, index) => (
