@@ -69,8 +69,6 @@
   position: relative;
 }
 
-
-
 .cursor {
   display: inline;
   animation: blink 1.2s infinite; 
@@ -84,104 +82,8 @@
   50% { opacity: 0; }
 }
 
-.content-section {
-  background: linear-gradient(to top, #0a0a14, #0a0a14 70%, rgba(10, 10, 20, 0.5));
-  padding: 4rem 1rem;
-  position: relative;
-  z-index: 2;
-}
-
-.nav-cards-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 2rem;
-  max-width: 1200px;
-  margin: 0 auto;
-  width: 100%;
-  position: relative;
-  z-index: 3;
-}
-
-.nav-card {
-  border-radius: 12px;
-  padding: 2.5rem 1.5rem;
-  text-align: center;
-  color: white;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  cursor: pointer;
-  min-height: 200px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
-  background: linear-gradient(145deg, rgba(20, 20, 30, 0.9), rgba(10, 20, 40, 0.95));
-  border: 1px solid rgba(44, 116, 179, 0.3);
-  backdrop-filter: blur(4px);
-}
-
-.nav-card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 10px 25px rgba(32, 82, 149, 0.4);
-  background: linear-gradient(145deg, rgba(30, 30, 45, 0.95), rgba(15, 30, 60, 0.95));
-}
-
-.nav-icon {
-  font-size: 3.5rem;
-  margin-bottom: 1.5rem;
-}
-
-.nav-card h3 {
-  font-size: 1.8rem;
-  font-weight: 600;
-}
-
-@media (max-width: 768px) {
-  .hero-section {
-    height: 80vh;
-  }
-  
-  .typing-container {
-    min-height: 160px;
-    padding: 15px 0;
-  }
-  
-  .typing-text {
-    font-size: 3rem;
-  }
-  
-  .typing-subtext {
-    font-size: 1.6rem;
-    min-height: 2rem;
-  }
-  
-  .nav-cards-container {
-    grid-template-columns: 1fr;
-    padding: 0 1rem;
-  }
-}
-
-@media (max-width: 480px) {
-  .typing-text {
-    font-size: 2.5rem;
-  }
-  
-  .typing-subtext {
-    font-size: 1.4rem;
-  }
-}
-
-.footer {
-  background: #0a0a14;
-  border-top: 1px solid rgba(44, 116, 179, 0.2);
-  padding: 2rem 1rem;
-  z-index: 3;
-}
-
-
 
 /* pciture and about section */
-/* Add these styles to your Home.css file */
 .about-section {
   background: linear-gradient(to bottom, rgba(10, 10, 20, 0.7), #0a0a14);
   padding: 4rem 1rem;
@@ -249,7 +151,6 @@
   text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
 }
 
-/* Responsive adjustments */
 @media (min-width: 768px) {
   .about-container {
     flex-direction: row;
@@ -292,3 +193,235 @@
     font-size: 1rem;
   }
 }
+
+
+/* content section with buttons *//* HomePage.css */
+/* Existing styles remain unchanged */
+
+/* Navigation Cards Styles */
+.content-section {
+  padding: 4rem 1rem;
+  position: relative;
+  z-index: 2;
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.alternating-cards-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  width: 100%;
+}
+
+.alternating-card {
+  display: flex;
+  width: 100%;
+  min-height: 150px;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+  transition: all 0.3s ease;
+  position: relative;
+  border: 1px solid rgba(138, 180, 248, 0.2);
+}
+
+.alternating-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 35px rgba(32, 82, 149, 0.6);
+}
+
+.nav-card {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  min-height: 150px;
+  padding: 20px 30px;
+  text-decoration: none;
+  position: relative;
+  overflow: hidden;
+  z-index: 2;
+  background: linear-gradient(90deg, rgba(20, 30, 48, 0.9) 0%, rgba(15, 23, 42, 0.7) 100%);
+}
+
+.card-content {
+  display: flex;
+  flex-direction: column;
+  z-index: 3;
+  max-width: 80%;
+}
+
+.left-aligned .card-content {
+  align-items: flex-start;
+  text-align: left;
+}
+
+.right-aligned .card-content {
+  align-items: flex-end;
+  text-align: right;
+  margin-left: auto;
+}
+
+.card-title {
+  font-size: 2.2rem;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: #fff;
+  background: linear-gradient(to right, #8ab4f8, #c5d9f9);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  position: relative;
+  z-index: 3;
+  transition: transform 0.3s ease;
+}
+
+.card-description {
+  font-size: 1.1rem;
+  color: #c5d9f9;
+  line-height: 1.6;
+  position: relative;
+  z-index: 3;
+  transition: transform 0.3s ease;
+}
+
+/* Fade overlay effect */
+.fade-overlay {
+  position: absolute;
+  top: 0;
+  width: 50%;
+  height: 100%;
+  z-index: 2;
+  transition: all 0.5s ease;
+  background: linear-gradient(
+    to right,
+    rgba(255, 255, 255, 0.1) 0%,
+    rgba(255, 255, 255, 0.05) 50%,
+    transparent 100%
+  );
+}
+
+/* Position fade on the opposite side of the title */
+.left-aligned .fade-overlay {
+  right: 0;
+  background: linear-gradient(
+    to left,
+    rgba(255, 255, 255, 0.15) 0%,
+    rgba(255, 255, 255, 0.05) 50%,
+    transparent 100%
+  );
+}
+
+.right-aligned .fade-overlay {
+  left: 0;
+  background: linear-gradient(
+    to right,
+    rgba(255, 255, 255, 0.15) 0%,
+    rgba(255, 255, 255, 0.05) 50%,
+    transparent 100%
+  );
+}
+
+/* Expand fade on hover */
+.nav-card:hover .fade-overlay {
+  width: 90%;
+}
+
+/* Add subtle content movement on hover */
+.nav-card:hover .card-title {
+  transform: translateX(5px);
+}
+
+.nav-card:hover .card-description {
+  transform: translateX(3px);
+}
+
+.right-aligned .nav-card:hover .card-title {
+  transform: translateX(-5px);
+}
+
+.right-aligned .nav-card:hover .card-description {
+  transform: translateX(-3px);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .typing-text {
+    font-size: 3rem;
+  }
+  
+  .typing-subtext {
+    font-size: 1.6rem;
+  }
+  
+  .alternating-card {
+    min-height: 120px;
+  }
+  
+  .nav-card {
+    min-height: 120px;
+    padding: 15px 20px;
+  }
+  
+  .card-title {
+    font-size: 1.8rem;
+  }
+  
+  .card-description {
+    font-size: 1rem;
+  }
+  
+  .fade-overlay {
+    width: 40%;
+  }
+  
+  .nav-card:hover .fade-overlay {
+    width: 80%;
+  }
+}
+
+@media (max-width: 480px) {
+  .typing-text {
+    font-size: 2.5rem;
+  }
+  
+  .typing-subtext {
+    font-size: 1.4rem;
+  }
+  
+  .alternating-card {
+    min-height: 100px;
+  }
+  
+  .nav-card {
+    min-height: 100px;
+    padding: 12px 15px;
+  }
+  
+  .card-title {
+    font-size: 1.5rem;
+  }
+  
+  .card-description {
+    font-size: 0.9rem;
+  }
+  
+  .fade-overlay {
+    width: 50%;
+  }
+  
+  .nav-card:hover .fade-overlay {
+    width: 90%;
+  }
+}
+
+
+.footer {
+  background: #0a0a14;
+  border-top: 1px solid rgba(44, 116, 179, 0.2);
+  padding: 2rem 1rem;
+  z-index: 3;
+}
+
+

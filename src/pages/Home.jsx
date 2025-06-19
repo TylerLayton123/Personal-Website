@@ -24,25 +24,21 @@ const Home = () => {
   const navBar = [
     {
       title: 'Experience',
-      icon: '💼',
       path: '/experience',
       color: 'rgb(20, 66, 114)'
     },
     {
       title: 'Projects',
-      icon: '🚀',
       path: '/projects',
       color: 'rgb(32, 82, 149)'
     },
     {
       title: 'Skills',
-      icon: '🔧',
       path: '/skills',
       color: 'rgb(44, 116, 179)'
     },
     {
       title: 'Course Work',
-      icon: '📚',
       path: '/coursework',
       color: 'rgb(10, 38, 71)'
     }
@@ -151,6 +147,7 @@ const Home = () => {
     // Start deleting
     deleteTitle();
   };
+  
 
   return (
     <div className="home-page">
@@ -206,15 +203,20 @@ const Home = () => {
       
       {/* content section */}
       <div className="content-section">
-        <div className="nav-cards-container">
+        <div className="alternating-cards-container">
           {navBar.map((card, index) => (
-            <Navbar 
-              key={index}
-              title={card.title}
-              icon={card.icon}
-              path={card.path}
-              color={card.color}
-            />
+            <div 
+              key={index} 
+              className={`alternating-card ${index % 2 === 0 ? 'left-aligned' : 'right-aligned'}`}
+            >
+              <a href={card.path} className="nav-card">
+                <div className="card-content">
+                  <h3 className="card-title">{card.title}</h3>
+                  <p className="card-description">{card.description}</p>
+                </div>
+                <div className="fade-overlay"></div>
+              </a>
+            </div>
           ))}
         </div>
       </div>
