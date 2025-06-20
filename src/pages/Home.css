@@ -17,14 +17,6 @@
   overflow: hidden;
 }
 
-.particle-canvas {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 0;
-}
 
 .name-overlay {
   padding: 0;
@@ -206,6 +198,7 @@
   max-width: 1200px;
   margin: 0 auto;
   width: 100%;
+  min-height: 100vh;
 }
 
 .alternating-cards-container {
@@ -213,6 +206,7 @@
   flex-direction: column;
   gap: 1.5rem;
   width: 100%;
+  position: relative;
 }
 
 .alternating-card {
@@ -329,9 +323,9 @@
 }
 
 /* Add subtle content movement on hover */
-.nav-card:hover .card-title {
+/* .nav-card:hover .card-title {
   transform: translateX(5px);
-}
+} */
 
 .nav-card:hover .card-description {
   transform: translateX(3px);

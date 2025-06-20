@@ -8,11 +8,12 @@ const ParticleBackground = () => {
     const ctx = canvas.getContext('2d');
     let animationFrameId;
     
-    // Set canvas size to hero section
+    // Set canvas size to parent
     const setCanvasSize = () => {
-      const heroSection = document.querySelector('.hero-section');
-      if (heroSection) {
-        const rect = heroSection.getBoundingClientRect();
+        // const heroSection = document.querySelector('.hero-section');
+      const parent = canvasRef.current.parentElement;
+      if (parent) {
+        const rect = parent.getBoundingClientRect();
         canvas.width = rect.width;
         canvas.height = rect.height;
       }
@@ -47,7 +48,7 @@ const ParticleBackground = () => {
         };
         
         this.colorPhase = 0; // For color transition
-        this.colorSpeed = 0.005 + Math.random() * 0.005;
+        this.colorSpeed = 0.01 + Math.random() * 0.05;
       }
       
       updateColor(time) {
