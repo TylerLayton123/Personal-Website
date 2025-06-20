@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import Header from '../components/Header';
-import Navbar from '../components/Navbar';
+// import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import ParticleBackground from '../components/ParticleBackground';
 import myPhoto from '../assets/images/myPhoto2.PNG';
@@ -25,6 +25,7 @@ const Home = () => {
     {
       title: 'Experience',
       path: '/experience',
+      // description: "sdlfgwoingowinfow",
       color: 'rgb(20, 66, 114)'
     },
     {
@@ -48,7 +49,7 @@ const Home = () => {
   const [nameText, setNameText] = useState('');
   const [titleText, setTitleText] = useState('');
   const [showCursor, setShowCursor] = useState(true);
-  
+
   // Refs for animation control
   const nameAnimationRef = useRef(null);
   const titleAnimationRef = useRef(null);
@@ -63,7 +64,7 @@ const Home = () => {
     clearTimeout(nameAnimationRef.current);
     clearTimeout(titleAnimationRef.current);
     clearInterval(cursorAnimationRef.current);
-    
+
     // Reset states
     setNameText('');
     setTitleText('');
@@ -72,15 +73,15 @@ const Home = () => {
     isNameCompleteRef.current = false;
     isTitleCompleteRef.current = false;
     isDeletingRef.current = false;
-    
+
     // Cursor blinking effect
     cursorAnimationRef.current = setInterval(() => {
       setShowCursor(prev => !prev);
     }, 700);
-    
+
     // Start the typing animation
     nameAnimationRef.current = setTimeout(typeName, 1000); // Initial delay
-    
+
     return () => {
       clearTimeout(nameAnimationRef.current);
       clearTimeout(titleAnimationRef.current);
@@ -91,7 +92,7 @@ const Home = () => {
   // Typing animation functions
   const typeName = () => {
     let nameIndex = 0;
-    
+
     const typeChar = () => {
       if (nameIndex < FULL_NAME.length) {
         setNameText(FULL_NAME.substring(0, nameIndex + 1));
@@ -102,35 +103,35 @@ const Home = () => {
         setTimeout(startTitle, 1500);
       }
     };
-    
+
     typeChar();
   };
-  
+
   const startTitle = () => {
     let titleIndex = 0;
     const currentTitle = TITLES[currentTitleIndexRef.current];
     isTitleCompleteRef.current = false;
     isDeletingRef.current = false;
-    
+
     const typeChar = () => {
       if (titleIndex < currentTitle.length) {
         setTitleText(currentTitle.substring(0, titleIndex + 1));
         titleIndex++;
-        titleAnimationRef.current = setTimeout(typeChar, 70); 
+        titleAnimationRef.current = setTimeout(typeChar, 70);
       } else {
         isTitleCompleteRef.current = true;
         // Start cycling titles after a pause
         setTimeout(startTitleCycling, 4000);
       }
     };
-    
+
     typeChar();
   };
-  
+
   const startTitleCycling = () => {
     let titleIndex = TITLES[currentTitleIndexRef.current].length;
     isDeletingRef.current = true;
-    
+
     const deleteTitle = () => {
       if (titleIndex > 0) {
         setTitleText(TITLES[currentTitleIndexRef.current].substring(0, titleIndex - 1));
@@ -143,11 +144,11 @@ const Home = () => {
         setTimeout(startTitle, 200);
       }
     };
-    
+
     // Start deleting
     deleteTitle();
   };
-  
+
 
   return (
     <div className="home-page">
@@ -181,45 +182,49 @@ const Home = () => {
             <h2>About Me</h2>
             <p>
               I am currently graduate student at Rensselaer Polytechnic Institute with a BS in Computer
-              Science and Computer Systems Engineering. I have knowledge in many different programming languages 
+              Science and Computer Systems Engineering. I have knowledge in many different programming languages
               and frameworks, I am passionate about learning as much as I can about technology and how it works.
             </p>
             <p>
-              My academic journey is complemented by practical experience in both industry and research 
-              settings, where I've developed skills in full-stack development, algorithm optimization, and 
-              embedded systems controls. 
+              My academic journey is complemented by practical experience in both industry and research
+              settings, where I've developed skills in full-stack development, algorithm optimization, and
+              embedded systems controls.
             </p>
             <p>
-              When I'm not coding, you can find me exploring the outdoors, skiing, or travelling the country. 
+              When I'm not coding, you can find me exploring the outdoors, skiing, or travelling the country.
             </p>
             <p>
-              This website is an accumulation of all my hard work throughtout my time at RPI as well as 
+              This website is an accumulation of all my hard work throughtout my time at RPI as well as
               other things I am passionate about. Please explore my projects, class work, and journey below. Thank you!
             </p>
           </div>
         </div>
       </div>
-      
+
       {/* content section */}
       <div className="content-section">
-        <div className="alternating-cards-container">
-          {navBar.map((card, index) => (
-            <div 
-              key={index} 
-              className={`alternating-card ${index % 2 === 0 ? 'left-aligned' : 'right-aligned'}`}
-            >
-              <a href={card.path} className="nav-card">
-                <div className="card-content">
-                  <h3 className="card-title">{card.title}</h3>
-                  <p className="card-description">{card.description}</p>
-                </div>
-                <div className="fade-overlay"></div>
-              </a>
-            </div>
-          ))}
+        <ParticleBackground contentSection='true' />
+        <div className="button-section">
+          <div className="alternating-cards-container">
+            {navBar.map((card, index) => (
+              <div
+                key={index}
+                className={`alternating-card ${index % 2 === 0 ? 'left-aligned' : 'right-aligned'}`}
+              >
+                <a href={card.path} className="nav-card">
+                  <div className="card-content">
+                    <h3 className="card-title">{card.title}</h3>
+                    <p className="card-description">{card.description}</p>
+                  </div>
+                  <div className="fade-overlay"></div>
+                </a>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
-      
+
+
       <Footer />
     </div>
   );

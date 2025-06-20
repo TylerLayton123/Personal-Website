@@ -189,9 +189,18 @@
 
 /* content section with buttons *//* HomePage.css */
 /* Existing styles remain unchanged */
+.content-section {
+  position: relative;
+  height: 130vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  overflow: hidden;
+}
 
 /* Navigation Cards Styles */
-.content-section {
+.button-section {
   padding: 4rem 1rem;
   position: relative;
   z-index: 2;
