@@ -1,19 +1,9 @@
-
-
-// src/components/SettingsPanel.jsx
 import React from 'react';
 import './Settings.css';
+import { useTheme } from './ThemeContext';
 
 const SettingsPanel = ({ isOpen, onClose }) => {
-    // rgb(32, 87, 129)
-    // rgb(79, 149, 157)
-    // rgb(152, 210, 192)
-    // rgb(246, 248, 213)
-
-    // rgb(10, 38, 71)
-    // rgb(20, 66, 114)
-    // rgb(32, 82, 149)
-    // rgb(44, 116, 179)
+    const { themes, setTheme } = useTheme();
 
     return (
         <>
@@ -30,9 +20,27 @@ const SettingsPanel = ({ isOpen, onClose }) => {
                     <div className="theme-section">
                         <h3>Color Theme</h3>
                         <div className="theme-options">
-                            <button className="theme-option theme-dark">Dark</button>
-                            <button className="theme-option theme-light">Light</button>
-                            <button className="theme-option theme-blue">Blue</button>
+                            <button
+                                className="theme-option"
+                                onClick={() => setTheme('theme1')}
+                                style={{ background: 'var(--theme-color0)' }}
+                            >
+                                Theme 1
+                            </button>
+                            <button
+                                className="theme-option"
+                                onClick={() => setTheme('theme2')}
+                                style={{ background: 'var(--theme-color0)' }}
+                            >
+                                Theme 2
+                            </button>
+                            <button
+                                className="theme-option"
+                                onClick={() => setTheme('theme3')}
+                                style={{ background: 'var(--theme-color0)' }}
+                            >
+                                Theme 3
+                            </button>
                         </div>
                     </div>
 

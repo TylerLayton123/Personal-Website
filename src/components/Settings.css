@@ -1,19 +1,16 @@
-/* src/components/SettingsPanel.css */
 .settings-panel {
   position: fixed;
   top: 0;
   right: -400px; /* Start off-screen */
   width: 350px;
   height: 100vh;
-  background: #0a0a14;
-  border-left: 1px solid rgba(44, 116, 179, 0.3);
+  background: rgb(var(--theme-color0));
   z-index: 1000;
   transition: right 0.3s ease-in-out;
   box-shadow: -5px 0 15px rgba(0, 0, 0, 0.3);
   overflow-y: auto;
 }
 
-/* Change the .settings-overlay rules to: */
 .settings-overlay {
   position: fixed;
   top: 0;

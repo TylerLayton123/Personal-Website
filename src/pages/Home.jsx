@@ -3,7 +3,7 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 import ParticleBackground from '../components/ParticleBackground';
 import myPhoto from '../assets/images/myPhoto2.PNG';
-import SettingsPanel from '../components/Settings';
+import Settings from '../components/Settings';
 import '../App.css';
 import '../components/Header.css';
 import '../pages/Home.css';
@@ -28,22 +28,18 @@ const Home = () => {
       title: 'Experience',
       path: '/experience',
       // description: "sdlfgwoingowinfow",
-      color: 'rgb(20, 66, 114)'
     },
     {
       title: 'Projects',
       path: '/projects',
-      color: 'rgb(32, 82, 149)'
     },
     {
       title: 'Skills',
       path: '/skills',
-      color: 'rgb(44, 116, 179)'
     },
     {
       title: 'Course Work',
       path: '/coursework',
-      color: 'rgb(10, 38, 71)'
     }
   ];
 
@@ -217,7 +213,7 @@ const Home = () => {
         </div>
       </div>
 
-      <SettingsPanel 
+      <Settings 
         isOpen={settingsOpen} 
         onClose={() => setSettingsOpen(false)} 
       />

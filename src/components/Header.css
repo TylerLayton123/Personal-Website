@@ -1,3 +1,4 @@
+
 .header {
   display: flex;
   justify-content: space-between;
@@ -16,13 +17,12 @@
 }
 
 .header.scrolled {
-  /* Glass effect when scrolled */
-  background: rgba(10, 38, 71, 0.85);
+  background: rgba(var(--theme-color1), 0.85);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
   padding: 0.8rem 2rem;
-  border-bottom: 1px solid rgba(44, 116, 179, 0.3);
+  border-bottom: 1px solid rgb(var(--theme-color1));
 }
 
 .left-group {
@@ -98,8 +98,8 @@
 }
 
 .resume-btn {
-  background-color: white;
-  color: #0a2647;
+  background-color: rgb(var(--theme-color4));
+  color: rgb(var(--theme-color0));
   padding: 8px 20px;
   border-radius: 30px;
   border: none;
@@ -111,16 +111,24 @@
 }
 
 .header.scrolled .resume-btn {
-  background-color: white;
-  color: #0a2647;
+  background-color: rgb(var(--theme-color4));
+  color: rgb(var(--theme-color0));
 }
 
 .resume-btn:hover {
-  background-color: #0a2647;
-  color: white;
+  background-color: rgb(var(--theme-color2));
+  color: rgb(var(--theme-color4));
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
   transform: translateY(-1px);
 }
+
+.header.scrolled .resume-btn:hover {
+  background-color: rgb(var(--theme-color2));
+  color: rgb(var(--theme-color4));
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  transform: translateY(-1px);
+}
+
 
 .settings-container {
   display: flex;

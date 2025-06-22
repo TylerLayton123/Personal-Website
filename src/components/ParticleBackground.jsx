@@ -1,7 +1,9 @@
 import React, { useRef, useEffect } from 'react';
+import { useTheme } from './ThemeContext';
 
 const ParticleBackground = ({ contentSection = 'false' }) => {
   const canvasRef = useRef(null);
+  const { currentTheme } = useTheme();
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -22,12 +24,6 @@ const ParticleBackground = ({ contentSection = 'false' }) => {
     window.addEventListener('resize', setCanvasSize);
     setCanvasSize();
 
-    const colors = [
-      { r: 10, g: 38, b: 71 },
-      { r: 20, g: 66, b: 114 },
-      { r: 32, g: 82, b: 149 },
-      { r: 44, g: 116, b: 179 }
-    ];
 
     // Particle class
     class Particle {
@@ -39,7 +35,7 @@ const ParticleBackground = ({ contentSection = 'false' }) => {
         this.speedY = Math.random() * 0.5 - 0.25;
 
         // Store base color and lightened version
-        const baseColor = colors[Math.floor(Math.random() * colors.length)];
+        const baseColor = currentTheme[Math.floor(Math.random() * 5)];
         this.baseColor = baseColor;
         this.lightenedColor = {
           r: Math.min(255, baseColor.r + 40),
@@ -126,15 +122,16 @@ const ParticleBackground = ({ contentSection = 'false' }) => {
 
       // Create gradient background with shifting colors
       const gradient = ctx.createLinearGradient(0, 0, width, height);
+      const primaryColor = currentTheme[1];
       const startColor = {
-        r: Math.round(10 + bgFactor * 30),
-        g: Math.round(20 + bgFactor * 30),
-        b: Math.round(40 + bgFactor * 30)
+        r: Math.round(primaryColor.r + bgFactor * 30),
+        g: Math.round(primaryColor.g + bgFactor * 30),
+        b: Math.round(primaryColor.b + bgFactor * 30)
       };
       const endColor = {
-        r: Math.round(5 + bgFactor * 15),
-        g: Math.round(10 + bgFactor * 15),
-        b: Math.round(20 + bgFactor * 15)
+        r: Math.round(primaryColor.r / 2 + bgFactor * 15),
+        g: Math.round(primaryColor.g / 2 + bgFactor * 15),
+        b: Math.round(primaryColor.b / 2 + bgFactor * 15)
       };
 
       gradient.addColorStop(0, `rgb(${startColor.r}, ${startColor.g}, ${startColor.b})`);
@@ -176,7 +173,9 @@ const ParticleBackground = ({ contentSection = 'false' }) => {
           if (distance < 100) {
             const opacity = 1 - distance / 100;
             ctx.beginPath();
-            ctx.strokeStyle = `rgba(32, 82, 149, ${opacity * 0.7})`;
+            const COLOR3 = currentTheme[4];
+
+            ctx.strokeStyle = `rgba(${COLOR3.r}, ${COLOR3.g}, ${COLOR3.b}, ${opacity * 0.7})`;
             ctx.lineWidth = 0.5;
             ctx.moveTo(particles[i].x, particles[i].y);
             ctx.lineTo(particles[j].x, particles[j].y);
@@ -185,21 +184,21 @@ const ParticleBackground = ({ contentSection = 'false' }) => {
         }
       }
 
-      // fades top
+      // Top fade 
       if (contentSection === 'true') {
-        const fadeHeight = height * 0.15; // 15% of height for fade
+        const fadeHeight = height * 0.15;
         const fadeGradient = ctx.createLinearGradient(0, 0, 0, fadeHeight);
-        fadeGradient.addColorStop(0, '#0a0a14');
-        fadeGradient.addColorStop(1, 'rgba(0, 0, 0, 0)');
+        fadeGradient.addColorStop(0, `rgba(${currentTheme[0].r}, ${currentTheme[0].g}, ${currentTheme[0].b}, 1)`);
+        fadeGradient.addColorStop(1, `rgba(${currentTheme[0].r}, ${currentTheme[0].g}, ${currentTheme[0].b}, 0)`);
         ctx.fillStyle = fadeGradient;
         ctx.fillRect(0, 0, width, fadeHeight);
       }
 
-      // fades bottom
-      const fadeHeight = height * 0.15; // 15% of height for fade
+      // Bottom fade 
+      const fadeHeight = height * 0.15;
       const fadeGradient = ctx.createLinearGradient(0, height - fadeHeight, 0, height);
-      fadeGradient.addColorStop(0, 'rgba(0, 0, 0, 0)');
-      fadeGradient.addColorStop(1, '#0a0a14');
+      fadeGradient.addColorStop(0, `rgba(${currentTheme[0].r}, ${currentTheme[0].g}, ${currentTheme[0].b}, 0)`);
+      fadeGradient.addColorStop(1, `rgba(${currentTheme[0].r}, ${currentTheme[0].g}, ${currentTheme[0].b}, 1)`);
       ctx.fillStyle = fadeGradient;
       ctx.fillRect(0, height - fadeHeight, width, fadeHeight);
 
@@ -223,7 +222,7 @@ const ParticleBackground = ({ contentSection = 'false' }) => {
         canvas.removeEventListener('mouseleave', handleMouseLeave);
       }
     };
-  }, [contentSection]);
+  }, [contentSection, currentTheme]);
 
   return (
     <canvas
