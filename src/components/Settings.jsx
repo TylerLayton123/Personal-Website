@@ -4,6 +4,24 @@ import { useTheme } from './ThemeContext';
 
 const SettingsPanel = ({ isOpen, onClose }) => {
     const { themes, setTheme } = useTheme();
+    
+    // Array of theme names to display
+    const themeNames = [
+        'theme1', 'theme2', 'theme3', 
+        'theme4', 'theme5', 'theme6'
+    ];
+    
+    // Function to render a color stripe
+    const renderColorStripe = (color, width) => (
+        <div 
+            key={`${color.r}-${color.g}-${color.b}`}
+            className="color-stripe"
+            style={{
+                backgroundColor: `rgb(${color.r}, ${color.g}, ${color.b})`,
+                width: `${width}%`
+            }}
+        />
+    );
 
     return (
         <>
@@ -19,34 +37,28 @@ const SettingsPanel = ({ isOpen, onClose }) => {
                 <div className="settings-content">
                     <div className="theme-section">
                         <h3>Color Theme</h3>
-                        <div className="theme-options">
-                            <button
-                                className="theme-option"
-                                onClick={() => setTheme('theme1')}
-                                style={{ background: 'var(--theme-color0)' }}
-                            >
-                                Theme 1
-                            </button>
-                            <button
-                                className="theme-option"
-                                onClick={() => setTheme('theme2')}
-                                style={{ background: 'var(--theme-color0)' }}
-                            >
-                                Theme 2
-                            </button>
-                            <button
-                                className="theme-option"
-                                onClick={() => setTheme('theme3')}
-                                style={{ background: 'var(--theme-color0)' }}
-                            >
-                                Theme 3
-                            </button>
+                        <div className="theme-options-grid">
+                            {themeNames.map(themeName => (
+                                <button
+                                    key={themeName}
+                                    className="theme-preview"
+                                    onClick={() => setTheme(themeName)}
+                                    aria-label={`Select ${themeName}`}
+                                >
+                                    <div className="theme-colors">
+                                        {themes[themeName]?.slice(0, 5).map(color => 
+                                            renderColorStripe(color, 100/5)
+                                        )}
+                                    </div>
+                                    <span className="theme-name">{themeName.replace('theme', 'Theme ')}</span>
+                                </button>
+                            ))}
                         </div>
                     </div>
 
                     <div className="other-settings">
                         <h3>Other Options</h3>
-
+                        {/* Other settings content here */}
                     </div>
                 </div>
             </div>

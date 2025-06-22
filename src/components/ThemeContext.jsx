@@ -8,53 +8,49 @@ export const ThemeProvider = ({ children }) => {
         return localStorage.getItem('activeTheme') || 'theme1';
     });
 
-    // rgb(10, 20, 30)';
-    // 'rgb(10, 38, 71)';
-    // 'rgb(20, 66, 114)';
-    // 'rgb(120, 168, 232)';
-    // 'rgb(169, 215, 255)';
-
-    // { r: 59, g: 6, b: 10 },
-    // { r: 138, g: 0, b: 0 },
-    // { r: 200, g: 63, b: 18 },
-    // { r: 255, g: 242, b: 135 }
-
-    // rgb(32, 87, 129)
-    // rgb(79, 149, 157)
-    // rgb(152, 210, 192)
-    // rgb(246, 248, 213)
-    // 
-
     const themes = {
-        theme1: [
-            { r: 10, g: 20, b: 30 },    // Darkest navy
-            { r: 10, g: 38, b: 71 },    // Deep blue
-            { r: 20, g: 66, b: 114 },   // Medium blue
-            { r: 120, g: 168, b: 232 },   // Bright blue
-            { r: 169, g: 215, b: 255 }   // Light blue
+        theme1: [ // Deep Ocean Blues
+            { r: 10, g: 20, b: 30 },     // rgb(10, 20, 30) - Midnight Navy
+            { r: 10, g: 38, b: 71 },     // rgb(10, 38, 71) - Deep Ocean
+            { r: 20, g: 66, b: 114 },    // rgb(20, 66, 114) - Royal Blue
+            { r: 120, g: 168, b: 232 },  // rgb(120, 168, 232) - Sky Blue
+            { r: 169, g: 215, b: 255 }   // rgb(169, 215, 255) - Light Azure
         ],
-        theme2: [
-            { r: 0, g: 0, b: 0 },        // Pure black (#000000)
-            { r: 0, g: 52, b: 14 },      // Dark green (#00340e)
-            { r: 0, g: 102, b: 22 },     // Medium green (#006616)
-            { r: 106, g: 168, b: 79 },   // Light green (#6aa84f)
-            { r: 147, g: 196, b: 125 }   // Pastel green (#93c47d)
+        theme2: [ // Forest Greens
+            { r: 0, g: 0, b: 0 },        // rgb(0, 0, 0) - Pure Black
+            { r: 0, g: 52, b: 14 },      // rgb(0, 52, 14) - Pine Green
+            { r: 0, g: 102, b: 22 },     // rgb(0, 102, 22) - Forest Green
+            { r: 106, g: 168, b: 79 },   // rgb(106, 168, 79) - Sage Green
+            { r: 147, g: 196, b: 125 }   // rgb(147, 196, 125) - Mint Green
         ],
-        theme3: [
-            { r: 34, g: 34, b: 59 },      // Space Cadet
-            { r: 74, g: 78, b: 105 },     // Ultra Violet
-            { r: 154, g: 140, b: 152 },   // Rose Quartz
-            { r: 201, g: 173, b: 167 },   // Pale Dogwood
-            { r: 242, g: 233, b: 228 }    // Isabelline
+        theme3: [ // Muted Purples
+            { r: 34, g: 34, b: 59 },     // rgb(34, 34, 59) - Dark Slate
+            { r: 74, g: 78, b: 105 },    // rgb(74, 78, 105) - Deep Lilac
+            { r: 154, g: 140, b: 152 },  // rgb(154, 140, 152) - Dusty Rose
+            { r: 201, g: 173, b: 167 },  // rgb(201, 173, 167) - Soft Clay
+            { r: 242, g: 233, b: 228 }   // rgb(242, 233, 228) - Warm Ivory
+        ],
+        theme4: [ // Gold & Navy Contrast
+            { r: 0, g: 8, b: 20 },       // rgb(0, 8, 20) - Rich Black
+            { r: 0, g: 29, b: 61 },      // rgb(0, 29, 61) - Oxford Blue
+            { r: 0, g: 53, b: 102 },     // rgb(0, 53, 102) - Yale Blue
+            { r: 255, g: 195, b: 0 },    // rgb(255, 195, 0) - Vibrant Gold
+            { r: 255, g: 214, b: 10 }    // rgb(255, 214, 10) - Sunny Yellow
+        ],
+        theme5: [ // Ocean Greens
+            { r: 34, g: 87, b: 122 },    // rgb(34, 87, 122) - Deep Teal
+            { r: 56, g: 163, b: 165 },   // rgb(56, 163, 165) - Turquoise
+            { r: 87, g: 204, b: 153 },   // rgb(87, 204, 153) - Emerald
+            { r: 128, g: 237, b: 153 },  // rgb(128, 237, 153) - Light Mint
+            { r: 199, g: 249, b: 204 }   // rgb(199, 249, 204) - Pale Green
+        ],
+        theme6: [ // Cool Grays
+            { r: 224, g: 251, b: 252 },  // rgb(224, 251, 252) - Ice Blue
+            { r: 194, g: 223, b: 227 },  // rgb(194, 223, 227) - Powder Blue
+            { r: 157, g: 180, b: 192 },  // rgb(157, 180, 192) - Silver Gray
+            { r: 92, g: 107, b: 115 },   // rgb(92, 107, 115) - Storm Gray
+            { r: 37, g: 50, b: 55 }      // rgb(37, 50, 55) - Charcoal
         ]
-        // theme3: [
-        //     { r: 32, g: 87, b: 129 },
-        //     { r: 79, g: 149, b: 157 },
-        //     { r: 152, g: 210, b: 192 },
-        //     { r: 246, g: 248, b: 213 }
-        // ]
-
-        // Add more themes as needed
     };
 
     useEffect(() => {
