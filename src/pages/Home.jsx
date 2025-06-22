@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react';
 import Header from '../components/Header';
-// import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import ParticleBackground from '../components/ParticleBackground';
 import myPhoto from '../assets/images/myPhoto2.PNG';
+import SettingsPanel from '../components/Settings';
 import '../App.css';
 import '../components/Header.css';
 import '../pages/Home.css';
@@ -21,6 +21,8 @@ const TITLES = [
 ];
 
 const Home = () => {
+  const [settingsOpen, setSettingsOpen] = useState(false);
+
   const navBar = [
     {
       title: 'Experience',
@@ -48,12 +50,10 @@ const Home = () => {
   // State for typing animation
   const [nameText, setNameText] = useState('');
   const [titleText, setTitleText] = useState('');
-  const [showCursor, setShowCursor] = useState(true);
 
   // Refs for animation control
   const nameAnimationRef = useRef(null);
   const titleAnimationRef = useRef(null);
-  const cursorAnimationRef = useRef(null);
   const currentTitleIndexRef = useRef(0);
   const isNameCompleteRef = useRef(false);
   const isTitleCompleteRef = useRef(false);
@@ -63,21 +63,15 @@ const Home = () => {
     // Clear any existing animations
     clearTimeout(nameAnimationRef.current);
     clearTimeout(titleAnimationRef.current);
-    clearInterval(cursorAnimationRef.current);
 
     // Reset states
     setNameText('');
     setTitleText('');
-    setShowCursor(true);
+    // setShowCursor(true);
     currentTitleIndexRef.current = 0;
     isNameCompleteRef.current = false;
     isTitleCompleteRef.current = false;
     isDeletingRef.current = false;
-
-    // Cursor blinking effect
-    cursorAnimationRef.current = setInterval(() => {
-      setShowCursor(prev => !prev);
-    }, 700);
 
     // Start the typing animation
     nameAnimationRef.current = setTimeout(typeName, 1000); // Initial delay
@@ -85,7 +79,6 @@ const Home = () => {
     return () => {
       clearTimeout(nameAnimationRef.current);
       clearTimeout(titleAnimationRef.current);
-      clearInterval(cursorAnimationRef.current);
     };
   }, []);
 
@@ -152,7 +145,7 @@ const Home = () => {
 
   return (
     <div className="home-page">
-      <Header />
+      <Header setSettingsOpen={setSettingsOpen}/>
       {/* particle background with name */}
       <div className="hero-section">
         <ParticleBackground />
@@ -224,6 +217,10 @@ const Home = () => {
         </div>
       </div>
 
+      <SettingsPanel 
+        isOpen={settingsOpen} 
+        onClose={() => setSettingsOpen(false)} 
+      />
 
       <Footer />
     </div>

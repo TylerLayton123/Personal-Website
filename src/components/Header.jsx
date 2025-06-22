@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import settingsImage from '../assets/images/settings-button.png'; 
+import settingsImage from '../assets/images/settings-button.png';
 import myLogo from '../assets/images/logoImage.png';
 import schoolLogo from '../assets/images/schoolLogo.png';
 import resumePDF from '../assets/Resume24-25.pdf';
 import './Header.css';
 
-const Header = () => {
+const Header = ({ settingsOpen, setSettingsOpen }) => {
   const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
@@ -25,25 +25,25 @@ const Header = () => {
 
   return (
     <header className={`header ${isScrolled ? 'scrolled' : ''}`}>
-      <div className="left-group"> 
+      <div className="left-group">
         <div className="logo-container">
           <Link to="/">
-            <img 
-              src={myLogo} 
-              alt="Tyler Layton Logo" 
+            <img
+              src={myLogo}
+              alt="Tyler Layton Logo"
               className="logo-image"
             />
           </Link>
         </div>
         <div className="school-container">
-          <a 
-            href="https://www.rpi.edu/" 
-            target="_blank" 
+          <a
+            href="https://www.rpi.edu/"
+            target="_blank"
             rel="noopener noreferrer"
           >
-            <img 
-              src={schoolLogo} 
-              alt="RPI Logo" 
+            <img
+              src={schoolLogo}
+              alt="RPI Logo"
               className="school-logo"
             />
           </a>
@@ -51,7 +51,7 @@ const Header = () => {
       </div>
       <div className="header-right">
         <div className="resume-container">
-          <button 
+          <button
             className="resume-btn"
             onClick={openResume}
           >
@@ -59,14 +59,21 @@ const Header = () => {
           </button>
         </div>
         <div className="settings-container">
-          <button className="settings-btn">
-            <img 
-              src={settingsImage} 
-              alt="Settings" 
+          <button
+            className="settings-btn"
+            onClick={() => setSettingsOpen(true)}
+          >
+            <img
+              src={settingsImage}
+              alt="Settings"
               className="settings-icon"
             />
           </button>
         </div>
+        <settingsPanel
+          isOpen={settingsOpen}
+          onClose={() => setSettingsOpen(false)}
+        />
       </div>
     </header>
   );

@@ -187,16 +187,17 @@
 }
 
 
-/* content section with buttons *//* HomePage.css */
-/* Existing styles remain unchanged */
+/* content section with buttons */
 .content-section {
   position: relative;
-  height: 130vh;
+  min-height: 100vh; 
   display: flex;
-  align-items: center;
+  align-items: flex-start; 
   justify-content: center;
   text-align: center;
-  overflow: hidden;
+  padding: 5rem 0; 
+  overflow: visible; 
+  z-index: 2;
 }
 
 /* Navigation Cards Styles */
