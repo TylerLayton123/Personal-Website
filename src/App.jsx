@@ -6,7 +6,7 @@ import Projects from './pages/Projects';
 import Skills from './pages/Skills';
 import Coursework from './pages/Coursework';
 import ScrollToTop from './components/ScrollToTop';
-import { ThemeProvider } from './components/ThemeContext';
+import { ThemeProvider } from './components/settings/ThemeContext';
 import './App.css';
 
 function App() {

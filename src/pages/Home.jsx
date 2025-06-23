@@ -3,7 +3,7 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 import ParticleBackground from '../components/ParticleBackground';
 import myPhoto from '../assets/images/myPhoto2.PNG';
-import Settings from '../components/Settings';
+import Settings from '../components/settings/Settings';
 import '../App.css';
 import '../components/Header.css';
 import '../pages/Home.css';

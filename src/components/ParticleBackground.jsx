@@ -1,5 +1,5 @@
 import React, { useRef, useEffect } from 'react';
-import { useTheme } from './ThemeContext';
+import { useTheme } from './settings/ThemeContext';
 
 const ParticleBackground = ({ contentSection = 'false' }) => {
   const canvasRef = useRef(null);
