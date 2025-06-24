@@ -31,8 +31,8 @@ const ParticleBackground = ({ contentSection = 'false' }) => {
         this.x = Math.random() * width;
         this.y = Math.random() * height;
         this.size = Math.random() * 3 + 1;
-        this.speedX = Math.random() * 0.5 - 0.25;
-        this.speedY = Math.random() * 0.5 - 0.25;
+        this.speedX = Math.random() * 0.8 - 0.25;
+        this.speedY = Math.random() * 0.8 - 0.25;
 
         // Store base color and lightened version
         const baseColor = currentTheme[Math.floor(Math.random() * 5)];
@@ -154,8 +154,8 @@ const ParticleBackground = ({ contentSection = 'false' }) => {
           // Push particles away from mouse
           if (distance < 100) {
             const force = (100 - distance) / 100;
-            particle.x += dx * force * 0.1;
-            particle.y += dy * force * 0.1;
+            particle.x += dx * force * 0.3;
+            particle.y += dy * force * 0.3;
           }
         }
 
