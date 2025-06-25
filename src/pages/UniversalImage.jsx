@@ -6,7 +6,7 @@ import '../App.css';
 import '../components/Header.css';
 import '../pages/Home.css';
 import '../components/Footer.css';
-import './UniversalPicture.css';
+import './UniversalImage.css';
 
 const UniversalPicture = () => {
     const [settingsOpen, setSettingsOpen] = useState(false);

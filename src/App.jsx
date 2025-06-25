@@ -5,7 +5,7 @@ import Experience from './pages/Experiences';
 import Projects from './pages/Projects';
 import Skills from './pages/Skills';
 import Coursework from './pages/CourseWork';
-import UniversalPicture from './pages/UniversalPicture';
+import UniversalImage from './pages/UniversalImage';
 import ScrollToTop from './components/ScrollToTop';
 import { ThemeProvider } from './components/settings/ThemeContext';
 import './App.css';
@@ -21,7 +21,7 @@ function App() {
           <Route path="/projects" element={<Projects />} />
           <Route path="/skills" element={<Skills />} />
           <Route path="/coursework" element={<Coursework />} />
-          <Route path="/universal_picture" element={<UniversalPicture />} />
+          <Route path="/universal_image" element={<UniversalImage />} />
         </Routes>
       </Router>
     </ThemeProvider>

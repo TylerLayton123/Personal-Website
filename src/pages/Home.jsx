@@ -42,8 +42,8 @@ const Home = () => {
       path: '/coursework',
     },
     {
-      title: 'Universal Picture',
-      path: '/universal_picture',
+      title: 'Universal Image',
+      path: '/universal_image',
     }
   ];
 
