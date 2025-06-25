@@ -1,0 +1,524 @@
+.universal-picture-page {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-color: rgb(var(--theme-color0));
+    color: #fff;
+    overflow-x: hidden;
+}
+
+
+/* UniversalPicture.css */
+.universal-image-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem;
+    max-width: 800px;
+    margin: 0 auto;
+    flex: 1;
+    margin: 4rem auto 0 auto;
+}
+
+.universal-image-title {
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    text-align: center;
+    color: rgb(var(--theme-color3));
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+    /* background: linear-gradient(90deg, #6a11cb 0%, #2575fc 100%); */
+    /* padding: 0.5rem 2rem; */
+    /* border-radius: 50px; */
+}
+
+.seed-controls {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 1.5rem;
+    border-radius: 15px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+}
+
+.seed-input-group {
+    display: flex;
+    align-items: center;
+    flex: 1;
+    min-width: 300px;
+}
+
+.seed-input-group label {
+    margin-right: 10px;
+    font-weight: 600;
+    color: rgb(var(--theme-color4));
+}
+
+.seed-input-group input {
+    flex: 1;
+    padding: 12px 15px;
+    border: none;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.15);
+    color: rgb(var(--theme-color4));
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.seed-input-group input:focus {
+    outline: none;
+    background: rgba(255, 255, 255, 0.25);
+    box-shadow: 0 0 0 3px rgba(37, 117, 252, 0.3);
+}
+
+.random-seed-btn {
+    background: linear-gradient(90deg, #ff416c, #ff4b2b);
+    color: white;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    min-width: 160px;
+}
+
+.random-seed-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(var(--theme-color3), 0.6);
+}
+
+.save-image-btn {
+    background: linear-gradient(90deg, #38ef7d, #11998e);
+    color: white;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    min-width: 160px;
+}
+
+.save-image-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(var(--theme-color3), 0.6);
+}
+
+.image-wrapper {
+    position: relative;
+    margin: 1rem 0 2rem;
+    padding: 15px;
+    /* background: rgba(0, 0, 0, 0.2); */
+    border-radius: 15px;
+    /* box-shadow: 0 5px 15px rgba(var(--theme-color3), 0.6); */
+}
+
+.universal-image-canvas {
+    /* border-radius: 10px; */
+    box-shadow: 0 5px 15px rgba(var(--theme-color3), 0.6);
+    display: block;
+    transition: all 0.5s ease;
+}
+
+/* .universal-image-canvas:hover {
+  transform: scale(1.02);
+  box-shadow: 0 15px 45px rgba(0, 0, 0, 0.5);
+} */
+
+.image-info {
+    text-align: center;
+    margin-top: 1.5rem;
+    color: rgb(var(--theme-color4));
+    font-size: 1.1rem;
+    max-width: 600px;
+    line-height: 1.6;
+    background: rgba(0, 0, 0, 0.2);
+    padding: 1.5rem;
+    border-radius: 15px;
+}
+
+.image-info p {
+    margin: 0.5rem 0;
+}
+
+/* Add to existing styles */
+.control-buttons {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+    margin-top: 1rem;
+}
+
+.upload-image-btn {
+    background: linear-gradient(90deg, #9c27b0, #673ab7);
+    color: white;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    min-width: 160px;
+}
+
+.upload-image-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(156, 39, 176, 0.6);
+}
+
+.seed-textarea {
+    width: 100%;
+    min-height: 80px;
+    padding: 12px 15px;
+    border: none;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.15);
+    color: rgb(var(--theme-color4));
+    font-size: 1rem;
+    resize: vertical;
+    font-family: inherit;
+}
+
+.crop-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.95);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.crop-content {
+    background: rgb(var(--theme-color0));
+    padding: 2rem;
+    border-radius: 15px;
+    max-width: 90%;
+    max-height: 90%;
+    overflow: auto;
+    text-align: center;
+    box-shadow: 0 10px 50px rgba(0, 0, 0, 0.7);
+    width: 550px;
+}
+
+.crop-viewport {
+    position: relative;
+    width: 500px;
+    height: 500px;
+    overflow: hidden;
+    margin: 0 auto;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    border-radius: 5px;
+    background-color: #222;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
+}
+
+.viewport-frame {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    box-shadow: inset 0 0 0 3px rgb(var(--theme-color3));
+    pointer-events: none;
+    border-radius: 3px;
+}
+
+.crop-source-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition: transform 0.1s ease-out;
+    user-select: none;
+    will-change: transform;
+}
+
+.crop-controls {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    margin-top: 1.5rem;
+}
+
+.cancel-crop-btn {
+    background: linear-gradient(90deg, #ff5252, #b33939);
+    color: white;
+    padding: 12px 30px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 1rem;
+    min-width: 160px;
+}
+
+.confirm-crop-btn {
+    background: linear-gradient(90deg, #38ef7d, #11998e);
+    color: white;
+    padding: 12px 30px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 1rem;
+    min-width: 220px;
+}
+
+.image-size-info {
+    margin-top: 15px;
+    color: #aaa;
+    font-size: 0.9rem;
+    font-style: italic;
+}
+
+
+.generate-image-btn {
+  background: linear-gradient(90deg, #3aa5ec, #076cd2);
+  color: white;
+  padding: 12px 25px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  min-width: 160px;
+}
+
+.generate-image-btn:hover:not(:disabled) {
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(255, 140, 0, 0.6);
+}
+
+.generate-image-btn:disabled {
+  background: #666;
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+.control-buttons {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 100%;
+  margin-top: 1rem;
+}
+
+.upload-image-btn {
+  background: linear-gradient(90deg, #9c27b0, #673ab7);
+  color: white;
+  padding: 12px 25px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  min-width: 160px;
+}
+
+.upload-image-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(156, 39, 176, 0.6);
+}
+
+@media (max-width: 768px) {
+    .control-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .crop-content {
+        padding: 1rem;
+        width: 95%;
+    }
+
+    .crop-viewport {
+        width: 90vw;
+        height: 90vw;
+        max-width: 500px;
+        max-height: 500px;
+    }
+
+    .seed-input-group {
+        min-width: 100%;
+    }
+
+    .universal-image-canvas {
+        width: 100%;
+        height: auto;
+    }
+
+    .crop-controls {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .cancel-crop-btn,
+    .confirm-crop-btn {
+        width: 100%;
+        max-width: 300px;
+    }
+}
+
+/* Add to existing styles */
+.generation-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* background: rgba(0, 0, 0, 0.8); */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+    border-radius: 10px;
+}
+
+.progress-container {
+    background: rgba(30, 30, 30, 0.9);
+    padding: 2rem;
+    border-radius: 10px;
+    width: 80%;
+    max-width: 400px;
+    text-align: center;
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.5);
+}
+
+.progress-bar {
+    height: 20px;
+    background: #333;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 1rem;
+}
+
+.progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #6a11cb, #2575fc);
+    transition: width 0.3s ease;
+}
+
+.progress-text {
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+    color: #fff;
+}
+
+.progress-note {
+    font-size: 0.9rem;
+    color: #aaa;
+    font-style: italic;
+}
+
+/* Add to UniversalPicture.css */
+.cancel-generation-btn {
+  background: linear-gradient(90deg, #ff5252, #b33939);
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 1rem;
+  margin-top: 15px;
+  transition: all 0.3s ease;
+}
+
+.cancel-generation-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(255, 82, 82, 0.4);
+}
+
+.cancel-generation-btn:disabled {
+  background: #666;
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+.image-wrapper {
+    position: relative;
+    margin: 1rem 0 2rem;
+}
+
+.reverse-note {
+    color: #ff9800;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.confirm-crop-btn:disabled {
+    background: #666;
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+
+
+
+/* Keep all your existing styles */
+@media (max-width: 480px) {
+    .universal-image-title {
+        font-size: 1.8rem;
+    }
+
+    .seed-controls {
+        padding: 1rem;
+    }
+
+    .crop-content h2 {
+        font-size: 1.4rem;
+    }
+
+    .crop-content p {
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .progress-container {
+        padding: 1.5rem;
+    }
+
+    .progress-text {
+        font-size: 1rem;
+    }
+
+    .universal-image-title {
+        font-size: 2rem;
+        padding: 0.5rem 1rem;
+    }
+
+    .seed-controls {
+        flex-direction: column;
+    }
+
+    .seed-input-group {
+        min-width: 100%;
+    }
+
+    .universal-image-canvas {
+        width: 100%;
+        height: auto;
+    }
+}
+
+.footer {
+    background: rgb(var(--theme-color0));
+    padding: 2rem 1rem;
+    z-index: 3;
+}

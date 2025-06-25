@@ -40,6 +40,10 @@ const Home = () => {
     {
       title: 'Course Work',
       path: '/coursework',
+    },
+    {
+      title: 'Universal Picture',
+      path: '/universal_picture',
     }
   ];
 
@@ -141,7 +145,7 @@ const Home = () => {
 
   return (
     <div className="home-page">
-      <Header setSettingsOpen={setSettingsOpen}/>
+      <Header setSettingsOpen={setSettingsOpen} />
       {/* particle background with name */}
       <div className="hero-section">
         <ParticleBackground />
@@ -213,9 +217,9 @@ const Home = () => {
         </div>
       </div>
 
-      <Settings 
-        isOpen={settingsOpen} 
-        onClose={() => setSettingsOpen(false)} 
+      <Settings
+        isOpen={settingsOpen}
+        onClose={() => setSettingsOpen(false)}
       />
 
       <Footer />
