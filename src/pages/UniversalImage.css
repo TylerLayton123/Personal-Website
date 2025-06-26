@@ -45,6 +45,44 @@
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
 }
 
+.seed-textarea-wrapper {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  position: relative;
+}
+
+.seed-textarea {
+  flex: 1;
+  padding: 12px 15px;
+  border: none;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.15);
+  color: rgb(var(--theme-color4));
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  resize: vertical;
+  min-height: 60px;
+   resize: none;
+}
+
+.seed-textarea:focus {
+  outline: none;
+  background: rgba(255, 255, 255, 0.25);
+  box-shadow: 0 0 0 3px rgba(var(--theme-color4), 0.6);
+}
+
+.character-counter {
+  position: absolute;
+  bottom: -25px;
+  right: 5px;
+  font-size: 0.75rem;
+  color: rgba(var(--theme-color4), 0.7);
+  background: rgba(0, 0, 0, 0.3);
+  padding: 0 5px;
+  border-radius: 3px;
+}
+
 .seed-input-group {
     display: flex;
     align-items: center;

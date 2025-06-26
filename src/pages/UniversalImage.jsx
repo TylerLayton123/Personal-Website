@@ -77,7 +77,7 @@ const UniversalPicture = () => {
         if (!canvas) return;
 
         cancelledRef.current = false;
-        setIsGenerating(true);
+        // setIsGenerating(true);
         setGenerationProgress(0);
         setNeedsGeneration(false);
 
@@ -258,7 +258,7 @@ const UniversalPicture = () => {
     const findSeedFromPixels = (pixelData) => {
         setIsFindingSeed(true);
         setSeedFindingProgress(0);
-        
+
         // We only need the RGB values (ignore alpha)
         const rgbData = [];
         for (let i = 0; i < pixelData.length; i += 4) {
@@ -336,13 +336,13 @@ const UniversalPicture = () => {
 
         // Try to find a short seed from the pixel data
         const foundSeed = findSeedFromPixels(imageData.data);
-        
+
         if (foundSeed !== null) {
             // Convert found seed to ArrayBuffer
             const buffer = new ArrayBuffer(4);
             const view = new DataView(buffer);
             view.setUint32(0, foundSeed, false);
-            
+
             seedBufferRef.current = buffer;
             setSeedType('buffer');
             setSeed(foundSeed.toString());
@@ -366,10 +366,47 @@ const UniversalPicture = () => {
 
     // Generate random seed
     const generateRandomSeed = () => {
-        const newSeed = Math.floor(Math.random() * 0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF).toString();
-        setSeed(newSeed);
-        setSeedDisplay(newSeed);
-        setSeedType('string');
+        // Generate 39 random bytes (312 bits)
+        const bytes = new Uint8Array(Math.floor(Math.random() * 416));
+        if (typeof crypto !== 'undefined' && crypto.getRandomValues) {
+            crypto.getRandomValues(bytes);
+        } else {
+            // Fallback for environments without crypto
+            for (let i = 0; i < bytes.length; i++) {
+                bytes[i] = Math.floor(Math.random() * 256);
+            }
+        }
+
+        // Convert to decimal string without BigInt
+        let decimalStr = '0';
+        for (let i = 0; i < bytes.length; i++) {
+            let carry = bytes[i];
+            let newDecimal = '';
+
+            // Multiply current decimal string by 256
+            for (let j = decimalStr.length - 1; j >= 0; j--) {
+                const digit = parseInt(decimalStr[j], 10);
+                const product = digit * 256 + carry;
+                carry = Math.floor(product / 10);
+                newDecimal = (product % 10) + newDecimal;
+            }
+
+            // Add remaining carry
+            while (carry > 0) {
+                newDecimal = (carry % 10) + newDecimal;
+                carry = Math.floor(carry / 10);
+            }
+
+            decimalStr = newDecimal;
+        }
+
+        // Ensure seed doesn't exceed 1000 characters
+        if (decimalStr.length > 1000) {
+            decimalStr = decimalStr.substring(0, 1000);
+        }
+
+        setSeed(decimalStr);
+        setSeedDisplay(decimalStr);
         seedBufferRef.current = null;
         setNeedsGeneration(true);
     };
@@ -381,11 +418,10 @@ const UniversalPicture = () => {
 
     // Handle manual seed change
     const handleSeedChange = (e) => {
-        const newSeed = e.target.value;
-        setSeed(newSeed);
-        setSeedDisplay(newSeed);
-        seedBufferRef.current = null;
-        setNeedsGeneration(true);
+        const input = e.target.value;
+        if (input.length <= 1000) {
+            setSeedDisplay(input);
+        }
     };
 
     // Add event listeners for dragging
@@ -508,14 +544,20 @@ const UniversalPicture = () => {
                 <div className="seed-controls">
                     <div className="seed-input-group">
                         <label htmlFor="seed-input">Seed:</label>
-                        <textarea
-                            id="seed-input"
-                            value={seedDisplay}
-                            onChange={handleSeedChange}
-                            placeholder="Enter seed value"
-                            className="seed-textarea"
-                            disabled={isGenerating || seedType === 'buffer'}
-                        />
+                        <div className="seed-textarea-wrapper">
+                            <textarea
+                                id="seed-input"
+                                value={seedDisplay}
+                                onChange={handleSeedChange}
+                                placeholder="Enter seed value"
+                                className="seed-textarea"
+                                disabled={isGenerating || seedType === 'buffer'}
+                                maxLength={1000}
+                            />
+                            <div className="character-counter">
+                                {seedDisplay.length}/1000
+                            </div>
+                        </div>
                     </div>
 
 
@@ -530,12 +572,15 @@ const UniversalPicture = () => {
                         </button>
                         <button
                             className="random-seed-btn"
-                            onClick={generateRandomSeed}
+                            onClick={() => {
+                                generateRandomSeed(); // Runs first
+                                generateImage();      // Runs immediately after
+                            }} 
                             disabled={isGenerating}
                         >
-                            Random Seed
+                            Random Generation
                         </button>
-{/* 
+                        {/* 
                         <button
                             className="upload-image-btn"
                             onClick={triggerFileInput}
@@ -566,13 +611,13 @@ const UniversalPicture = () => {
                 </div>
 
                 <div className="image-info">
-                    <p>This "Universal Image" is a 500x500 randomly generated image. 
-                    Each pixel is generated from the seed using a Pseudo Random Number Generator.
-                    In theory, every image ever taken and will be taken exists within this frame
-                    given the right seed. Each pixel has an RGB value ranging from 0-255,
-                    which means that there are 16,777,216 unique colors per pixel (256x256x256). Within
-                    this 500x500 frame there are 250,000 total pixels which makes 2^(6,000,000) unique images!
-                    16,777,216^(250,000) = (2^(24))^(250,000) = 2^(6,000,000)</p>
+                    <p>This "Universal Image" is a 500x500 randomly generated image.
+                        Each pixel is generated from the seed using a Pseudo Random Number Generator.
+                        In theory, every image ever taken and will be taken exists within this frame
+                        given the right seed. Each pixel has an RGB value ranging from 0-255,
+                        which means that there are 16,777,216 unique colors per pixel (256x256x256). Within
+                        this 500x500 frame there are 250,000 total pixels which makes 2^(6,000,000) unique images!
+                        16,777,216^(250,000) = (2^(24))^(250,000) = 2^(6,000,000)</p>
                 </div>
             </div>
 
