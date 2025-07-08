@@ -611,6 +611,7 @@ const UniversalPicture = () => {
                 </div>
 
                 <div className="image-info">
+                    <h3>"Given infinite time and a typewriter, a monkey will type Shakespeare" - Unknown</h3>
                     <p>This "Universal Image" is a 500x500 randomly generated image.
                         Each pixel is generated from the seed using a Pseudo Random Number Generator.
                         In theory, every image ever taken and will be taken exists within this frame
