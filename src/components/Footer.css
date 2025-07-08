@@ -1,6 +1,6 @@
 .footer {
   background-color: rgb(10, 38, 71);
-  color: white;
+  color: rgb(var(--theme-color4));
   padding: 2rem 1rem;
   text-align: center;
   margin-top: 2rem;
@@ -25,14 +25,14 @@
 }
 
 .social-links a:hover {
-  background-color: rgb(44, 116, 179);
+  background-color: rgb(var(--theme-color3));
   transform: translateY(-3px);
 }
 
 .social-links svg {
   width: 20px;
   height: 20px;
-  fill: white;
+  fill: rgb(var(--theme-color4));
 }
 
 .copyright {

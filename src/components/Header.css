@@ -97,11 +97,11 @@
     drop-shadow(0 0 1px rgba(var(--theme-color4), 0.5));
 }
 
-/* Add to Header.css */
 .header-right {
+  margin-right: -30px;
   display: flex;
   align-items: center;
-  gap: 15px;
+  gap: 5px;
 }
 
 .resume-container {
@@ -112,7 +112,7 @@
 .resume-btn {
   background-color: rgb(var(--theme-color4));
   color: rgb(var(--theme-color0));
-  padding: 8px 20px;
+  padding: 8px 18px;
   border-radius: 30px;
   border: none;
   font-weight: 600;
