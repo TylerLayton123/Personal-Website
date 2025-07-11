@@ -76,7 +76,7 @@ const CourseWork = () => {
           credit: "4",
           description: "This was a project based class in which a team of 5 students design a specific project. The emphasis is more on the design" +
             " process of the project such as object oriented modeling, writen and oral communication, project managment, software teting, and documention." +
-            " My team used Jira to keep track of issues and github to hold our project. The project is a website called \"Let \'Em Cook\" and is meant to be " +
+            " My team used Jira to keep track of issues and github to hold our project. The project is a website called \"Let 'Em Cook\" and is meant to be " +
             " a collection of recipes meant for college students to search up and rate. It can be found on my github."
         },
         {
@@ -548,6 +548,22 @@ const CourseWork = () => {
                   <p><strong>Description:</strong> <br />{course.description}</p>
                 </div>
               ))}
+            </div>
+
+            <div className="semester-nav">
+              <button
+                className="nav-button"
+                onClick={() => setActiveSemester((activeSemester + 1) % courseworkData.length)}
+              >
+                Previous: {courseworkData[(activeSemester + 1) % courseworkData.length].semester}
+              </button>
+              <button
+                className="nav-button"
+                onClick={() => setActiveSemester((activeSemester - 1 + courseworkData.length) % courseworkData.length)}
+              >
+                Next: {courseworkData[(activeSemester - 1 + courseworkData.length) % courseworkData.length].semester}
+              </button>
+
             </div>
           </div>
         </main>
