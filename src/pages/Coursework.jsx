@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import Settings from '../components/settings/Settings';
@@ -9,9 +9,26 @@ import '../pages/Home.css';
 import '../components/Footer.css';
 import './CourseWork.css';
 
+
+
+
 const CourseWork = () => {
   const [settingsOpen, setSettingsOpen] = useState(false);
   const [activeSemester, setActiveSemester] = useState(0);
+  const semesterCoursesRef = useRef(null);
+
+  const ScrollToSemesterTop = () => {
+    if (semesterCoursesRef.current) {
+      const elementPosition = semesterCoursesRef.current.getBoundingClientRect().top + window.pageYOffset;
+      const offsetPosition = elementPosition - 80;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
+    }
+  };
+
 
   // Sample coursework data
   const courseworkData = [
@@ -488,6 +505,8 @@ const CourseWork = () => {
     }
   ];
 
+
+
   return (
     <div className="course-work-page">
       {/* Particle Background - positioned absolutely */}
@@ -530,7 +549,7 @@ const CourseWork = () => {
             Classes are ordered by relevance for each semester. Descriptions of each class are pulled from RPI catalog as well as personal experiences.
           </div>
 
-          <div className="semester-courses">
+          <div className="semester-courses" ref={semesterCoursesRef}>
             <h2 className="semester-title">{courseworkData[activeSemester].semester}
               {courseworkData[activeSemester].semester === "Freshman - F21" && " (Calculus I and II credits brought in from HS)"}</h2>
             <h2 className="semester-description"><strong>Total Credits:</strong> {courseworkData[activeSemester].totalCredits} <br />
@@ -553,13 +572,19 @@ const CourseWork = () => {
             <div className="semester-nav">
               <button
                 className="nav-button"
-                onClick={() => setActiveSemester((activeSemester + 1) % courseworkData.length)}
+                onClick={() => {
+                  setActiveSemester((activeSemester + 1) % courseworkData.length);
+                  ScrollToSemesterTop();
+                }}
               >
                 Previous: {courseworkData[(activeSemester + 1) % courseworkData.length].semester}
               </button>
               <button
                 className="nav-button"
-                onClick={() => setActiveSemester((activeSemester - 1 + courseworkData.length) % courseworkData.length)}
+                onClick={() => {
+                  setActiveSemester((activeSemester - 1 + courseworkData.length) % courseworkData.length);
+                  ScrollToSemesterTop();
+                }}
               >
                 Next: {courseworkData[(activeSemester - 1 + courseworkData.length) % courseworkData.length].semester}
               </button>
