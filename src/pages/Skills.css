@@ -46,10 +46,11 @@
 
 .skill-box {
   width: 160px; 
-  height: 60px; 
+  height: 70px; 
   background: rgba(var(--theme-color2), 0.15);
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 10px;
+  font-size: 1.2rem;
   padding: 0.8rem;
   text-align: center;
   color: rgb(var(--theme-color4));
