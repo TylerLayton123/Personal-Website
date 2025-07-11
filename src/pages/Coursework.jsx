@@ -42,7 +42,7 @@ const CourseWork = () => {
           number: "ECSE 4900",
           grade: "A",
           credit: "3",
-          description: "THis project based class is also called the Design Lab which provides a capstone experience intended to prepare students" +
+          description: "This project based class is also called the Design Lab which provides a capstone experience intended to prepare students" +
             " to enter the workforce. A team of 6 students all with different majors are given a multidisciplinary design project by a sponsor" +
             " to work on throughout the semester. Sponsored by Lockheed Martin and in association with Georgia Tech and Purdue University, our" +
             " team was tasked with continuing a project from a previous semester. The project had a variety of moving parts and everyone had a" +
@@ -573,20 +573,20 @@ const CourseWork = () => {
               <button
                 className="nav-button"
                 onClick={() => {
-                  setActiveSemester((activeSemester + 1) % courseworkData.length);
-                  ScrollToSemesterTop();
-                }}
-              >
-                Previous: {courseworkData[(activeSemester + 1) % courseworkData.length].semester}
-              </button>
-              <button
-                className="nav-button"
-                onClick={() => {
                   setActiveSemester((activeSemester - 1 + courseworkData.length) % courseworkData.length);
                   ScrollToSemesterTop();
                 }}
               >
-                Next: {courseworkData[(activeSemester - 1 + courseworkData.length) % courseworkData.length].semester}
+                Previous: {courseworkData[(activeSemester - 1 + courseworkData.length) % courseworkData.length].semester}
+              </button>
+              <button
+                className="nav-button"
+                onClick={() => {
+                  setActiveSemester((activeSemester + 1) % courseworkData.length);
+                  ScrollToSemesterTop();
+                }}
+              >
+                Next: {courseworkData[(activeSemester + 1) % courseworkData.length].semester}
               </button>
 
             </div>
