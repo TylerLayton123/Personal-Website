@@ -12,8 +12,8 @@ const Skills = () => {
   const [settingsOpen, setSettingsOpen] = useState(false);
 
   const skills = {
-    Languages: ['Python', 'Java', 'C++', 'C', 'C#', 'HTML/CSS', 'JavaScript', 'TypeScript', 'RStudio', 'MIPS', 'Haskel'],
-    ToolsFrameworks: ['VS Code', 'GitHub', 'Git', 'Eclipse', 'Matlab', 'NX', 'LTspice', 'Microsoft Applications',
+    Languages: ['Python', 'Java', 'C++', 'C', 'C#', 'JavaScript', 'TypeScript', 'RStudio', 'MIPS', 'Haskel'],
+    ToolsFrameworks: ['HTML/CSS','VS Code', 'GitHub', 'Git', 'Eclipse', 'Matlab', 'NX', 'LTspice', 'Microsoft Applications',
        'Photoshop', 'Jenkins', 'Unity', 'Node.js', 'React', 'Windows Form Applications']
   };
 
