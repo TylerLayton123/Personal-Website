@@ -16,7 +16,11 @@ const TITLES = [
   "Computer Scientist",
   "Computer Systems Engineer",
   // "Skiier",
-  "Masters Student"
+  "Masters Student",
+  "Cum Laude",
+  "L3Harris Intern",
+  "Skiier",
+  "Hiker"
   // "Outdoors-Man"
 ];
 
