@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import settingsImage from '../assets/images/settings-button.png';
 import myLogo from '../assets/images/logoImage.png';
 import schoolLogo from '../assets/images/schoolLogo.png';
-import resumePDF from '../assets/Resume24-25.pdf';
+import resumePDF from '../assets/Resume25-26.pdf';
 import './Header.css';
 
 const Header = ({ settingsOpen, setSettingsOpen }) => {
