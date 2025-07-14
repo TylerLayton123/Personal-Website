@@ -1,5 +1,5 @@
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import Home from './pages/Home';
 import Experience from './pages/Experiences';
 import Projects from './pages/Projects';
@@ -8,21 +8,42 @@ import Coursework from './pages/CourseWork';
 import UniversalImage from './pages/UniversalImage';
 import ScrollToTop from './components/ScrollToTop';
 import { ThemeProvider } from './components/settings/ThemeContext';
+import Loader from './components/Loader';
 import './App.css';
+
+
+function AppRoutes() {
+  const location = useLocation();
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    // Show loader briefly on route change
+    setLoading(true);
+    const timer = setTimeout(() => setLoading(false), 600); // adjust delay if needed
+    return () => clearTimeout(timer);
+  }, [location]);
+
+  return (
+    <>
+      {loading && <Loader />}
+      <ScrollToTop />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/experience" element={<Experience />} />
+        <Route path="/projects" element={<Projects />} />
+        <Route path="/skills" element={<Skills />} />
+        <Route path="/coursework" element={<Coursework />} />
+        <Route path="/universal_image" element={<UniversalImage />} />
+      </Routes>
+    </>
+  );
+}
 
 function App() {
   return (
     <ThemeProvider>
       <Router>
-        <ScrollToTop />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/experience" element={<Experience />} />
-          <Route path="/projects" element={<Projects />} />
-          <Route path="/skills" element={<Skills />} />
-          <Route path="/coursework" element={<Coursework />} />
-          <Route path="/universal_image" element={<UniversalImage />} />
-        </Routes>
+        <AppRoutes />
       </Router>
     </ThemeProvider>
   );
