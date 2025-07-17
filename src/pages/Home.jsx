@@ -180,7 +180,7 @@ const Home = () => {
             <p>
               I am currently graduate student at Rensselaer Polytechnic Institute with a BS in Computer
               Science and Computer Systems Engineering. I have knowledge in many different programming languages
-              and frameworks, I am passionate about learning as much as I can about technology and how it works.
+              and frameworks. I am passionate about learning as much as I can about technology and how it works.
             </p>
             <p>
               My academic journey is complemented by practical experience in both industry and research

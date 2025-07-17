@@ -267,7 +267,7 @@ const UniversalPicture = () => {
             rgbData.push(pixelData[i + 2]);  // B
         }
 
-        const intervals = rgbData.map(v => {
+        const intervals = rgbData.map(v => { 
             const low = v * 0x1000000;      // v * 2^24
             const high = (v + 1) * 0x1000000 - 1;
             return { low, high };
@@ -409,6 +409,7 @@ const UniversalPicture = () => {
         setSeedDisplay(decimalStr);
         seedBufferRef.current = null;
         setNeedsGeneration(true);
+        generateImage();
     };
 
     // Trigger file input click
@@ -438,8 +439,9 @@ const UniversalPicture = () => {
 
     // Generate initial image on mount
     useEffect(() => {
-        generateImage();
+        generateRandomSeed();
     }, []);
+
 
     return (
         <div className="universal-picture-page">
@@ -575,7 +577,7 @@ const UniversalPicture = () => {
                             onClick={() => {
                                 generateRandomSeed(); // Runs first
                                 generateImage();      // Runs immediately after
-                            }} 
+                            }}
                             disabled={isGenerating}
                         >
                             Random Generation
