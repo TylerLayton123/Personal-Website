@@ -15,6 +15,7 @@ const UniversalPicture = () => {
     const [isCropping, setIsCropping] = useState(false);
     const [offset, setOffset] = useState({ x: 0, y: 0 });
     const [isDragging, setIsDragging] = useState(false);
+    // eslint-disable-next-line
     const [dragStart, setDragStart] = useState({ x: 0, y: 0 });
     const [isGenerating, setIsGenerating] = useState(false);
     const [generationProgress, setGenerationProgress] = useState(0);
@@ -24,6 +25,7 @@ const UniversalPicture = () => {
     const seedBufferRef = useRef(null);
     const [seedType, setSeedType] = useState('string');
     const [seedDisplay, setSeedDisplay] = useState('1');
+    // eslint-disable-next-line
     const [needsGeneration, setNeedsGeneration] = useState(false);
     const cancelledRef = useRef(false);
     const [isFindingSeed, setIsFindingSeed] = useState(false);
@@ -201,44 +203,44 @@ const UniversalPicture = () => {
     };
 
     // Handle dragging
-    const handleDragging = (e) => {
-        if (!isDragging || !uploadedImage) return;
+    // const handleDragging = (e) => {
+    //     if (!isDragging || !uploadedImage) return;
 
-        // Calculate new offset with boundaries
-        let newX = e.clientX - dragStart.x;
-        let newY = e.clientY - dragStart.y;
+    //     // Calculate new offset with boundaries
+    //     let newX = e.clientX - dragStart.x;
+    //     let newY = e.clientY - dragStart.y;
 
-        // Calculate boundaries to keep image within view
-        const minX = Math.min(0, 500 - uploadedImage.width);
-        const minY = Math.min(0, 500 - uploadedImage.height);
-        const maxX = 0;
-        const maxY = 0;
+    //     // Calculate boundaries to keep image within view
+    //     const minX = Math.min(0, 500 - uploadedImage.width);
+    //     const minY = Math.min(0, 500 - uploadedImage.height);
+    //     const maxX = 0;
+    //     const maxY = 0;
 
-        // Clamp values to boundaries
-        newX = Math.max(minX, Math.min(maxX, newX));
-        newY = Math.max(minY, Math.min(maxY, newY));
+    //     // Clamp values to boundaries
+    //     newX = Math.max(minX, Math.min(maxX, newX));
+    //     newY = Math.max(minY, Math.min(maxY, newY));
 
-        setOffset({
-            x: newX,
-            y: newY
-        });
-    };
+    //     setOffset({
+    //         x: newX,
+    //         y: newY
+    //     });
+    // };
 
-    // Handle drag end
-    const handleDragEnd = () => {
-        setIsDragging(false);
-    };
+    // // Handle drag end
+    // const handleDragEnd = () => {
+    //     setIsDragging(false);
+    // };
 
     // Convert ArrayBuffer to Base64
-    const arrayBufferToBase64 = (buffer) => {
-        let binary = '';
-        const bytes = new Uint8Array(buffer);
-        const len = bytes.byteLength;
-        for (let i = 0; i < len; i++) {
-            binary += String.fromCharCode(bytes[i]);
-        }
-        return btoa(binary);
-    };
+    // const arrayBufferToBase64 = (buffer) => {
+    //     let binary = '';
+    //     const bytes = new Uint8Array(buffer);
+    //     const len = bytes.byteLength;
+    //     for (let i = 0; i < len; i++) {
+    //         binary += String.fromCharCode(bytes[i]);
+    //     }
+    //     return btoa(binary);
+    // };
 
     // State update function for seed finding
     const nextState = (s) => {
@@ -267,7 +269,7 @@ const UniversalPicture = () => {
             rgbData.push(pixelData[i + 2]);  // B
         }
 
-        const intervals = rgbData.map(v => { 
+        const intervals = rgbData.map(v => {
             const low = v * 0x1000000;      // v * 2^24
             const high = (v + 1) * 0x1000000 - 1;
             return { low, high };
@@ -364,26 +366,21 @@ const UniversalPicture = () => {
         setIsCropping(false);
     };
 
-    // Generate random seed
     const generateRandomSeed = () => {
-        // Generate 39 random bytes (312 bits)
         const bytes = new Uint8Array(Math.floor(Math.random() * 416));
         if (typeof crypto !== 'undefined' && crypto.getRandomValues) {
             crypto.getRandomValues(bytes);
         } else {
-            // Fallback for environments without crypto
             for (let i = 0; i < bytes.length; i++) {
                 bytes[i] = Math.floor(Math.random() * 256);
             }
         }
 
-        // Convert to decimal string without BigInt
         let decimalStr = '0';
         for (let i = 0; i < bytes.length; i++) {
             let carry = bytes[i];
             let newDecimal = '';
 
-            // Multiply current decimal string by 256
             for (let j = decimalStr.length - 1; j >= 0; j--) {
                 const digit = parseInt(decimalStr[j], 10);
                 const product = digit * 256 + carry;
@@ -391,7 +388,6 @@ const UniversalPicture = () => {
                 newDecimal = (product % 10) + newDecimal;
             }
 
-            // Add remaining carry
             while (carry > 0) {
                 newDecimal = (carry % 10) + newDecimal;
                 carry = Math.floor(carry / 10);
@@ -400,7 +396,6 @@ const UniversalPicture = () => {
             decimalStr = newDecimal;
         }
 
-        // Ensure seed doesn't exceed 1000 characters
         if (decimalStr.length > 1000) {
             decimalStr = decimalStr.substring(0, 1000);
         }
@@ -409,13 +404,13 @@ const UniversalPicture = () => {
         setSeedDisplay(decimalStr);
         seedBufferRef.current = null;
         setNeedsGeneration(true);
-        generateImage();
     };
 
+
     // Trigger file input click
-    const triggerFileInput = () => {
-        fileInputRef.current.click();
-    };
+    // const triggerFileInput = () => {
+    //     fileInputRef.current.click();
+    // };
 
     // Handle manual seed change
     const handleSeedChange = (e) => {
@@ -426,21 +421,30 @@ const UniversalPicture = () => {
     };
 
     // Add event listeners for dragging
-    useEffect(() => {
-        if (isDragging) {
-            window.addEventListener('mousemove', handleDragging);
-            window.addEventListener('mouseup', handleDragEnd);
-            return () => {
-                window.removeEventListener('mousemove', handleDragging);
-                window.removeEventListener('mouseup', handleDragEnd);
-            };
-        }
-    }, [isDragging]);
+    // useEffect(() => {
+    //     if (isDragging) {
+    //         window.addEventListener('mousemove', handleDragging);
+    //         window.addEventListener('mouseup', handleDragEnd);
+    //         return () => {
+    //             window.removeEventListener('mousemove', handleDragging);
+    //             window.removeEventListener('mouseup', handleDragEnd);
+    //         };
+    //     }
+    //     // eslint-disable-next-line
+    // }, [isDragging]);
 
     // Generate initial image on mount
     useEffect(() => {
         generateRandomSeed();
+        // eslint-disable-next-line
     }, []);
+
+    useEffect(() => {
+        if (seed !== '1') {
+            generateImage();
+        }
+    }, [seed]);
+
 
 
     return (
