@@ -4,6 +4,7 @@ import settingsImage from '../assets/images/settings-button.png';
 import myLogo from '../assets/images/logoImage.png';
 import schoolLogo from '../assets/images/schoolLogo2.png';
 import resumePDF from '../assets/Resume25-26.pdf';
+import Settings from '../components/settings/Settings';
 import './Header.css';
 
 const Header = ({ settingsOpen, setSettingsOpen }) => {
@@ -70,7 +71,7 @@ const Header = ({ settingsOpen, setSettingsOpen }) => {
             />
           </button>
         </div>
-        <settingsPanel
+        <Settings
           isOpen={settingsOpen}
           onClose={() => setSettingsOpen(false)}
         />

@@ -18,14 +18,14 @@ const Experiences = () => {
       location: "Troy, NY",
       date: "January 2025 – May 2025",
       employer: "Multidiciplinary Capstone Design/Design Lab",
-      description: "- The Design Lab is a \"class\" at RPI which provides a capstone experience intended to prepare students to enter the"+
-      " workforce. A team of 6 students all with different majors are given a multidisciplinary design project by a sponsor to work on throughout"+
-      " the semester. \n- Sponsored by Lockheed Martin and in association with Georgia Tech and Purdue University, our team was tasked with"+
-      " continuing a project from a previous semester. The project had a variety of moving parts and everyone had a specific role in the group."+
-      " I was the frontend developer mostly working on the client application improving its user interface and integrating new technology into"+
-      " the system.\n- This multidisciplinary design project was an excellent experience and gave me a sense of how different majors interact"+
-      " and work together to complete the same project. Overall, I learned many new skills such as communicating progress or problems that the"+
-      " group had with the project to the sponsors from Lockheed Martin."
+      description: "- The Design Lab is a \"class\" at RPI which provides a capstone experience intended to prepare students to enter the" +
+        " workforce. A team of 6 students all with different majors are given a multidisciplinary design project by a sponsor to work on throughout" +
+        " the semester. \n- Sponsored by Lockheed Martin and in association with Georgia Tech and Purdue University, our team was tasked with" +
+        " continuing a project from a previous semester. The project had a variety of moving parts and everyone had a specific role in the group." +
+        " I was the frontend developer mostly working on the client application improving its user interface and integrating new technology into" +
+        " the system.\n- This multidisciplinary design project was an excellent experience and gave me a sense of how different majors interact" +
+        " and work together to complete the same project. Overall, I learned many new skills such as communicating progress or problems that the" +
+        " group had with the project to the sponsors from Lockheed Martin."
     },
     {
       title: 'Software Engineering Intern ',
@@ -92,13 +92,12 @@ const Experiences = () => {
         <div className="Experiences-grid">
           {Experiences.map((experience, index) => (
             <div key={index} className="Experiences-card">
-
-              <div className="Experiences-row">
+              <div className="Experiences-row vertical-stack">
                 <h2 className="Experiences-title-left">{experience.title}</h2>
                 <h2 className="Experiences-title-right">{experience.date}</h2>
               </div>
 
-              <div className="Experiences-row">
+              <div className="Experiences-row vertical-stack">
                 <h3 className="Experiences-left">{experience.employer}</h3>
                 <h3 className="Experiences-right">{experience.location}</h3>
               </div>

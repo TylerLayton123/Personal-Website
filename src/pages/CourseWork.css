@@ -28,7 +28,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  z-index: 1; 
+  z-index: 1;
   color: rgb(var(--theme-color3));
 }
 
@@ -117,8 +117,8 @@
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
   backdrop-filter: blur(8px);
   border: 1px solid rgba(255, 255, 255, 0.1);
-  min-height: 400px;   
-  height: auto;  
+  min-height: 400px;
+  height: auto;
 }
 
 .semester-title {
@@ -142,7 +142,7 @@
   grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
   gap: 1.5rem;
   width: 100%;
-  min-width: unset; 
+  min-width: unset;
 }
 
 
@@ -185,7 +185,7 @@
 .course-header h3 {
   font-size: 1.3rem;
   margin: 0;
-  color:  rgb(var(--theme-color4));
+  color: rgb(var(--theme-color4));
 }
 
 .course-grade {
@@ -195,18 +195,18 @@
   border-radius: 15px;
   background: rgba(255, 255, 255, 0.15);
   text-shadow:
-     1px  1px 0 #000;
+    1px 1px 0 #000;
 }
 
 
 .grade-s {
   color: #4CAF50;
-  
+
 }
 
 .grade-a {
   color: #4CAF50;
-  
+
 }
 
 .grade-a- {
@@ -231,9 +231,16 @@
   margin: 0;
 }
 
-/* Responsive design */@media (max-width: 768px) {
+/* Responsive design */
+@media (max-width: 768px) {
   .coursework-container {
-    padding: 1rem;
+    margin: 0 auto;
+    width: 100%;
+    margin: 0;
+    padding: 0.5rem 0.5rem;
+    box-shadow: none;
+    border-left: none;
+    border-right: none;
   }
 
   .semester-selector {
@@ -251,8 +258,17 @@
     padding: 0.6rem 1rem;
   }
 
+  .course-card {
+    width: 100%;
+    padding: 0.7rem 0.7rem;
+    margin: 0;
+    border-radius: 10px;
+  }
+
+
   .courses-grid {
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    grid-template-columns: 1fr;
+    gap: 1rem;
   }
 }
 
@@ -275,6 +291,7 @@
     padding: 1rem;
   }
 }
+
 .semester-nav {
   display: flex;
   justify-content: center;

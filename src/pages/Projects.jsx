@@ -39,7 +39,7 @@ const Projects = () => {
         " I will continue to update this website since I had a lot of fun making it and I hope it gives people some insight into my academic career!"
     },
     {
-      title: ' Multidiciplinary Capstone Design/Design Lab (Spring 25)',
+      title: ' Multidiciplinary Capstone Design/Design Lab - (Spring 25)',
       description: "\tThis capstone project/class is offered at RPI is an great way for students to work with people of different majors" +
         "and is intended to prepare students" +
         " to enter the workforce. A team of 6 students are given a multidisciplinary design project by a sponsor" +

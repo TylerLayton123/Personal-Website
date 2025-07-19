@@ -28,13 +28,14 @@
 .left-group {
   display: flex;
   align-items: center;
-  gap: 15px;
+  gap: 13px;
 }
 
 .logo-container {
   display: flex;
   align-items: center;
   max-width: 200px;
+  transform: translateX(-9px); 
 }
 
 .logo-image {

@@ -3,7 +3,7 @@ import './Settings.css';
 import { useTheme } from './ThemeContext';
 import ThemeCreator from './ThemeCreator';
 
-const SettingsPanel = ({ isOpen, onClose }) => {
+const Settings = ({ isOpen, onClose }) => {
     const {
         themes,
         setTheme,
@@ -27,8 +27,9 @@ const SettingsPanel = ({ isOpen, onClose }) => {
     const customThemeNames = Object.keys(themes)
         .filter(name => !builtInThemeNames.includes(name));
 
-    const renderColorStripe = (color, width) => (
+    const renderColorStripe = (color, width, key) => (
         <div
+            key={key}
             className="color-stripe"
             style={{
                 backgroundColor: `rgb(${color.r}, ${color.g}, ${color.b})`,
@@ -36,6 +37,7 @@ const SettingsPanel = ({ isOpen, onClose }) => {
             }}
         />
     );
+
 
     return (
         <>
@@ -61,7 +63,7 @@ const SettingsPanel = ({ isOpen, onClose }) => {
                                 >
                                     <div className="theme-colors">
                                         {themes[themeName]?.slice(0, 5).map((color, idx) =>
-                                            renderColorStripe(color, 100 / 5)
+                                            renderColorStripe(color, 100 / 5, idx)
                                         )}
                                     </div>
                                     <span className="theme-name">{themeName.replace('theme', 'Theme ')}</span>
@@ -131,4 +133,4 @@ const SettingsPanel = ({ isOpen, onClose }) => {
     );
 };
 
-export default SettingsPanel;
+export default Settings;

@@ -200,13 +200,13 @@
 
 /* Navigation Cards Styles */
 .button-section {
-  padding: 4rem 1rem;
+  padding: 4rem 1rem 2rem;
   position: relative;
   z-index: 2;
   max-width: 1200px;
   margin: 0 auto;
   width: 100%;
-  min-height: 100vh;
+  min-height: auto;
 }
 
 .alternating-cards-container {
