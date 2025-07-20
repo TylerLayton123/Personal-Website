@@ -73,14 +73,11 @@ const UniversalPicture = () => {
         };
     };
 
-    // Generate image in chunks to prevent blocking
-    const generateImage = async () => {
+    const generateImage = async (customSeed) => {
         const canvas = canvasRef.current;
         if (!canvas) return;
 
         cancelledRef.current = false;
-        // setIsGenerating(true);
-        setGenerationProgress(0);
         setNeedsGeneration(false);
 
         const ctx = canvas.getContext('2d');
@@ -88,17 +85,16 @@ const UniversalPicture = () => {
         const height = canvas.height;
         const imageData = ctx.createImageData(width, height);
 
-        // Determine seed input
-        const seedInput = seedType === 'buffer' && seedBufferRef.current
-            ? seedBufferRef.current
-            : seed;
+        const seedInput =
+            seedType === 'buffer' && seedBufferRef.current
+                ? seedBufferRef.current
+                : customSeed || seed;
 
         const prng = createPrng(seedInput);
 
         const totalPixels = width * height;
         let generatedPixels = 0;
 
-        // Optimize for small seeds by using larger chunks
         const isSmallSeed = prng.isSmall && prng.isSmall();
         const chunkSize = isSmallSeed ? 10000 : 1000;
 
@@ -112,24 +108,19 @@ const UniversalPicture = () => {
                     return;
                 }
 
-                const y = Math.floor(generatedPixels / width);
-                const x = generatedPixels % width;
-                const index = (y * width + x) * 4;
-
-                imageData.data[index] = Math.floor(prng.next() * 256);     // R
-                imageData.data[index + 1] = Math.floor(prng.next() * 256); // G
-                imageData.data[index + 2] = Math.floor(prng.next() * 256); // B
-                imageData.data[index + 3] = 255;                      // Alpha
+                const index = generatedPixels * 4;
+                imageData.data[index] = Math.floor(prng.next() * 256);
+                imageData.data[index + 1] = Math.floor(prng.next() * 256);
+                imageData.data[index + 2] = Math.floor(prng.next() * 256);
+                imageData.data[index + 3] = 255;
 
                 generatedPixels++;
                 pixelsProcessed++;
 
-                // Only update progress for large seeds to reduce overhead
-                if (!isSmallSeed && generatedPixels % 100 === 0) {
-                    setGenerationProgress(Math.round((generatedPixels / totalPixels) * 100));
-                }
+                // if (!isSmallSeed && generatedPixels % 100 === 0) {
+                //     setGenerationProgress(Math.round((generatedPixels / totalPixels) * 100));
+                // }
 
-                // Don't block the main thread for more than 50ms
                 if (performance.now() - startTime > 50) {
                     break;
                 }
@@ -147,8 +138,10 @@ const UniversalPicture = () => {
             }
         };
 
+        // setIsGenerating(true);
         requestAnimationFrame(generateChunk);
     };
+
 
     // Save image as PNG
     const saveImage = () => {
@@ -572,16 +565,22 @@ const UniversalPicture = () => {
 
                         <button
                             className="generate-image-btn"
-                            onClick={() => generateImage()}
+                            onClick={() => {
+                                seedBufferRef.current = null;
+                                setSeedType('string');
+                                setSeed(seedDisplay); 
+                                generateImage(seedDisplay); 
+                            }}
                             disabled={isGenerating}
                         >
                             Generate Image
                         </button>
+
                         <button
                             className="random-seed-btn"
                             onClick={() => {
-                                generateRandomSeed(); // Runs first
-                                generateImage();      // Runs immediately after
+                                generateRandomSeed();
+                                generateImage(seedDisplay);
                             }}
                             disabled={isGenerating}
                         >
