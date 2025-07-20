@@ -42,14 +42,14 @@ const CourseWork = () => {
           number: "ECSE 4900",
           grade: "A",
           credit: "3",
-          description: "This project based class is also called the Design Lab which provides a capstone experience intended to prepare students" +
-            " to enter the workforce. A team of 6 students all with different majors are given a multidisciplinary design project by a sponsor" +
+          description: "This project-based class is also called the Design Lab which provides a capstone experience intended to prepare students" +
+            " to enter the workforce. A team of six students, all with different majors, are given a multidisciplinary design project by a sponsor" +
             " to work on throughout the semester. Sponsored by Lockheed Martin and in association with Georgia Tech and Purdue University, our" +
             " team was tasked with continuing a project from a previous semester. The project had a variety of moving parts and everyone had a" +
             " specific role in the group. I was the frontend developer mostly working on the client application improving its user interface and" +
             " integrating new technology into the system. This multidisciplinary design project was an excellent experience and gave me a sense" +
             " of how different majors interact and work together to complete the same project. Overall, I learned many new skills such as" +
-            " communicating progress or problems that the group had with the project to the sponsors from Lockheed Martin."
+            " communicating project progress and issues to the sponsors from Lockheed Martin."
         },
         {
           name: "DESIGN & ANALYSIS OF ALGORITHM",
@@ -76,8 +76,8 @@ const CourseWork = () => {
           number: "PSYC 4962",
           grade: "A",
           credit: "4",
-          description: "This class is a lecture class where the proffesor talks about his current research papers and theorys. The class helped a lot " +
-            " with editing several of his papers."
+          description: "This class is a lecture class where the profesor talks about his current research papers and theories. The class helped" +
+            " significantly with editing and revising several of his papers."
         }
       ]
     },
@@ -91,10 +91,10 @@ const CourseWork = () => {
           number: "CSCI 4440",
           grade: "A",
           credit: "4",
-          description: "This was a project based class in which a team of 5 students design a specific project. The emphasis is more on the design" +
-            " process of the project such as object oriented modeling, writen and oral communication, project managment, software teting, and documention." +
-            " My team used Jira to keep track of issues and github to hold our project. The project is a website called \"Let 'Em Cook\" and is meant to be " +
-            " a collection of recipes meant for college students to search up and rate. It can be found on my github."
+          description: "This was a project-based class in which a team of five students design and implement a project. The emphasis is more on the design" +
+            " process of the project such as object oriented modeling, written and oral communication, project management, software testing, and documentation." +
+            " My team used Jira to keep track of issues and Github to hold our project. The project is a website called \"Let 'Em Cook\" and is meant to be " +
+            " a collection of recipes meant for college students to search up and rate. It can be found on my Github."
         },
         {
           name: "PROGRAMMING LANGUAGES",
@@ -113,7 +113,7 @@ const CourseWork = () => {
           credit: "4",
           description: "This course provides an introduction to ontologies, their uses, and an overview of their application in semantically" +
             " enabled systems. Ontologies encode term meanings and are used to improve communication and enable computer programs to function" +
-            " more effectively. I teamed up with 3 other students to design an Ontology based on National Parks in the US showing certain statistics such as popularity," +
+            " more effectively. I teamed up with three other students to design an Ontology based on National Parks in the US showing certain statistics such as popularity," +
             " hikes, animals, climate, etc. We used a software called Protégé, an open-source ontology editor and framework."
         },
         {
@@ -157,7 +157,7 @@ const CourseWork = () => {
           number: "CSCI 4150",
           grade: "B+",
           credit: "4",
-          description: "Topics and techniques of artificial intelligence using Python. Topics include search, knowledge" +
+          description: "Topics and techniques of artificial intelligence, taught using Python. Topics include search, knowledge" +
             " representation, expert systems, theorem proving, natural language interfaces, learning, game playing, and computer vision." +
             " Techniques include pattern matching, data-driven programming, substitution rules, frames, heuristic search, transition networks," +
             " neural networks, and evolutionary computation."
@@ -237,10 +237,10 @@ const CourseWork = () => {
           number: "CSCI 2961",
           grade: "A",
           credit: "4",
-          description: "Rensselaer Center for Open Source Software is a project based class where students have the oportunity to start or join" +
-            " a current open source project. This semester, me and another student started our own open sourse project which can be found on my github" +
-            " The projects name is called Jump and the goal was to create a sort of game which has a clear background. Basically this platforming game is" +
-            " overlayed on top of the screen so that you can still see what is behind the game window. This was coded in python using the library pygame."
+          description: "Rensselaer Center for Open Source Software is a project based class where students have the opportunity to start or join" +
+            " a current open source project. This semester, me and another student started our own open source project which can be found on my Github" +
+            " The project's name is Jump and the goal was to create a sort of game which has a clear background. Basically this platforming game is" +
+            " overlaid on top of the screen so that you can still see what is behind the game window. This was coded in python using the library pygame."
         },
         {
           name: "INTRO ENGINEERING DESIGN",
@@ -334,7 +334,7 @@ const CourseWork = () => {
           number: "CSCI 2961",
           grade: "A",
           credit: "4",
-          description: "Rensselaer Center for Open Source Software is a project based class where students have the oportunity to start or join" +
+          description: "Rensselaer Center for Open Source Software is a project based class where students have the opportunity to start or join" +
             " a current open source project. The project I joined this semester was called \"Open Circuits\" which is an analog and digital circuit simulator similar to LTspice." +
             " I Collaborated with a team of students to further develop the user-interface of this circuit simulator which will help other students better understand analog circuit design."
         },
@@ -345,8 +345,8 @@ const CourseWork = () => {
           credit: "4",
           description: "This class was coded in C using an embedded element of engineering systems. This was an enjoyable class and gave me a" +
             " lot of hands on experience early on in my academic career. I" +
-            " simultaneously developed the hardware and software of one or more target systems during the semester. Topics include concepts and" +
-            "practices of microcontroller hardware and software for command, sensing, control, and display. Specifically, this includes control" +
+            " simultaneously developed the hardware and software of several different target systems during the semester. Topics include concepts and" +
+            " practices of microcontroller hardware and software for command, sensing, control, and display. Specifically, this includes control" +
             " of dynamic systems and sensor interfaces; analog-digital conversion; parallel input/output; driver circuits, modular programming," +
             " and subsystem integration."
         },
@@ -391,7 +391,7 @@ const CourseWork = () => {
           number: "CSCI 1200",
           grade: "B",
           credit: "4",
-          description: "Using in C++ and VS code as an IDE, many challenging homeworks were completed on the following programming concepts:" +
+          description: "Using C++ and VS code as an IDE, many challenging homework assignments were completed on the following programming concepts:" +
             " functions, parameter passing, pointers, arrays, strings, structs, classes, templates. Mathematical" +
             " tools: sets, functions, and relations, order notation, complexity of algorithms, proof by induction. Data structures and their" +
             " representations: data abstraction and internal representation, sequences, trees, binary search trees, associative structures." +
@@ -464,7 +464,7 @@ const CourseWork = () => {
           name: "ENGR PROCESSES",
           number: "ENGR 1300",
           description: "I built a small aluminum cannon that I still use as a desk accessory to this day. This was one of my favorite classes at RPI because" +
-            " it was so hands on and enjoyable, I looked foward to it every week." +
+            " it was so hands on and enjoyable, I looked forward to it every week." +
             " We used basic machine tools such as lathes, milling machines, drill presses, band saws, and grinders," +
             " including micrometers, vernier calipers, and other devices of use in a machine shop or laboratory. We were also taught Welding techniques and" +
             " tool makings.",

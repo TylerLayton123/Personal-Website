@@ -178,20 +178,21 @@ const Home = () => {
           <div className="about-text">
             <h2>About Me</h2>
             <p>
-              I am currently graduate student at Rensselaer Polytechnic Institute with a BS in Computer
-              Science and Computer Systems Engineering. I have knowledge in many different programming languages
-              and frameworks. I am passionate about learning as much as I can about technology and how it works.
+              I am currently a graduate student at Rensselaer Polytechnic Institute pursuing a Master's degree in 
+              Computer Science, with a Bachelor's degree in Computer Science and Computer Systems Engineering. I have experience 
+              with a wide range of programming languages and frameworks, and I’m passionate about continually learning how technology 
+              works and evolves.
             </p>
             <p>
               My academic journey is complemented by practical experience in both industry and research
               settings, where I've developed skills in full-stack development, algorithm optimization, and
-              embedded systems controls.
+              embedded systems control.
             </p>
             <p>
-              When I'm not coding, you can find me exploring the outdoors, skiing, or travelling the country.
+              When I'm not coding, you can find me exploring the outdoors, skiing, or traveling the country.
             </p>
             <p>
-              This website is an accumulation of all my hard work throughtout my time at RPI as well as
+              This website is an accumulation of all my hard work throughout my time at RPI, as well as
               other things I am passionate about. Please explore my projects, class work, and journey below. Thank you!
             </p>
           </div>
