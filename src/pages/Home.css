@@ -140,6 +140,9 @@
   margin-bottom: 1.5rem;
   text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
   text-align: justify;
+
+  hyphens: auto;
+  overflow-wrap: break-word;
 }
 
 @media (min-width: 768px) {
