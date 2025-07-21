@@ -256,4 +256,10 @@
     .theme-options-grid {
         grid-template-columns: 1fr;
     }
+
+    .theme-name {
+        text-align: center;
+        justify-content: center;
+        font-size: 1rem;
+    }
 }

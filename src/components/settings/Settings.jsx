@@ -112,23 +112,24 @@ const Settings = ({ isOpen, onClose }) => {
                     </div>
 
                     {/* Theme creator modal */}
-                    {isAddingTheme && (
-                        <ThemeCreator
-                            newThemeName={newThemeName}
-                            setNewThemeName={setNewThemeName}
-                            newThemeColors={newThemeColors}
-                            updateNewThemeColor={updateNewThemeColor}
-                            saveNewTheme={saveNewTheme}
-                            cancelNewTheme={cancelNewTheme}
-                        />
-                    )}
 
-                    <div className="other-settings">
+
+                    {/* <div className="other-settings">
                         <h3>Other Options</h3>
-                        {/* Other settings content here */}
-                    </div>
+
+                    </div> */}
                 </div>
             </div >
+            {isAddingTheme && (
+                <ThemeCreator
+                    newThemeName={newThemeName}
+                    setNewThemeName={setNewThemeName}
+                    newThemeColors={newThemeColors}
+                    updateNewThemeColor={updateNewThemeColor}
+                    saveNewTheme={saveNewTheme}
+                    cancelNewTheme={cancelNewTheme}
+                />
+            )}
         </>
     );
 };

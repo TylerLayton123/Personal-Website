@@ -1,14 +1,14 @@
 .theme-creator-modal {
     position: fixed;
     top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
+    left: 0; 
+    width: 100vw;
+    height: 100vh;
     background: rgba(0, 0, 0, 0.7);
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 1001;
+    z-index: 2000; 
 }
 
 .modal-content {
@@ -190,7 +190,7 @@
     transform: translateY(-2px);
 }
 
-@media (max-width: 768px) {
+/* @media (max-width: 768px) {
     .color-pickers-row {
         flex-direction: column;
         align-items: center;
@@ -200,4 +200,54 @@
         max-width: 100%;
         width: 100%;
     }
+} */
+
+@media (max-width: 480px) {
+    .modal-content {
+        width: 95%;
+        max-height: 95vh;
+        overflow-y: auto;
+        display: flex;
+        flex-direction: column;
+        padding: 20px;
+        box-sizing: border-box;
+    }
+
+    .color-pickers-container {
+        flex-grow: 1;
+        gap: 15px;
+    }
+
+
+    .color-picker {
+        width: 100%;
+        max-width: 100%;
+    }
+        
+    .color-pickers-row {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+    }
+
+    .color-picker.last-odd {
+        grid-column: 1 / -1;
+        justify-self: center;
+        width: 60%;
+    }
+
+    .save-btn {
+        width: 100%;
+        max-width: none;
+        margin-top: auto;
+    }
+
+    .modal-actions {
+        margin-top: 20px;
+    }
+
+    .theme-options-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
 }
+

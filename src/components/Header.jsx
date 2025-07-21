@@ -20,7 +20,6 @@ const Header = ({ settingsOpen, setSettingsOpen }) => {
   }, []);
 
   const openResume = () => {
-    // Replace with your actual resume URL
     window.open(resumePDF, '_blank');
   };
 

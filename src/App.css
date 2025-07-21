@@ -30,7 +30,6 @@ html {
   scroll-behavior: smooth;
 }
 
-/* Add this to your App.css */
 .settings-overlay {
   position: fixed;
   top: 0;
@@ -38,9 +37,10 @@ html {
   right: 0;
   bottom: 0;
   background: rgba(0, 0, 0, 0.5);
-  backdrop-filter: blur(3px);
-  z-index: 999; /* Below settings panel but above everything else */
+  filter: blur(3px);
+  z-index: 999; 
   display: none;
+  pointer-events: none;
 }
 
 .settings-overlay.active {

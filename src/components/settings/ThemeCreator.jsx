@@ -43,52 +43,37 @@ const ThemeCreator = ({
 
                 <div className="color-pickers-container">
                     <div className="color-pickers-row">
-                        {newThemeColors.slice(0, 3).map((color, index) => (
-                            <div key={index} className="color-picker">
-                                <label>Color {index + 1}</label>
-                                <div className="color-input">
-                                    <input
-                                        type="color"
-                                        value={rgbToHex(color.r, color.g, color.b)}
-                                        onChange={(e) => {
-                                            const hex = e.target.value;
-                                            const r = parseInt(hex.slice(1, 3), 16);
-                                            const g = parseInt(hex.slice(3, 5), 16);
-                                            const b = parseInt(hex.slice(5, 7), 16);
-                                            updateNewThemeColor(index, { r, g, b });
-                                        }}
-                                    />
-                                    <div className="rgb-values">
-                                        {color.r}, {color.g}, {color.b}
+                        {newThemeColors.map((color, index) => {
+                            const isLastOdd = newThemeColors.length % 2 !== 0 && index === newThemeColors.length - 1;
+                            return (
+                                <div
+                                    key={index}
+                                    className={`color-picker${isLastOdd ? ' last-odd' : ''}`}
+                                >
+                                    <label>Color {index + 1}</label>
+                                    <div className="color-input">
+                                        <input
+                                            type="color"
+                                            value={rgbToHex(color.r, color.g, color.b)}
+                                            onChange={(e) => {
+                                                const hex = e.target.value;
+                                                const r = parseInt(hex.slice(1, 3), 16);
+                                                const g = parseInt(hex.slice(3, 5), 16);
+                                                const b = parseInt(hex.slice(5, 7), 16);
+                                                updateNewThemeColor(index, { r, g, b });
+                                            }}
+                                        />
+                                        <div className="rgb-values">
+                                            {color.r}, {color.g}, {color.b}
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        ))}
-                    </div>
-                    <div className="color-pickers-row centered-row">
-                        {newThemeColors.slice(3, 5).map((color, index) => (
-                            <div key={index + 3} className="color-picker">
-                                <label>Color {index + 4}</label>
-                                <div className="color-input">
-                                    <input
-                                        type="color"
-                                        value={rgbToHex(color.r, color.g, color.b)}
-                                        onChange={(e) => {
-                                            const hex = e.target.value;
-                                            const r = parseInt(hex.slice(1, 3), 16);
-                                            const g = parseInt(hex.slice(3, 5), 16);
-                                            const b = parseInt(hex.slice(5, 7), 16);
-                                            updateNewThemeColor(index + 3, { r, g, b });
-                                        }}
-                                    />
-                                    <div className="rgb-values">
-                                        {color.r}, {color.g}, {color.b}
-                                    </div>
-                                </div>
-                            </div>
-                        ))}
+                            );
+                        })}
                     </div>
                 </div>
+
+
 
                 <div className="modal-actions">
                     <button className="save-btn" onClick={saveNewTheme}>
