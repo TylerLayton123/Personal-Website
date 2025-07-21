@@ -8,7 +8,7 @@
 }
 
 .skills-container {
-  padding: 3rem 2rem;
+  padding: 3rem 1.5rem;
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -46,7 +46,7 @@
 
 .skill-box {
   width: 160px; 
-  height: 70px; 
+  height: auto; 
   background: rgba(var(--theme-color2), 0.15);
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 10px;

@@ -6,7 +6,7 @@
 }
 
 body {
-  background-color: rgb(var(--theme-color4));
+  background-color: rgb(var(--theme-color0));
   color: #333;
   line-height: 1.6;
 }

@@ -39,7 +39,7 @@ const Projects = () => {
         " I will continue to update this website since I had a lot of fun making it and I hope it provides people with insight into my academic journey!"
     },
     {
-      title: ' Multidisciplinary Capstone Design / Design Lab - (Spring 25)',
+      title: ' Multidisciplinary Capstone Design / Design Lab - Spring 25',
       description: "\tThis capstone project/class is offered at RPI is a great way for students to work with people of different majors" +
         " and is intended to prepare students" +
         " to enter the workforce. A team of six students are given a multidisciplinary design project by a sponsor" +
@@ -71,14 +71,14 @@ const Projects = () => {
       title: 'Ontologies - Fall 24',
       description: "\tThis course provides an introduction to ontologies, their uses, and an overview of their application in semantically" +
         " enabled systems. Ontologies encode term meanings and are used to improve communication and enable computer programs to function" +
-        " more effectively. I teamed up with 3 other students to design an Ontology based on National Parks in the US showing certain statistics such as popularity," +
+        " more effectively. I teamed up with three other students to design an Ontology based on National Parks in the US showing certain statistics such as popularity," +
         " hikes, animals, climate, etc. We used a software called Protégé, an open-source ontology editor and framework."
     },
     {
       title: 'RCOS - Fall 23',
       description: "\tRensselaer Center for Open Source Software is a project based class where students have the opportunity to start or join" +
-        " a current open source project. This semester, another student and I started our own open source project which can be found on my github" +
-        " The project name is called Jump and the goal was to create a sort of game which has a clear background. Basically this platforming game is" +
+        " a current open source project. This semester, another student and I started our own open source project which can be found on my github." +
+        " The project name is called Jump and the goal was to create a game which has a clear background. Basically this platforming game is" +
         " overlaid on top of the screen so that you can still see what is behind the game window. This was coded in Python using the library pygame."
     },
     {

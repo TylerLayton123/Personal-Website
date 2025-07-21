@@ -526,9 +526,9 @@ const CourseWork = () => {
           <div className="coursework-header">
             <h1>Academic Coursework</h1>
             <h2>BS in Computer Science & Computer Systems Engineering</h2>
-            <h2>Currently pursuing Masters in Computer Science</h2>
-            <h2>Current overall GPA: 3.68</h2>
+            <h2>Cumulative GPA: 3.68</h2>
             <h2>Cum Laude</h2>
+            <h2>Currently pursuing a Masters in Computer Science</h2>
 
             {/* <p>Detailed overview of my academic journey and completed courses</p> */}
           </div>
