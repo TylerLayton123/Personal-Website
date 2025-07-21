@@ -624,7 +624,7 @@ const UniversalPicture = () => {
                         given the right seed. Each pixel has an RGB value ranging from 0-255,
                         which means that there are 16,777,216 unique colors per pixel (256x256x256). Within
                         this 500x500 frame there are 250,000 total pixels which makes 2^(6,000,000) unique images!
-                        16,777,216^(250,000) = (2^(24))^(250,000) = 2^(6,000,000. That’s more images than the number of atoms in the observable universe!)</p>
+                        16,777,216^(250,000) = (2^(24))^(250,000) = 2^(6,000,000). That’s more images than the number of atoms in the observable universe!</p>
                 </div>
             </div>
 
