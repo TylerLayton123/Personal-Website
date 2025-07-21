@@ -16,7 +16,7 @@ const Experiences = () => {
     {
       title: 'Frontend Developer',
       location: "Troy, NY",
-      date: "January 2025 – May 2025",
+      date: "Jan 2025 – May 2025",
       employer: "Multidisciplinary Capstone Design / Design Lab",
       description: "- The Design Lab is a \"class\" at RPI which provides a capstone experience intended to prepare students to enter the" +
         " workforce. A team of six students all with different majors are given a multidisciplinary design project by a sponsor to work on throughout" +
@@ -44,7 +44,7 @@ const Experiences = () => {
     {
       title: 'Project Lead Developer',
       location: "Troy, NY",
-      date: "Sept 2023 – Dec 2023",
+      date: "Sep 2023 – Dec 2023",
       employer: "Rensselaer Center for Open Source (RCOS)",
       description: "- Directed a small team of students to create an open-source game coded in Python utilizing the" +
         "library pygame \n- Designed and implemented a user-friendly jumping mechanic within the game, enabling players to navigate across platforms" +
@@ -61,7 +61,7 @@ const Experiences = () => {
     },
     {
       title: 'Frontend Engineer',
-      date: "Sept 2022 – Dec 2022",
+      date: "Sep 2022 – Dec 2022",
       location: "Troy, NY",
       employer: "Rensselaer Center for Open Source (RCOS)",
       description: "- Collaborated in a team to develop the user-interface of an open-source analog circuit simulator to" +

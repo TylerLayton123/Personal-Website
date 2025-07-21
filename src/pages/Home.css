@@ -139,6 +139,7 @@
   color: rgb(var(--theme-color4));
   margin-bottom: 1.5rem;
   text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+  text-align: justify;
 }
 
 @media (min-width: 768px) {

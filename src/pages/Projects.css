@@ -74,6 +74,7 @@
   line-height: 1.5;
   color: rgb(var(--theme-color4));
   white-space: pre-wrap;
+  text-align: justify;
 }
 
 
