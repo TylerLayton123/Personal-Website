@@ -229,13 +229,23 @@ const Home = () => {
             <h2>Visited National Parks</h2>
             <div className="park-buttons">
               {NationalParks.map((park, index) => (
-                <button
+                <div
                   key={index}
-                  className="park-button"
+                  className="park-button-container"
                   onClick={() => window.location.href = `/park/${park.name.toLowerCase().replace(/\s+/g, '-')}`}
                 >
-                  {park.name}
-                </button>
+                  <div
+                    className="park-button"
+                    style={{
+                      backgroundImage: park.image_url ? `${park.image_url}` : 'none',
+                      backgroundSize: 'cover',
+                      backgroundPosition: 'center'
+                    }}
+                  >
+                    <div className="park-button-overlay"></div>
+                    <span className="park-button-text">{park.name}</span>
+                  </div>
+                </div>
               ))}
             </div>
           </div>

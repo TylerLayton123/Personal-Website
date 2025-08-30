@@ -180,7 +180,7 @@ def scrape_national_parks():
             parks.append({
                 'name': name,
                 'link': link,
-                'image_url': image_path if image_path else "",
+                'image_path': image_path if image_path else "",
                 'location': location,
                 'date_established': date_established,
                 'area': area,
@@ -202,7 +202,7 @@ def generate_jsx_list(parks):
         jsx += f'    id: {i},\n'
         jsx += f'    name: "{park["name"]}",\n'
         jsx += f'    link: "{park["link"]}",\n'
-        jsx += f'    image_url: "{park["image_url"]}",\n'
+        jsx += f'    image_path: "{park["image_path"]}",\n'
         
         # Properly escape quotes in location
         escaped_location = park["location"].replace('"', '\\"')
