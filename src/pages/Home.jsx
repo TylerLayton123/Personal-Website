@@ -8,6 +8,7 @@ import '../App.css';
 import '../components/Header.css';
 import '../pages/Home.css';
 import '../components/Footer.css';
+import NationalParks from '../components/NationalParks';
 
 // Constants for typing animation
 const FULL_NAME = "Tyler Layton";
@@ -178,9 +179,9 @@ const Home = () => {
           <div className="about-text">
             <h2>About Me</h2>
             <p>
-              I am currently a graduate student at Rensselaer Polytechnic Institute pursuing a Master's degree in 
-              Computer Science, with a Bachelor's degree in Computer Science and Computer Systems Engineering. I have experience 
-              with a wide range of programming languages and frameworks, and I’m passionate about continually learning how technology 
+              I am currently a graduate student at Rensselaer Polytechnic Institute pursuing a Master's degree in
+              Computer Science, with a Bachelor's degree in Computer Science and Computer Systems Engineering. I have experience
+              with a wide range of programming languages and frameworks, and I’m passionate about continually learning how technology
               works and evolves.
             </p>
             <p>
@@ -218,6 +219,25 @@ const Home = () => {
                 </a>
               </div>
             ))}
+          </div>
+        </div>
+      </div>
+
+      <div className="park-section">
+        <div className="park-container">
+          <div className="park-text">
+            <h2>Visited National Parks</h2>
+            <div className="park-buttons">
+              {NationalParks.map((park, index) => (
+                <button
+                  key={index}
+                  className="park-button"
+                  onClick={() => window.location.href = `/park/${park.name.toLowerCase().replace(/\s+/g, '-')}`}
+                >
+                  {park.name}
+                </button>
+              ))}
+            </div>
           </div>
         </div>
       </div>

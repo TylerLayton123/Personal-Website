@@ -422,6 +422,70 @@
   }
 }
 
+.park-section {
+  background: rgb(var(--theme-color0));
+  padding: 4rem 1rem;
+  position: relative;
+  z-index: 2;
+}
+
+.park-container {
+  display: flex;
+  flex-direction: column;
+  max-width: 1200px;
+  margin: 0 auto;
+  gap: 2.5rem;
+  align-items: center;
+}
+
+.park-text h2 {
+  font-size: 2.5rem;
+  margin-bottom: 1.5rem;
+  color: #fff;
+  text-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
+  background: rgb(var(--theme-color3));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  font-weight: 600;
+  text-align: center; 
+  position: relative;
+  padding-bottom: 0.5rem;
+}
+
+.park-text h2::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 350px;
+  height: 3px;
+  background: linear-gradient(90deg, rgb(var(--theme-color3)), rgb(var(--theme-color2)));
+  border-radius: 2px;
+}
+
+.park-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+.park-button {
+  background: rgb(var(--theme-color3));
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.park-button:hover {
+  background: rgb(var(--theme-color2));
+}
 
 .footer {
   background: rgb(var(--theme-color0));

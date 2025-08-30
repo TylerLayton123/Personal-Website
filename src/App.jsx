@@ -10,10 +10,11 @@ import ScrollToTop from './components/ScrollToTop';
 import { ThemeProvider } from './components/settings/ThemeContext';
 import Loader from './components/Loader';
 import './App.css';
+import ParkDetail from './components/NationalParks';
 
 function AppRoutes() {
   const location = useLocation();
-  const [loading, setLoading] = useState(true); 
+  const [loading, setLoading] = useState(true);
 
   useLayoutEffect(() => {
     setLoading(true);
@@ -21,7 +22,7 @@ function AppRoutes() {
 
   // loader
   useEffect(() => {
-    const timer = setTimeout(() => setLoading(false), 800); 
+    const timer = setTimeout(() => setLoading(false), 800);
     return () => clearTimeout(timer);
   }, [location]);
 
@@ -39,6 +40,7 @@ function AppRoutes() {
             <Route path="/skills" element={<Skills />} />
             <Route path="/coursework" element={<Coursework />} />
             <Route path="/universal_image" element={<UniversalImage />} />
+            <Route path="/park/:parkName" element={<ParkDetail />} />
           </Routes>
         </>
       )}
