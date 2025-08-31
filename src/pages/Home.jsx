@@ -10,6 +10,21 @@ import '../pages/Home.css';
 import '../components/Footer.css';
 import NationalParks from '../components/NationalParks';
 
+// import all park images
+const importAll = (r) => {
+  let images = {};
+  r.keys().forEach((fileName) => {
+    const key = fileName.replace('./', '').replace(/\.(png|jpe?g)$/, '');
+    images[key] = r(fileName);
+  });
+  return images;
+};
+
+const parkImages = importAll(
+  require.context('../assets/images/parkimages/DefaultImages', false, /\.(png|jpe?g)$/)
+);
+
+
 // Constants for typing animation
 const FULL_NAME = "Tyler Layton";
 const TITLES = [
@@ -24,6 +39,8 @@ const TITLES = [
   "Hiker"
   // "Outdoors-Man"
 ];
+
+const VISITED_PARKS = ["Acadia"];
 
 const Home = () => {
   const [settingsOpen, setSettingsOpen] = useState(false);
@@ -227,7 +244,7 @@ const Home = () => {
         <div className="park-container">
           <div className="park-text">
             <h2>Visited National Parks</h2>
-            <div className="park-buttons">
+            <div className="park-grid">
               {NationalParks.map((park, index) => (
                 <div
                   key={index}
@@ -237,11 +254,11 @@ const Home = () => {
                   <div
                     className="park-button"
                     style={{
-                      backgroundImage: park.image_url ? `${park.image_url}` : 'none',
-                      backgroundSize: 'cover',
-                      backgroundPosition: 'center'
+                      backgroundImage: `url(${parkImages[park.image_key]})`,
+                      filter: VISITED_PARKS.includes(park.image_key) ? "none" : "grayscale(90%)"
                     }}
                   >
+
                     <div className="park-button-overlay"></div>
                     <span className="park-button-text">{park.name}</span>
                   </div>

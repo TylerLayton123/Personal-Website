@@ -155,12 +155,9 @@ def scrape_national_parks():
                 if image_url:
                     # Download the image
                     sanitized_name = sanitize_filename(name)
-                    folder_name = f"assets/images/parkimages/{sanitized_name}"
-                    image_path = download_image(
-                        image_url, 
-                        folder_name, 
-                        f"default{sanitized_name}"
-                    )
+                    folder_name = f"assets/images/parkimages/DefaultImages"
+                    image_path = sanitized_name
+                    
             
             # Location
             location = columns[2].text.strip()
@@ -202,7 +199,7 @@ def generate_jsx_list(parks):
         jsx += f'    id: {i},\n'
         jsx += f'    name: "{park["name"]}",\n'
         jsx += f'    link: "{park["link"]}",\n'
-        jsx += f'    image_path: "{park["image_path"]}",\n'
+        jsx += f'    image_key: "{park["image_path"]}",\n'
         
         # Properly escape quotes in location
         escaped_location = park["location"].replace('"', '\\"')
