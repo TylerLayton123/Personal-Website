@@ -10,7 +10,7 @@ import ScrollToTop from './components/ScrollToTop';
 import { ThemeProvider } from './components/settings/ThemeContext';
 import Loader from './components/Loader';
 import './App.css';
-import ParkDetail from './components/NationalParks';
+import ParkPages from './pages/ParkPages'; 
 
 function AppRoutes() {
   const location = useLocation();
@@ -40,7 +40,7 @@ function AppRoutes() {
             <Route path="/skills" element={<Skills />} />
             <Route path="/coursework" element={<Coursework />} />
             <Route path="/universal_image" element={<UniversalImage />} />
-            <Route path="/park/:parkName" element={<ParkDetail />} />
+            <Route path="/park/:parkName" element={<ParkPages />} />
           </Routes>
         </>
       )}

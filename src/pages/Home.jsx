@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { useNavigate } from "react-router-dom";
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import ParticleBackground from '../components/ParticleBackground';
@@ -40,10 +41,13 @@ const TITLES = [
   // "Outdoors-Man"
 ];
 
-const VISITED_PARKS = ["Acadia"];
+const VISITED_PARKS = ["Acadia", "Badlands", "Congaree", "Cuyahoga_Valley", "Everglades", "Grand_Canyon", "Great_Smokey_Mountains", "Hawai'i_Volcanos",
+  "Indiana_Dunes", "Isle_Royale", "Mammoth_Cave", "New_River_Gorge", "Shenandoah", "Theodore_Roosevelt", "Voyagers", "Wind_Cave"
+];
 
 const Home = () => {
   const [settingsOpen, setSettingsOpen] = useState(false);
+  const navigate = useNavigate();
 
   const navBar = [
     {
@@ -165,6 +169,7 @@ const Home = () => {
   };
 
 
+
   return (
     <div className="home-page">
       <Header setSettingsOpen={setSettingsOpen} />
@@ -249,13 +254,12 @@ const Home = () => {
                 <div
                   key={index}
                   className="park-button-container"
-                  onClick={() => window.location.href = `/park/${park.name.toLowerCase().replace(/\s+/g, '-')}`}
-                >
+                  onClick={() => navigate(`/park/${park.name.toLowerCase().replace(/\s+/g, '-')}`)}                >
                   <div
                     className="park-button"
                     style={{
                       backgroundImage: `url(${parkImages[park.image_key]})`,
-                      filter: VISITED_PARKS.includes(park.image_key) ? "none" : "grayscale(90%)"
+                      filter: VISITED_PARKS.includes(park.image_key) ? "none" : "grayscale(100%)"
                     }}
                   >
 

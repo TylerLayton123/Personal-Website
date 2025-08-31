@@ -28,7 +28,7 @@ def download_image(url, folder_path, filename):
         response = requests.get(url, headers=headers, stream=True, timeout=10)
         if response.status_code == 200:
             # Create directory if it doesn't exist
-            os.makedirs(folder_path, exist_ok=True)
+            # os.makedirs(folder_path, exist_ok=True)
             
             # Determine file extension from content type
             content_type = response.headers.get('content-type', '')
@@ -162,6 +162,16 @@ def scrape_national_parks():
             # Location
             location = columns[2].text.strip()
             
+                        # Remove the park name in parentheses
+            cleaned = re.sub(r"\s*\(.*?\)", "", location)
+
+            # Extract state (leading letters until first digit or degree symbol)
+            state_match = re.match(r"([A-Za-z\s]+)", cleaned)
+            state = state_match.group(1).strip() if state_match else ""
+
+            # Extract coordinates (everything after the state)
+            coordinates = cleaned[len(state):].strip()
+            
             # Date established
             date_established = columns[3].text.strip()
             
@@ -179,6 +189,8 @@ def scrape_national_parks():
                 'link': link,
                 'image_path': image_path if image_path else "",
                 'location': location,
+                'state': state,
+                'coordinates': coordinates,
                 'date_established': date_established,
                 'area': area,
                 'visitors': visitors,
@@ -201,9 +213,8 @@ def generate_jsx_list(parks):
         jsx += f'    link: "{park["link"]}",\n'
         jsx += f'    image_key: "{park["image_path"]}",\n'
         
-        # Properly escape quotes in location
-        escaped_location = park["location"].replace('"', '\\"')
-        jsx += f'    location: "{escaped_location}",\n'
+        jsx += f'    state: "{park["state"]}",\n'
+        jsx += f'    coordinates: "{park["coordinates"]}",\n'
         
         jsx += f'    date_established: "{park["date_established"]}",\n'
         jsx += f'    area: "{park["area"]}",\n'
