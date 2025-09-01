@@ -106,6 +106,7 @@ const Home = () => {
       clearTimeout(nameAnimationRef.current);
       clearTimeout(titleAnimationRef.current);
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   // Typing animation functions

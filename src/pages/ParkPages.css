@@ -1,0 +1,192 @@
+.park-pages {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem;
+  min-height: 100vh;
+  /* Gradient background from color4 at top to color1 at bottom */
+  background: linear-gradient(
+    to bottom,
+    rgb(var(--theme-color2)) 10%,
+    rgb(var(--theme-color0)) 100%
+  );
+}
+
+
+.back-button {
+  align-self: flex-start;
+  margin: 4rem 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  color: rgb(var(--theme-color4));
+}
+
+.back-arrow-icon {
+  width: 32px;   
+  height: 32px;
+  object-fit: contain;
+}
+
+.back-button:hover {
+  color: rgb(var(--theme-color3));
+  transform: scale(1.3);
+  filter: drop-shadow(3px 3px 3px rgb(var(--theme-color4)));
+}
+.park-title {
+  position: relative;
+  display: inline-block;
+  margin: 1rem 0;
+  padding-bottom: 15px; 
+  font-size: 2rem;
+  text-align: center;
+  color: rgb(var(--theme-color4));
+  width: 100%; 
+}
+
+.park-title::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 3px;
+  background: linear-gradient(90deg, rgb(var(--theme-color3)), rgb(var(--theme-color2)));
+  border-radius: 2px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .park-title::after {
+    width: 280px;
+  }
+}
+
+@media (max-width: 480px) {
+  .park-title::after {
+    width: 200px;
+  }
+}
+
+
+.image-carousel {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 2rem 0;
+  position: relative;
+  width: 100%;
+  max-width: 700px;
+  height: 400px;
+}
+
+.park-image {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.carousel-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  font-size: 3rem;
+  color: rgb(var(--theme-color4));
+  cursor: pointer;
+  padding: 0 1rem;
+  user-select: none;
+}
+
+.carousel-arrow.left {
+  left: 0;
+}
+
+.carousel-arrow.right {
+  right: 0;
+}
+
+.carousel-arrow:hover {
+  color: rgb(var(--theme-color3));
+}
+
+
+.no-images-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 300px;
+
+  margin: 20px 0;
+  padding: 20px;
+  text-align: center;
+}
+
+.unvisited {
+  font-size: 2rem;
+  font-weight: bold;
+  color: rgb(var(--theme-color4));
+  margin: 0 0 10px 0;
+}
+
+
+.unvisited-subtext {
+  font-size: 1.1rem;
+  color: rgb(var(--theme-color4));
+  margin: 0;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .no-images-container {
+    height: 250px;
+    margin: 15px 0;
+  }
+  
+  .unvisited {
+    font-size: 1.7rem;
+  }
+  
+  .unvisited-subtext {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .no-images-container {
+    height: 200px;
+    margin: 10px 0;
+    padding: 15px;
+  }
+  
+  .unvisited {
+    font-size: 1.5rem;
+  }
+  
+  .unvisited-subtext {
+    font-size: 0.9rem;
+  }
+}
+
+.park-info {
+  max-width: 800px;
+  margin-top: 1.5rem;
+  text-align: left;
+  line-height: 1.6;
+  color: rgb(var(--theme-color4));
+  padding: 1rem 0;
+}
+
+.footer {
+  background: rgb(var(--theme-color0));
+  padding: 0rem 0rem !important;
+  z-index: 3;
+}
+
+
