@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import ParticleBackground from '../components/ParticleBackground';
@@ -170,6 +170,19 @@ const Home = () => {
   };
 
 
+  const location = useLocation();
+
+  useEffect(() => {
+    if (location.state?.scrollTo) {
+      const element = document.getElementById(location.state.scrollTo);
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth", block: "center" });
+      }
+    }
+  }, [location.state]);
+
+
+
 
   return (
     <div className="home-page">
@@ -254,8 +267,14 @@ const Home = () => {
               {NationalParks.map((park, index) => (
                 <div
                   key={index}
+                  id={park.image_key}
                   className="park-button-container"
-                  onClick={() => navigate(`/park/${park.name.toLowerCase().replace(/\s+/g, '-')}`)}                >
+                  onClick={() =>
+                    navigate(`/park/${park.name.toLowerCase().replace(/\s+/g, '-')}`, {
+                      state: { parkKey: park.image_key }
+                    })
+                  }
+                >
                   <div
                     className="park-button"
                     style={{

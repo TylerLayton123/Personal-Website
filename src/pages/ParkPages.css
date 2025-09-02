@@ -15,7 +15,7 @@
 
 .back-button {
   align-self: flex-start;
-  margin: 4rem 0;
+  margin-top: 4rem;
   background: none;
   border: none;
   cursor: pointer;
@@ -30,19 +30,20 @@
 }
 
 .back-button:hover {
-  color: rgb(var(--theme-color3));
+  /* color: rgb(var(--theme-color3)); */
   transform: scale(1.3);
   filter: drop-shadow(3px 3px 3px rgb(var(--theme-color4)));
 }
+
 .park-title {
   position: relative;
   display: inline-block;
-  margin: 1rem 0;
   padding-bottom: 15px; 
   font-size: 2rem;
   text-align: center;
   color: rgb(var(--theme-color4));
   width: 100%; 
+  
 }
 
 .park-title::after {
@@ -55,74 +56,176 @@
   height: 3px;
   background: linear-gradient(90deg, rgb(var(--theme-color3)), rgb(var(--theme-color2)));
   border-radius: 2px;
+  
 }
 
-/* Responsive adjustments */
-@media (max-width: 768px) {
-  .park-title::after {
-    width: 280px;
+
+/* ... existing code ... */
+
+.image-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  /* margin: 2rem 0; */
+  position: relative;
+  width: 100%;
+  max-width: 1000px;
+  min-height: 650px; /* Increased to accommodate larger images */
+  
+}
+
+.visited-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  position: relative;
+  min-height: 400px; /* Fixed height for consistent layout */
+}
+
+.visited-container a {
+  display: flex;        
+  justify-content: center; 
+  width: 100%;          
+  text-align: center;   
+}
+
+
+.park-image {
+  max-width: 90%; 
+  max-height: 600px;
+  object-fit: contain;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  margin-bottom: 1rem;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.park-image:hover{
+  transform: translateY(-5px);
+  box-shadow: 0 12px 35px rgba(var(--theme-color3), 0.6);
+}
+
+
+.image-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  width: 100%;
+  position: static;
+  padding-bottom: 3rem;
+}
+
+.image-arrow {
+  width: 44px;
+  height: 44px;
+  display: grid;
+  place-items: center;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: rgb(var(--theme-color4));
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.arrow-icon {
+  width: 40px;
+  height: 40px;
+  display: block;
+  filter: drop-shadow(2px 2px 2px rgba(0, 0, 0, 0.5));
+  transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.image-arrow:hover {
+  transform: scale(1.1);
+  filter: drop-shadow(3px 3px 3px rgb(var(--theme-color4)));
+}
+
+.image-arrow:hover .arrow-icon {
+  transform: scale(1.15);
+}
+
+.image-arrow:active .arrow-icon {
+  transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.image-arrow.right:active .arrow-icon {
+  transform: translateX(10px);
+}
+
+.image-arrow.left:active .arrow-icon {
+  transform: translateX(-10px);
+}
+
+.image-counter {
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: rgb(var(--theme-color4));
+  min-width: 60px;
+  text-align: center;
+}
+
+@media (max-width: 768px) {  
+  .image-controls {
+    gap: 1.5rem;
+  }
+  
+  .image-arrow {
+    width: 36px;
+    height: 36px;
+  }
+  
+  .arrow-icon {
+    width: 30px;
+    height: 30px;
+  }
+  
+  .image-counter {
+    font-size: 1.1rem;
   }
 }
 
 @media (max-width: 480px) {
-  .park-title::after {
-    width: 200px;
+  .park-image {
+    max-width: 110%;   
+  }
+  .image-container{
+    min-height: 620px;
+  }
+
+  .image-controls {
+    gap: 1rem;
+  }
+  
+  .image-arrow {
+    width: 28px;
+    height: 28px;
+  }
+  
+  .arrow-icon {
+    width: 24px;
+    height: 24px;
+  }
+  
+  .image-counter {
+    font-size: 1rem;
   }
 }
 
-
-.image-carousel {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 2rem 0;
-  position: relative;
-  width: 100%;
-  max-width: 700px;
-  height: 400px;
+@media (max-width: 480px) {
+  .park-title {
+    margin: 1rem 0 2rem 0; 
+  }
 }
 
-.park-image {
-  max-width: 100%;
-  max-height: 100%;
-  object-fit: contain;
-  border-radius: 12px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-}
-
-.carousel-arrow {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background: none;
-  border: none;
-  font-size: 3rem;
-  color: rgb(var(--theme-color4));
-  cursor: pointer;
-  padding: 0 1rem;
-  user-select: none;
-}
-
-.carousel-arrow.left {
-  left: 0;
-}
-
-.carousel-arrow.right {
-  right: 0;
-}
-
-.carousel-arrow:hover {
-  color: rgb(var(--theme-color3));
-}
-
-
-.no-images-container {
+.unvisited-container {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   height: 300px;
-
   margin: 20px 0;
   padding: 20px;
   text-align: center;
@@ -144,7 +247,7 @@
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
-  .no-images-container {
+  .unvisited-container {
     height: 250px;
     margin: 15px 0;
   }
@@ -159,7 +262,7 @@
 }
 
 @media (max-width: 480px) {
-  .no-images-container {
+  .unvisited-container {
     height: 200px;
     margin: 10px 0;
     padding: 15px;
@@ -176,11 +279,10 @@
 
 .park-info {
   max-width: 800px;
-  margin-top: 1.5rem;
   text-align: left;
   line-height: 1.6;
   color: rgb(var(--theme-color4));
-  padding: 1rem 0;
+  padding-bottom: 2rem;
 }
 
 .footer {
