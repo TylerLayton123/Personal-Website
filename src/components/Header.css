@@ -159,20 +159,18 @@
   justify-content: center;
   border-radius: 50%;
   transition: background-color 0.3s ease;
-}
-
-.header.scrolled .settings-btn {
-  background-color: rgba(255, 255, 255, 0.08);
+  color: rgb(var(--theme-color4));
 }
 
 .settings-btn:hover {
-  background-color: rgba(255, 255, 255, 0.15);
+  background-color: rgba(var(--theme-color4), 0.2);
+  color: rgb(var(--theme-color3));
 }
 
 .settings-icon {
   width: 35px;
   height: 35px;
-  transition: transform 0.3s ease;
+  transition: transform 0.3s ease, color 0.3s ease;
 }
 
 .settings-btn:hover .settings-icon {

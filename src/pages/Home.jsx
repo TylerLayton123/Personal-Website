@@ -284,8 +284,11 @@ const Home = () => {
                   >
 
                     <div className="park-button-overlay"></div>
-                    <span className="park-button-text">{park.name}</span>
-                  </div>
+                    {/* minor fixes to certain park names */}
+                      <span className="park-button-text">
+                        {park.name === "Black Canyon of the Gunnison" ? "Black Canyon of\nthe Gunnison" : park.name === "Theodore Roosevelt" ? "Theodore\nRoosevelt" : park.name}
+                      </span>                  
+                    </div>
                 </div>
               ))}
             </div>
