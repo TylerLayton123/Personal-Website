@@ -161,7 +161,14 @@ const ParkPages = () => {
         <p><strong>Established:</strong> {park.date_established}</p>
         <p><strong>Area:</strong> {park.area}</p>
         <p><strong>Annual Visitors:</strong> {park.visitors}</p>
-        <p>{park.details}</p>
+        <p><strong>Description:</strong> {park.description}</p>
+      </div>
+
+      <div className="disclaimer">
+        <p>All park info was scraped from <a href="https://en.wikipedia.org/wiki/List_of_national_parks_of_the_United_States" 
+          target="_blank" rel="noopener noreferrer" style={{ color: 'rgb(var(--theme-color4))', textDecoration: 'underline' }}>
+          Wikipedia</a>, all pictures were taken by Tyler Layton.
+        </p>      
       </div>
 
       <Footer />

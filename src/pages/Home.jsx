@@ -41,8 +41,8 @@ const TITLES = [
   // "Outdoors-Man"
 ];
 
-const VISITED_PARKS = ["Acadia", "Badlands", "Congaree", "Cuyahoga_Valley", "Everglades", "Grand_Canyon", "Great_Smokey_Mountains", "Hawai'i_Volcanos",
-  "Indiana_Dunes", "Isle_Royale", "Mammoth_Cave", "New_River_Gorge", "Shenandoah", "Theodore_Roosevelt", "Voyagers", "Wind_Cave"
+const VISITED_PARKS = ["Acadia", "Badlands", "Congaree", "Cuyahoga_Valley", "Grand_Canyon", "Great_Smokey_Mountains", "Haleakalā",
+  "Indiana_Dunes", "Isle_Royale", "Voyageurs", "Mammoth_Cave", "New_River_Gorge", "Shenandoah", "Theodore_Roosevelt", "Voyagers", "Wind_Cave"
 ];
 
 const Home = () => {
