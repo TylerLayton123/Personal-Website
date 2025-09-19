@@ -68,8 +68,8 @@ const Home = () => {
       path: '/coursework',
     },
     {
-      title: 'Universal Image',
-      path: '/universal_image',
+      title: 'Random Image Generator',
+      path: '/random_image',
     }
   ];
 

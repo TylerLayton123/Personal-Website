@@ -451,7 +451,7 @@ const UniversalPicture = () => {
             />
 
             <div className="universal-image-container">
-                <h1 className="universal-image-title">Universal Image</h1>
+                <h1 className="universal-image-title">Random Image Generator</h1>
 
                 {isCropping && uploadedImage && (
                     <div className="crop-modal">
@@ -617,7 +617,7 @@ const UniversalPicture = () => {
                 </div>
 
                 <div className="image-info">
-                    <h3>"Given infinite time and a typewriter, even a monkey can write Shakespeare" - Unknown</h3>
+                    <h3>"Given infinite time and a typewriter, even a monkey can write Shakespeare" - Émile Borel | 1913</h3>
                     <p>This "Universal Image" is a 500x500 randomly generated image.
                         Each pixel is generated from the seed using a Pseudo Random Number Generator.
                         In theory, every image ever taken and will be taken exists within this frame

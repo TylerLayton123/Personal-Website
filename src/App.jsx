@@ -39,7 +39,7 @@ function AppRoutes() {
             <Route path="/projects" element={<Projects />} />
             <Route path="/skills" element={<Skills />} />
             <Route path="/coursework" element={<Coursework />} />
-            <Route path="/universal_image" element={<UniversalImage />} />
+            <Route path="/random_image" element={<UniversalImage />} />
             <Route path="/park/:parkName" element={<ParkPages />} />
           </Routes>
         </>
