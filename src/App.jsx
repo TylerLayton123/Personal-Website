@@ -6,6 +6,7 @@ import Projects from './pages/Projects';
 import Skills from './pages/Skills';
 import Coursework from './pages/CourseWork';
 import UniversalImage from './pages/UniversalImage';
+import Extras from './pages/Extras';
 import ScrollToTop from './components/ScrollToTop';
 import { ThemeProvider } from './components/settings/ThemeContext';
 import Loader from './components/Loader';
@@ -39,7 +40,8 @@ function AppRoutes() {
             <Route path="/projects" element={<Projects />} />
             <Route path="/skills" element={<Skills />} />
             <Route path="/coursework" element={<Coursework />} />
-            <Route path="/random_image" element={<UniversalImage />} />
+            <Route path="/extras" element={<Extras />} />
+            <Route path="/extras/random_image" element={<UniversalImage />} />
             <Route path="/park/:parkName" element={<ParkPages />} />
           </Routes>
         </>

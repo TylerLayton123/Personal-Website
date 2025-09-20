@@ -36,6 +36,7 @@ const TITLES = [
   "Masters Student",
   "Cum Laude",
   "L3Harris Intern",
+  "Full-Stack Engineer",
   "Skiier",
   "Hiker"
   // "Outdoors-Man"
@@ -68,8 +69,8 @@ const Home = () => {
       path: '/coursework',
     },
     {
-      title: 'Random Image Generator',
-      path: '/random_image',
+      title: 'Extras',
+      path: '/extras',
     }
   ];
 
