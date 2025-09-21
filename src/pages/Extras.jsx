@@ -14,6 +14,7 @@ const Extras = () => {
     const [apodData, setApodData] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+    const [fallbackUsed, setFallbackUsed] = useState(false);
 
     useEffect(() => {
         fetchAPOD();
@@ -23,38 +24,56 @@ const Extras = () => {
         try {
             setLoading(true);
             setError(null);
+            setFallbackUsed(false);
 
-            // Use your API key
-            let url = 'https://api.nasa.gov/planetary/apod?api_key=tBLA2cnk8LMOBfuXGGGey1BBGZSe9d1sIwFehRaM&thumbs=true';
+            const apiKey = "tBLA2cnk8LMOBfuXGGGey1BBGZSe9d1sIwFehRaM";
+            let date = new Date();
+            date.setDate(date.getDate());
+            let data = null;
 
-            const response = await fetch(url);
-            if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
+            while (true) {
+                const dateStr = date.toISOString().split("T")[0];
+                const url = `https://api.nasa.gov/planetary/apod?api_key=${apiKey}&thumbs=true&date=${dateStr}`;
+
+                const response = await fetch(url);
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+
+                data = await response.json();
+
+                if (data.error) {
+                    throw new Error(data.error.message || "NASA API error");
+                }
+
+                // if no copyright, we're done
+                if (!data.copyright && data.media_type !== 'other' && data.media_type !== 'video') {
+                    if (dateStr !== new Date().toISOString().split("T")[0]) {
+                        setFallbackUsed(true);
+                    }
+                    break;
+                }
+
+                // otherwise go back 1 day
+                date.setDate(date.getDate() - 1);
             }
 
-            const data = await response.json();
-
-            // Check if the response contains an error code from NASA API
-            if (data.error) {
-                throw new Error(data.error.message || 'NASA API error');
-            }
-            //   console.log(response.explanation);
             setApodData(data);
+            // console.log(apodData.media_type);
         } catch (err) {
-            console.error('Error fetching APOD:', err);
-
-            setError(`API temporarily unavailable. Showing sample image. Error: ${err.message}`);
+            console.error("Error fetching APOD:", err);
+            setError(`API temporarily unavailable. Error: ${err.message}`);
         } finally {
             setLoading(false);
         }
     };
 
     const navBar = [
-    {
-      title: 'Random Image Generator',
-      path: '/extras/random_image',
-      // description: "sdlfgwoingowinfow",
-    }];
+        {
+            title: 'Random Image Generator',
+            path: '/extras/random_image',
+        }
+    ];
 
     return (
         <div className="extras-page">
@@ -79,16 +98,11 @@ const Extras = () => {
                     <div className="error-container">
                         <h2>Notice: API Limitations</h2>
                         <p>{error}</p>
-                        <button onClick={() => fetchAPOD()} className="retry-btn">
-                            Try Again
-                        </button>
                     </div>
                 )}
 
                 {apodData && !loading && (
                     <div className="apod-content">
-
-
                         <div className="apod-media-background">
                             <div className="media-container">
                                 {apodData.media_type === 'image' ? (
@@ -96,21 +110,35 @@ const Extras = () => {
                                         src={apodData.url}
                                         alt={apodData.title}
                                         className="apod-image"
-                                        onError={(e) => {
+                                        onError={() => {
                                             if (!apodData.error) {
                                                 setError("Image failed to load. Using fallback image.");
                                             }
                                         }}
                                     />
+                                ) : apodData.media_type === 'video' ? (
+                                    apodData.url.includes("youtube.com") || apodData.url.includes("vimeo.com") ? (
+                                        <iframe
+                                            src={apodData.url}
+                                            title={apodData.title}
+                                            className="apod-video"
+                                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                            allowFullScreen
+                                        />
+                                    ) : (
+                                        <video
+                                            src={apodData.url}
+                                            controls
+                                            className="apod-video"
+                                        >
+                                            Your browser does not support the video tag.
+                                        </video>
+                                    )
                                 ) : (
-                                    <iframe
-                                        src={apodData.url}
-                                        title={apodData.title}
-                                        className="apod-video"
-                                        allowFullScreen
-                                    />
+                                    <p>Unsupported media type: {apodData.media_type}</p>
                                 )}
                             </div>
+
                             <div className="gradient-overlay"></div>
                         </div>
 
@@ -125,21 +153,22 @@ const Extras = () => {
                                         timeZone: 'UTC'
                                     })}
                                 </p>
+                                {fallbackUsed && (
+                                    <p className="apod-date">
+                                        Today's picture is copyrighted. Showing last non-copyrighted photo
+                                    </p>
+                                )}
                             </div>
                             <div className="explanation-container">
                                 <p className="apod-explanation">{apodData.explanation}</p>
                             </div>
-
-                            {apodData.copyright && (
-                                <p className="apod-copyright">Copyright: {apodData.copyright}</p>
-                            )}
                         </div>
                     </div>
                 )}
             </div>
 
             <div className="other-section">
-                <ParticleBackground contentSection='true' />
+                <ParticleBackground contentSection="true" />
                 <div className="button-section">
                     <div className="alternating-cards-container">
                         {navBar.map((card, index) => (
@@ -159,7 +188,6 @@ const Extras = () => {
                     </div>
                 </div>
             </div>
-
 
             <Footer />
         </div>
