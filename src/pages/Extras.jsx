@@ -30,36 +30,50 @@ const Extras = () => {
             let date = new Date();
             date.setDate(date.getDate());
             let data = null;
+            let attempts = 0;
+            const maxAttempts = 30; // Limit attempts to prevent infinite loop
 
-            while (true) {
+            while (attempts < maxAttempts) {
+                attempts++;
                 const dateStr = date.toISOString().split("T")[0];
                 const url = `https://api.nasa.gov/planetary/apod?api_key=${apiKey}&thumbs=true&date=${dateStr}`;
 
-                const response = await fetch(url);
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
-                }
-
-                data = await response.json();
-
-                if (data.error) {
-                    throw new Error(data.error.message || "NASA API error");
-                }
-
-                // if no copyright, we're done
-                if (!data.copyright && data.media_type !== 'other' && data.media_type !== 'video') {
-                    if (dateStr !== new Date().toISOString().split("T")[0]) {
-                        setFallbackUsed(true);
+                try {
+                    const response = await fetch(url);
+                    if (!response.ok) {
+                        // If we get an error, just try the previous day
+                        date.setDate(date.getDate() - 1);
+                        continue;
                     }
-                    break;
-                }
 
-                // otherwise go back 1 day
-                date.setDate(date.getDate() - 1);
+                    data = await response.json();
+
+                    if (data.error) {
+                        date.setDate(date.getDate() - 1);
+                        continue;
+                    }
+
+                    // if no copyright, we're done
+                    if (!data.copyright && data.media_type !== 'other' && data.media_type !== 'video') {
+                        if (dateStr !== new Date().toISOString().split("T")[0]) {
+                            setFallbackUsed(true);
+                        }
+                        break;
+                    }
+
+                    // otherwise go back 1 day
+                    date.setDate(date.getDate() - 1);
+                } catch (err) {
+                    // If there's an error fetching for this date, try previous day
+                    date.setDate(date.getDate() - 1);
+                }
+            }
+
+            if (attempts >= maxAttempts && !data) {
+                throw new Error("Failed to fetch APOD after multiple attempts");
             }
 
             setApodData(data);
-            // console.log(apodData.media_type);
         } catch (err) {
             console.error("Error fetching APOD:", err);
             setError(`API temporarily unavailable. Error: ${err.message}`);
