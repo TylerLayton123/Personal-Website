@@ -8,6 +8,8 @@ import '../components/Header.css';
 import '../pages/Home.css';
 import '../components/Footer.css';
 import './Extras.css';
+// require("dotenv").config();
+
 
 const Extras = () => {
     const [settingsOpen, setSettingsOpen] = useState(false);
@@ -26,17 +28,17 @@ const Extras = () => {
             setError(null);
             setFallbackUsed(false);
 
-            const apiKey = "tBLA2cnk8LMOBfuXGGGey1BBGZSe9d1sIwFehRaM";
             let date = new Date();
             date.setDate(date.getDate());
             let data = null;
             let attempts = 0;
-            const maxAttempts = 30; // Limit attempts to prevent infinite loop
+            const maxAttempts = 30; 
+
 
             while (attempts < maxAttempts) {
                 attempts++;
                 const dateStr = date.toISOString().split("T")[0];
-                const url = `https://api.nasa.gov/planetary/apod?api_key=${apiKey}&thumbs=true&date=${dateStr}`;
+                const url = `https://api.nasa.gov/planetary/apod?api_key=${process.env.REACT_APP_NASA_API_KEY}&thumbs=true&date=${dateStr}`;
 
                 try {
                     const response = await fetch(url);

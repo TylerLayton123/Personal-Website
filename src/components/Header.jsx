@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import myLogo from '../assets/images/logoImage.png';
 import schoolLogo from '../assets/images/schoolLogo2.png';
-import resumePDF from '../assets/Resume25-26.pdf';
+import resumePDF from '../assets/TylerLaytonResume25_26.pdf';
 import Settings from '../components/settings/Settings';
 import './Header.css';
 
