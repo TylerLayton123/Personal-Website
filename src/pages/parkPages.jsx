@@ -6,18 +6,15 @@ import Footer from '../components/Footer';
 import Settings from '../components/settings/Settings';
 import './ParkPages.css';
 
-// Create one global context for all park images (recursive = true)
-const imageContext = require.context(
-  '../assets/images/parkimages',
-  true,
-  /\.(png|jpg|JPG|webp|svg)$/i
-);
+const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:8000/api';
 
 const ParkPages = () => {
   const [settingsOpen, setSettingsOpen] = useState(false);
   const [currentImage, setCurrentImage] = useState(0);
   const [parkImages, setParkImages] = useState([]);
   const [imagesLoaded, setImagesLoaded] = useState(false);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   const { parkName } = useParams();
   const navigate = useNavigate();
@@ -27,24 +24,41 @@ const ParkPages = () => {
   );
 
   useEffect(() => {
-    if (park) {
-      try {
-        // Filter images only for this park
-        const images = imageContext
-          .keys()
-          .filter((key) => key.includes(`/${park.image_key}/`)) // only that folder
-          .map(imageContext);
+    const fetchParkImages = async () => {
+      if (!park) return;
 
-        setParkImages(images);
-        setImagesLoaded(images.length > 0);
+      try {
+        setLoading(true);
+        setError(null);
+        
+        // Convert your React park identifier to Django slug format
+        const parkSlug = park.name.toLowerCase().replace(/\s+/g, '-');
+        
+        const response = await fetch(`${API_BASE_URL}/parks/${parkSlug}/images/`);
+        
+        if (!response.ok) {
+          throw new Error(`Failed to fetch images: ${response.status}`);
+        }
+        
+        const imagesData = await response.json();
+        
+        // Extract image URLs from the API response
+        const imageUrls = imagesData.map(item => item.image_url);
+        
+        setParkImages(imageUrls);
+        setImagesLoaded(imageUrls.length > 0);
       } catch (err) {
-        console.warn(`No images found for ${park.image_key}:`, err);
+        console.error('Error fetching park images:', err);
+        setError('Failed to load images');
         setParkImages([]);
         setImagesLoaded(false);
+      } finally {
+        setLoading(false);
       }
-    }
-  }, [park]);
+    };
 
+    fetchParkImages();
+  }, [park]);
 
   if (!park) return <div>Park not found</div>;
 
@@ -83,12 +97,19 @@ const ParkPages = () => {
         </svg>
       </button>
 
-
       <h1 className="park-title">{park.name}</h1>
 
       {/* Image container */}
       <div className="image-container">
-        {imagesLoaded && parkImages.length > 0 ? (
+        {loading ? (
+          <div className="loading-container">
+            <p>Loading images...</p>
+          </div>
+        ) : error ? (
+          <div className="error-container">
+            <p>Error loading images</p>
+          </div>
+        ) : imagesLoaded && parkImages.length > 0 ? (
           <div className="visited-container">
             <a
               href={parkImages[currentImage]}
@@ -99,6 +120,10 @@ const ParkPages = () => {
                 src={parkImages[currentImage]}
                 alt={`${park.name} ${currentImage + 1}`}
                 className="park-image"
+                onError={(e) => {
+                  console.error('Error loading image:', parkImages[currentImage]);
+                  e.target.style.display = 'none';
+                }}
               />
             </a>
           </div>
@@ -133,7 +158,6 @@ const ParkPages = () => {
           {parkImages.length > 0 ? currentImage + 1 : 0} / {parkImages.length}
         </div>
 
-
         <button className="image-arrow right" onClick={nextImage} aria-label="Next image">
           <svg
             className="arrow-icon"
@@ -152,7 +176,6 @@ const ParkPages = () => {
           </svg>
         </button>
       </div>
-
 
       {/* Park information */}
       <div className="park-info">
