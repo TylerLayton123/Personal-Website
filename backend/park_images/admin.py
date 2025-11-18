@@ -4,10 +4,13 @@ from .models import Park, ParkImage
 class ParkImageInline(admin.TabularInline):
     model = ParkImage
     extra = 1
+    fields = ['image_name', 'image_path', 'is_featured']
 
 @admin.register(Park)
 class ParkAdmin(admin.ModelAdmin):
-    list_display = ['name', 'code', 'display_name']
+    list_display = ['name', 'code', 'display_name', 'state']
+    list_filter = ['state']
+    search_fields = ['name', 'display_name', 'state']
     inlines = [ParkImageInline]
 
 @admin.register(ParkImage)

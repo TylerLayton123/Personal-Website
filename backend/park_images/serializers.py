@@ -16,15 +16,27 @@ class ParkImageSerializer(serializers.ModelSerializer):
 
 class ParkSerializer(serializers.ModelSerializer):
     images = ParkImageSerializer(many=True, read_only=True)
-    featured_image = serializers.SerializerMethodField()
+    default_image = serializers.SerializerMethodField()
+    featured_images = serializers.SerializerMethodField()
     
     class Meta:
         model = Park
-        fields = ['id', 'name', 'code', 'display_name', 'images', 'featured_image']
+        fields = [
+            'id', 'name', 'code', 'display_name', 'wikipedia_link', 
+            'state', 'coordinates', 'date_established', 'area', 
+            'visitors', 'description', 'images', 'default_image', 'featured_images'
+        ]
     
-    def get_featured_image(self, obj):
-        featured = obj.images.filter(is_featured=True).first()
-        if featured:
-            serializer = ParkImageSerializer(featured, context=self.context)
+    def get_default_image(self, obj):
+        # Default image is the one from DefaultImages folder (is_featured=False)
+        default = obj.images.filter(is_featured=False).first()
+        if default:
+            serializer = ParkImageSerializer(default, context=self.context)
             return serializer.data
         return None
+    
+    def get_featured_images(self, obj):
+        # Featured images are from the park's specific folder (is_featured=True)
+        featured = obj.images.filter(is_featured=True)
+        serializer = ParkImageSerializer(featured, many=True, context=self.context)
+        return serializer.data

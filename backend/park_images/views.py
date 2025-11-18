@@ -24,6 +24,15 @@ class ParkViewSet(viewsets.ReadOnlyModelViewSet):
             serializer = self.get_serializer(park)
             return Response(serializer.data)
         return Response({'error': 'Park code required'}, status=status.HTTP_400_BAD_REQUEST)
+    
+    @action(detail=False, methods=['get'])
+    def by_state(self, request):
+        state = request.query_params.get('state', None)
+        if state:
+            parks = Park.objects.filter(state__icontains=state)
+            serializer = self.get_serializer(parks, many=True)
+            return Response(serializer.data)
+        return Response({'error': 'State parameter required'}, status=status.HTTP_400_BAD_REQUEST)
 
 class ParkImageViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = ParkImage.objects.all()
@@ -32,6 +41,11 @@ class ParkImageViewSet(viewsets.ReadOnlyModelViewSet):
     def get_queryset(self):
         queryset = ParkImage.objects.all()
         park_code = self.request.query_params.get('park', None)
+        featured_only = self.request.query_params.get('featured', None)
+        
         if park_code:
             queryset = queryset.filter(park__code=park_code.lower())
+        if featured_only:
+            queryset = queryset.filter(is_featured=True)
+            
         return queryset
