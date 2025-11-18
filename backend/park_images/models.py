@@ -1,7 +1,7 @@
 from django.db import models
 
 class Park(models.Model):
-    name = models.CharField(max_length=200)
+    name = models.CharField(max_length=250)
     code = models.CharField(max_length=50, unique=True)
     display_name = models.CharField(max_length=200)
     wikipedia_link = models.URLField(blank=True)
