@@ -1,18 +1,12 @@
 from rest_framework import serializers
 from .models import Park, ParkImage
 
-class ParkImageSerializer(serializers.ModelSerializer):
-    image_path = serializers.SerializerMethodField()
-    
+class ParkImageSerializer(serializers.ModelSerializer):    
     class Meta:
         model = ParkImage
         fields = ['id', 'display_name', 'image_path', 'is_featured', 'upload_date']  
     
-    def get_image_path(self, obj):
-        request = self.context.get('request')
-        if request:
-            return request.build_absolute_uri(f'/assets/{obj.image_path}')
-        return f'/assets/{obj.image_path}'
+
 
 class ParkSerializer(serializers.ModelSerializer):
     images = ParkImageSerializer(many=True, read_only=True)

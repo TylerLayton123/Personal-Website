@@ -333,7 +333,7 @@ const Home = () => {
                     <div
                       className="park-button"
                       style={{
-                        backgroundImage: `url(images/ParkImages/DefaultImages/Hawaiʻi_Volcanoes.jpg)`,
+                        backgroundImage: `url(${parkData.image_path})`,
                         filter: VISITED_PARKS.includes(parkData.display_name) ? "none" : "grayscale(100%)"
                       }}
                     >
