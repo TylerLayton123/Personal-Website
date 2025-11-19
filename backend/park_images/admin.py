@@ -8,7 +8,7 @@ class ParkImageInline(admin.TabularInline):
 
 @admin.register(Park)
 class ParkAdmin(admin.ModelAdmin):
-    list_display = ['name', 'code', 'display_name', 'state']
+    list_display = ['name', 'display_name', 'state']
     list_filter = ['state']
     search_fields = ['name', 'display_name', 'state']
     inlines = [ParkImageInline]

@@ -3,7 +3,6 @@ from .models import Park, ParkImage
 
 class ParkImageSerializer(serializers.ModelSerializer):
     image_url = serializers.SerializerMethodField()
-    park_code = serializers.CharField(source='park.code', read_only=True) 
     park_name = serializers.CharField(source='park.name', read_only=True) 
     
     class Meta:
@@ -24,7 +23,7 @@ class ParkSerializer(serializers.ModelSerializer):
     class Meta:
         model = Park
         fields = [
-            'id', 'name', 'code', 'display_name', 'wikipedia_link', 
+            'id', 'name', 'display_name', 'wikipedia_link', 
             'state', 'coordinates', 'date_established', 'area', 
             'visitors', 'description', 'images', 'default_image', 'featured_images'
         ]

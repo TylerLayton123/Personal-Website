@@ -19,7 +19,6 @@ class Command(BaseCommand):
             park, created = Park.objects.update_or_create(
                 name=park_info['name'].lower().replace(' ', '_'),
                 defaults={
-                    'code': park_info['name'].lower().replace(' ', '_'),
                     'display_name': park_info['name'],
                     'wikipedia_link': park_info['link'],
                     'state': park_info['state'],
