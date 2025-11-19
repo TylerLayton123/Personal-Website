@@ -17,7 +17,7 @@ class Park(models.Model):
 
 class ParkImage(models.Model):
     park = models.ForeignKey(Park, on_delete=models.CASCADE, related_name='images')
-    image_name = models.CharField(max_length=255)
+    display_name = models.CharField(max_length=255)
     image_path = models.CharField(max_length=500)
     upload_date = models.DateTimeField(auto_now_add=True)
     is_featured = models.BooleanField(default=False)  
@@ -26,4 +26,4 @@ class ParkImage(models.Model):
         ordering = ['-is_featured', '-upload_date']
     
     def __str__(self):
-        return f"{self.park.name} - {self.image_name}"
+        return f"{self.park.name} - {self.display_name}"

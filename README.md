@@ -17,3 +17,10 @@ source venv/bin/activate
 
 <!-- in the venv -->
 python manage.py runserver
+
+<!-- adding new parks/images to database -->
+python manage.py load_parks
+
+<!-- for changes to the model -->
+python manage.py makemigrations
+python manage.py migrate

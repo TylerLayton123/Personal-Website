@@ -187,7 +187,7 @@ const Home = () => {
   useEffect(() => {
     const fetchParkImages = async () => {
       try {
-        const response = await fetch('http://localhost:3000/api/park-images/?default=true');
+        const response = await fetch('http://localhost:8000/api/park-images/?default=true');
         
         if (!response.ok) {
           throw new Error('Failed to fetch park images');

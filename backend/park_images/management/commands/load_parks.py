@@ -76,10 +76,10 @@ class Command(BaseCommand):
             # Create or update the default image
             ParkImage.objects.update_or_create(
                 park=park,
-                image_path=default_image_path,  # Use image_path as unique identifier for default
+                image_path=default_image_path,  
                 defaults={
-                    'image_name': default_filename,
-                    'is_featured': False,  # Default images are not featured by default
+                    'is_featured': False,  
+                    'display_name': park.display_name,
                 }
             )
             self.stdout.write(self.style.SUCCESS(f'  Set default image: {default_filename}'))
@@ -125,8 +125,8 @@ class Command(BaseCommand):
                         park=park,
                         image_path=image_path,
                         defaults={
-                            'image_name': filename,
-                            'is_featured': True,  # These are featured images
+                            'is_featured': True,  
+                            'display_name': park.display_name,
                         }
                     )
                     if created:
