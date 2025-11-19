@@ -711,7 +711,7 @@ const NationalParks = [
     id: 59,
     name: "Wrangell–St. Elias",
     link: "https://en.wikipedia.org/wiki/Wrangell%E2%80%93St._Elias_National_Park_and_Preserve",
-    image_key: "Wrangell–St. Elias",
+    image_key: "Wrangell_St_Elias",
     state: "Alaska",
     coordinates: "61°00′N 142°00′W﻿ / ﻿61.00°N 142.00°W﻿ / 61.00; -142.00﻿",
     date_established: "December 2, 1980",

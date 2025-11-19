@@ -9,7 +9,7 @@ class Command(BaseCommand):
     help = 'Load all national parks with default images and optional featured photos'
     
     def handle(self, *args, **options):
-        assets_base = os.path.join(settings.BASE_DIR.parent, 'assets', 'images', 'ParkImages')
+        assets_base = os.path.join(settings.BASE_DIR.parent,'src', 'assets', 'images', 'ParkImages')
         default_images_path = os.path.join(assets_base, 'DefaultImages')
         
         self.stdout.write(f"Loading {len(park_data)} parks from park_data...")

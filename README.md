@@ -1,5 +1,7 @@
 This is my personal website that I will be coding over the summer of 2025.
 
+<!-- in wsl -->
+
 <!-- first time running locally, install dependencies -->
 npm install
 
@@ -9,8 +11,8 @@ npm start
 <!-- build to deploy to website -->
 npm build
 
-<!-- start backend: -->
-python3 -m venv venv
+<!-- start backend, in backend folder: -->
+python3 -m venv venv    // first time
 source venv/bin/activate 
 
 <!-- in the venv -->

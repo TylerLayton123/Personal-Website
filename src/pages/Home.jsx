@@ -12,18 +12,18 @@ import '../components/Footer.css';
 import NationalParks from '../components/NationalParks';
 
 // import all park images
-const importAll = (r) => {
-  let images = {};
-  r.keys().forEach((fileName) => {
-    const key = fileName.replace('./', '').replace(/\.(png|jpe?g)$/, '');
-    images[key] = r(fileName);
-  });
-  return images;
-};
+// const importAll = (r) => {
+//   let images = {};
+//   r.keys().forEach((fileName) => {
+//     const key = fileName.replace('./', '').replace(/\.(png|jpe?g)$/, '');
+//     images[key] = r(fileName);
+//   });
+//   return images;
+// };
 
-const parkImages = importAll(
-  require.context('../assets/images/parkimages/DefaultImages', false, /\.(png|jpe?g)$/)
-);
+// const parkImages = importAll(
+//   require.context('../assets/images/parkimages/DefaultImages', false, /\.(png|jpe?g)$/)
+// );
 
 
 // Constants for typing animation
@@ -42,7 +42,7 @@ const TITLES = [
   // "Outdoors-Man"
 ];
 
-const VISITED_PARKS = ["Acadia", "Badlands", "Congaree", "Cuyahoga_Valley", "Grand_Canyon", "Great_Smokey_Mountains", "Haleakalā",
+const VISITED_PARKS = ["Acadia", "Badlands", "Congaree", "Cuyahoga_Valley", "Grand_Canyon", "Great_Smoky_Mountains", "Haleakalā",
   "Indiana_Dunes", "Isle_Royale", "Voyageurs", "Mammoth_Cave", "New_River_Gorge", "Shenandoah", "Theodore_Roosevelt", "Voyagers", "Wind_Cave"
 ];
 
@@ -181,9 +181,44 @@ const Home = () => {
       }
     }
   }, [location.state]);
+  
+  const [parkImages, setParkImages] = useState({});
+
+  // get the default photo for each national park from the database, not really necessary, but doesnt matter
+  useEffect(() => {
+    const fetchParkImages = async () => {
+      try {
+        const response = await fetch('/api/park-images/');
+        
+        if (!response.ok) {
+          throw new Error('Failed to fetch park data');
+        }
+        
+        const parksData = await response.json();
+        
+        // Create a mapping of park codes to default image URLs
+        const imagesMap = {};
+        parksData.forEach(park => {
+          if (park.default_image && park.default_image.image_url) {
+            // Use the park code as the key (matches your image_key)
+            imagesMap[park.code] = park.default_image.image_url;
+          }
+        });
+        
+        setParkImages(imagesMap);
+      } catch (err) {
+        console.error('Error fetching park images:', err);
+      }
+    };
+
+    fetchParkImages();
+  }, []);
 
 
-
+  // const getParkImage = (imageKey) => {
+  //   const code = imageKey.toLowerCase().replace(/\s+/g, '_');
+  //   return parkImages[code]; 
+  // };
 
   return (
     <div className="home-page">
@@ -264,34 +299,44 @@ const Home = () => {
         <div className="park-container">
           <div className="park-text">
             <h2>Visited National Parks</h2>
-            <div className="park-grid">
-              {NationalParks.map((park, index) => (
-                <div
-                  key={index}
-                  id={park.image_key}
-                  className="park-button-container"
-                  onClick={() =>
-                    navigate(`/park/${park.name.toLowerCase().replace(/\s+/g, '-')}`, {
-                      state: { parkKey: park.image_key }
-                    })
-                  }
-                >
+              <div className="park-grid">
+              {NationalParks.map((park, index) => {
+                // Convert park name to code format (matches your database)
+                const parkCode = park.name.toLowerCase().replace(/\s+/g, '_');
+                
+                return (
                   <div
-                    className="park-button"
-                    style={{
-                      backgroundImage: `url(${parkImages[park.image_key]})`,
-                      filter: VISITED_PARKS.includes(park.image_key) ? "none" : "grayscale(100%)"
-                    }}
+                    key={index}
+                    id={park.image_key}
+                    className="park-button-container"
+                    onClick={() =>
+                      navigate(`/park/${park.name.toLowerCase().replace(/\s+/g, '-')}`, {
+                        state: { 
+                          parkKey: park.image_key,
+                          parkCode: parkCode 
+                        }
+                      })
+                    }
                   >
-
-                    <div className="park-button-overlay"></div>
-                    {/* minor fixes to certain park names */}
+                    <div
+                      className="park-button"
+                      style={{
+                        backgroundImage: `url(${parkImages[park.image_key]})`,
+                        filter: VISITED_PARKS.includes(park.image_key) ? "none" : "grayscale(100%)"
+                      }}
+                    >
+                      <div className="park-button-overlay"></div>
                       <span className="park-button-text">
-                        {park.name === "Black Canyon of the Gunnison" ? "Black Canyon of\nthe Gunnison" : park.name === "Theodore Roosevelt" ? "Theodore\nRoosevelt" : park.name}
+                        {park.name === "Black Canyon of the Gunnison" 
+                          ? "Black Canyon of\nthe Gunnison" 
+                          : park.name === "Theodore Roosevelt" 
+                          ? "Theodore\nRoosevelt" 
+                          : park.name}
                       </span>                  
                     </div>
-                </div>
-              ))}
+                  </div>
+                );
+              })}
             </div>
           </div>
         </div>
