@@ -1,26 +1,29 @@
 This is my personal website that I will be coding over the summer of 2025.
 
-<!-- in wsl -->
+- in wsl
 
-<!-- first time running locally, install dependencies -->
+- first time running locally, install dependencies
 npm install
 
-<!-- start locally -->
+- start locally
 npm start
 
-<!-- build to deploy to website -->
+- build to deploy to website
 npm build
 
-<!-- start backend, in backend folder: -->
-python3 -m venv venv    // first time
+- start backend, in backend folder:
+
+- first time:
+python3 -m venv venv    
+
 source venv/bin/activate 
 
-<!-- in the venv -->
+- in the venv:
 python manage.py runserver
 
-<!-- adding new parks/images to database -->
+- adding new parks/images to database:
 python manage.py load_parks
 
-<!-- for changes to the model -->
+- for changes to the model:
 python manage.py makemigrations
 python manage.py migrate

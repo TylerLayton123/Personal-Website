@@ -3,13 +3,13 @@ import { useNavigate, useLocation } from "react-router-dom";
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import ParticleBackground from '../components/ParticleBackground';
-import myPhoto from '../assets/images/myPhoto2.PNG';
+// import myPhoto from '../assets/images/myPhoto2.PNG';
 import Settings from '../components/settings/Settings';
 import '../App.css';
 import '../components/Header.css';
 import '../pages/Home.css';
 import '../components/Footer.css';
-import NationalParks from '../components/NationalParks';
+// import NationalParks from '../components/NationalParks';
 
 // import all park images
 // const importAll = (r) => {
@@ -183,29 +183,45 @@ const Home = () => {
   
   const [parkImages, setParkImages] = useState({});
 
-  // get the default photo for each national park from the database, not really necessary, but doesnt matter
+  // get the default photo path for each national park useing the api
   useEffect(() => {
     const fetchParkImages = async () => {
       try {
-        const response = await fetch('http://localhost:8000/api/park-images/?default=true');
+        let nextUrl = 'http://localhost:8000/api/park-images/?default=true';
+        const allImages = [];
         
-        if (!response.ok) {
-          throw new Error('Failed to fetch park images');
+        // Fetch all pages
+        while (nextUrl) {
+          const response = await fetch(nextUrl);
+          
+          if (!response.ok) {
+            throw new Error('Failed to fetch park images');
+          }
+          
+          const pageData = await response.json();
+          // console.log('Received page data:', pageData);
+          
+          // Add the results from this page to our collection
+          if (pageData.results && Array.isArray(pageData.results)) {
+            allImages.push(...pageData.results);
+          }
+          
+          // Check if there's a next page
+          nextUrl = pageData.next;
+          
+          // If we're making multiple requests, add a small delay to be nice to the server
+          if (nextUrl) {
+            await new Promise(resolve => setTimeout(resolve, 100));
+          }
         }
         
-        const imagesData = await response.json();
-        console.log('Received images data:', imagesData);
-        
-        // Create a mapping of park codes to default image URLs
-        const imagesMap = {};
-        imagesData.forEach(image => {
-          // Use the park_code field from the serializer
-          if (image.park_code && image.image_url) {
-            imagesMap[image.park_code] = image.image_url;
-          }
-        });
-        
-        setParkImages(imagesMap);
+        console.log('All images collected:', allImages);
+        console.log('Total images count:', allImages.length);
+        console.log(allImages[0].image_path);
+
+        const reversedImages = allImages.reverse();
+
+        setParkImages(reversedImages);
       } catch (err) {
         console.error('Error fetching park images:', err);
       }
@@ -246,7 +262,7 @@ const Home = () => {
       <div className="about-section">
         <div className="about-container">
           <div className="about-image">
-            <img src={myPhoto} alt="Tyler Layton" />
+            <img src={'/images/myPhoto2.PNG'} alt="Tyler Layton" />
           </div>
           <div className="about-text">
             <h2>About Me</h2>
@@ -300,38 +316,34 @@ const Home = () => {
           <div className="park-text">
             <h2>Visited National Parks</h2>
               <div className="park-grid">
-              {NationalParks.map((park, index) => {
-                // Convert park name to code format (matches your database)
-                const parkCode = park.name.toLowerCase().replace(/\s+/g, '_');
-                
+              {Object.entries(parkImages).map(([index, parkData]) => {                
                 return (
                   <div
                     key={index}
-                    id={park.image_key}
                     className="park-button-container"
                     onClick={() =>
-                      navigate(`/park/${park.name.toLowerCase().replace(/\s+/g, '-')}`, {
-                        state: { 
-                          parkKey: park.image_key,
-                          parkCode: parkCode 
-                        }
+                      navigate(`/park/${parkData.display_name}`, {
+                        // state: { 
+                        //   parkKey: parkData.id,
+                        //   parkCode: parkCode 
+                        // }
                       })
                     }
                   >
                     <div
                       className="park-button"
                       style={{
-                        backgroundImage: `url(${parkImages[park.image_key]})`,
-                        filter: VISITED_PARKS.includes(park.image_key) ? "none" : "grayscale(100%)"
+                        backgroundImage: `url(images/ParkImages/DefaultImages/Hawaiʻi_Volcanoes.jpg)`,
+                        filter: VISITED_PARKS.includes(parkData.display_name) ? "none" : "grayscale(100%)"
                       }}
                     >
                       <div className="park-button-overlay"></div>
                       <span className="park-button-text">
-                        {park.name === "Black Canyon of the Gunnison" 
+                        {parkData.display_name === "Black Canyon of the Gunnison" 
                           ? "Black Canyon of\nthe Gunnison" 
-                          : park.name === "Theodore Roosevelt" 
+                          : parkData.display_name === "Theodore Roosevelt" 
                           ? "Theodore\nRoosevelt" 
-                          : park.name}
+                          : parkData.display_name}
                       </span>                  
                     </div>
                   </div>
