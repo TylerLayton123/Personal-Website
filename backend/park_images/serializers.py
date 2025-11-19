@@ -3,10 +3,12 @@ from .models import Park, ParkImage
 
 class ParkImageSerializer(serializers.ModelSerializer):
     image_url = serializers.SerializerMethodField()
+    park_code = serializers.CharField(source='park.code', read_only=True)  # Add this line
+    park_name = serializers.CharField(source='park.name', read_only=True)  # Optional but helpful
     
     class Meta:
         model = ParkImage
-        fields = ['id', 'image_name', 'image_url', 'is_featured', 'upload_date']
+        fields = ['id', 'image_name', 'image_url', 'is_featured', 'upload_date', 'park_code', 'park_name']  # Add park_code and park_name
     
     def get_image_url(self, obj):
         request = self.context.get('request')

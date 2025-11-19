@@ -42,10 +42,13 @@ class ParkImageViewSet(viewsets.ReadOnlyModelViewSet):
         queryset = ParkImage.objects.all()
         park_code = self.request.query_params.get('park', None)
         featured_only = self.request.query_params.get('featured', None)
+        default_only = self.request.query_params.get('default', None)
         
         if park_code:
             queryset = queryset.filter(park__code=park_code.lower())
         if featured_only:
             queryset = queryset.filter(is_featured=True)
+        if default_only:
+            queryset = queryset.filter(is_featured=False)
             
         return queryset

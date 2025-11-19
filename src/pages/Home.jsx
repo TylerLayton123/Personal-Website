@@ -54,7 +54,6 @@ const Home = () => {
     {
       title: 'Experience',
       path: '/experience',
-      // description: "sdlfgwoingowinfow",
     },
     {
       title: 'Projects',
@@ -188,20 +187,21 @@ const Home = () => {
   useEffect(() => {
     const fetchParkImages = async () => {
       try {
-        const response = await fetch('/api/park-images/');
+        const response = await fetch('http://localhost:3000/api/park-images/?default=true');
         
         if (!response.ok) {
-          throw new Error('Failed to fetch park data');
+          throw new Error('Failed to fetch park images');
         }
         
-        const parksData = await response.json();
+        const imagesData = await response.json();
+        console.log('Received images data:', imagesData);
         
         // Create a mapping of park codes to default image URLs
         const imagesMap = {};
-        parksData.forEach(park => {
-          if (park.default_image && park.default_image.image_url) {
-            // Use the park code as the key (matches your image_key)
-            imagesMap[park.code] = park.default_image.image_url;
+        imagesData.forEach(image => {
+          // Use the park_code field from the serializer
+          if (image.park_code && image.image_url) {
+            imagesMap[image.park_code] = image.image_url;
           }
         });
         
