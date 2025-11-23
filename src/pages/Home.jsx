@@ -322,7 +322,7 @@ const Home = () => {
                     key={index}
                     className="park-button-container"
                     onClick={() =>
-                      navigate(`/park/${parkData.display_name}`, {
+                      navigate(`/park/${parkData.image_key}`, {
                         // state: { 
                         //   parkKey: parkData.id,
                         //   parkCode: parkCode 
@@ -334,7 +334,7 @@ const Home = () => {
                       className="park-button"
                       style={{
                         backgroundImage: `url(${parkData.image_path})`,
-                        filter: VISITED_PARKS.includes(parkData.display_name) ? "none" : "grayscale(100%)"
+                        filter: VISITED_PARKS.includes(parkData.image_key) ? "none" : "grayscale(100%)"
                       }}
                     >
                       <div className="park-button-overlay"></div>
