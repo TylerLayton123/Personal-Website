@@ -27,3 +27,8 @@ python manage.py load_parks
 - for changes to the model:
 python manage.py makemigrations
 python manage.py migrate
+
+
+- load or delete parks into backend, (in venv)
+python manage.py load_parks
+python manage.py delete_all_parks.py

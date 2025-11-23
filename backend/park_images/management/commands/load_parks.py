@@ -17,7 +17,7 @@ class Command(BaseCommand):
         for park_info in park_data:
             # Create or update park
             park, created = Park.objects.update_or_create(
-                name=park_info['name'].lower().replace(' ', '_'),
+                image_key=park_info['image_key'],
                 defaults={
                     'display_name': park_info['name'],
                     'wikipedia_link': park_info['link'],
@@ -79,6 +79,7 @@ class Command(BaseCommand):
                 defaults={
                     'is_featured': False,  
                     'display_name': park.display_name,
+                    'image_key': image_key
                 }
             )
             self.stdout.write(self.style.SUCCESS(f'  Set default image: {default_filename}'))
@@ -93,9 +94,6 @@ class Command(BaseCommand):
             image_key,
             image_key.replace(' ', '_'),
             image_key.replace(' ', ''),
-            park.name.replace('_', ' '),
-            park.display_name,
-            park.display_name.replace(' ', '_')
         ]
         
         park_folder = None
@@ -126,6 +124,7 @@ class Command(BaseCommand):
                         defaults={
                             'is_featured': True,  
                             'display_name': park.display_name,
+                            'image_key': park.image_key
                         }
                     )
                     if created:
