@@ -9,6 +9,9 @@ import '../App.css';
 import '../components/Header.css';
 import '../pages/Home.css';
 import '../components/Footer.css';
+
+const API_BASE_URL = process.env.REACT_APP_API_URL;
+
 // import NationalParks from '../components/NationalParks';
 
 // import all park images
@@ -187,7 +190,7 @@ const Home = () => {
   useEffect(() => {
     const fetchParkImages = async () => {
       try {
-        let nextUrl = 'http://localhost:8000/api/park-images/?default=true';
+        let nextUrl = `${API_BASE_URL}/park-images/?default=true`;
         const allImages = [];
         
         // Fetch all pages
@@ -215,9 +218,9 @@ const Home = () => {
           }
         }
         
-        console.log('All images collected:', allImages);
-        console.log('Total images count:', allImages.length);
-        console.log(allImages[0].image_path);
+        // console.log('All images collected:', allImages);
+        // console.log('Total images count:', allImages.length);
+        // console.log(allImages[0].image_path);
 
         const reversedImages = allImages.reverse();
 
@@ -322,12 +325,7 @@ const Home = () => {
                     key={index}
                     className="park-button-container"
                     onClick={() =>
-                      navigate(`/park/${parkData.image_key}`, {
-                        // state: { 
-                        //   parkKey: parkData.id,
-                        //   parkCode: parkCode 
-                        // }
-                      })
+                      navigate(`/park/${parkData.image_key}`)
                     }
                   >
                     <div
