@@ -35,7 +35,6 @@ const TITLES = [
   "Software Developer",
   "Computer Scientist",
   "Computer Systems Engineer",
-  // "Skiier",
   "Masters Student",
   "Cum Laude",
   "L3Harris Intern",
@@ -46,7 +45,7 @@ const TITLES = [
 ];
 
 const VISITED_PARKS = ["Acadia", "Badlands", "Congaree", "Cuyahoga_Valley", "Grand_Canyon", "Great_Smoky_Mountains", "Haleakalā",
-  "Indiana_Dunes", "Isle_Royale", "Voyageurs", "Mammoth_Cave", "New_River_Gorge", "Shenandoah", "Theodore_Roosevelt", "Voyagers", "Wind_Cave"
+  "Indiana_Dunes", "Isle_Royale", "Mammoth_Cave", "New_River_Gorge", "Shenandoah", "Theodore_Roosevelt", "Voyagers", "Wind_Cave"
 ];
 
 const Home = () => {
@@ -317,8 +316,11 @@ const Home = () => {
       <div className="park-section">
         <div className="park-container">
           <div className="park-text">
-            <h2>Visited National Parks</h2>
-              <div className="park-grid">
+            <h2>
+              Visited National Parks: {VISITED_PARKS?.size || VISITED_PARKS?.length || 0}/
+              {parkImages?.length || 0}
+            </h2>              
+            <div className="park-grid">
               {Object.entries(parkImages).map(([index, parkData]) => {                
                 return (
                   <div
