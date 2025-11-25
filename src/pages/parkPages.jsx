@@ -26,30 +26,36 @@ const ParkPages = () => {
         setLoading(true);
         setError(null);
         
-        const response = await fetch(`${API_BASE_URL}/parks/?image_key=${parkName}`);
-        if (!response.ok) {
-          throw new Error(`Failed to fetch images: ${response.status}`);
-        }
+        let allParks = [];
+        let nextUrl = `${API_BASE_URL}/parks`;
         
-        const data = await response.json();
+        // Iterate through all pages
+        while (nextUrl) {
+          const response = await fetch(nextUrl);
+          if (!response.ok) {
+            throw new Error(`Failed to fetch parks: ${response.status}`);
+          }
+          
+          const data = await response.json();
+          allParks = allParks.concat(data.results);
+          nextUrl = data.next; // Get next page URL, will be null when no more pages
+        }
 
-        let parksArray = [];
-        parksArray = data.results;
+        console.log('Total parks found:', allParks.length);
 
-        const specificPark = parksArray.find(park => park.image_key === parkName);
+        // Find the specific park
+        const specificPark = allParks.find(park => park.image_key === parkName);
 
         if (!specificPark) {
           throw new Error(`Park "${parkName}" not found in the results`);
         }
 
-        // console.log('Found park:', specificPark);
         setParkInfo(specificPark);
         
         // Set park images
         const imageUrls = specificPark.featured_images 
           ? specificPark.featured_images.map(image => image.image_path)
           : [];        
-        // console.log(imageUrls);
         
         setParkImages(imageUrls);
         setImagesLoaded(imageUrls.length > 0);
@@ -117,7 +123,7 @@ const ParkPages = () => {
         ) : imagesLoaded && parkImages.length > 0 ? (
           <div className="visited-container">
             <a
-              href={parkImages[currentImage]}
+              href={`/${parkImages[currentImage]}`}
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -190,6 +196,7 @@ const ParkPages = () => {
 
       {/* Park information */}
       <div className="park-info">
+        <p><strong>Park Name:</strong> {parkInfo.display_name}</p>
         <p><strong>Location:</strong> {parkInfo.state}</p>
         <p><strong>Coordinates:</strong> {parkInfo.coordinates}</p>
         <p><strong>Established:</strong> {parkInfo.date_established}</p>

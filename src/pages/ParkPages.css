@@ -93,6 +93,9 @@
   margin-bottom: 1rem;
   transition: transform 0.4s ease, box-shadow 0.4s ease;
 }
+.loading-container{
+  color: rgb(var(--theme-color4));
+}
 
 .park-image:hover {
   transform: translateY(-5px);
