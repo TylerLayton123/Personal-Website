@@ -26,29 +26,18 @@ const ParkPages = () => {
         setLoading(true);
         setError(null);
         
-        let allParks = [];
-        let nextUrl = `${API_BASE_URL}/parks`;
+        // Use the by_code endpoint to get just the specific park
+        const response = await fetch(`${API_BASE_URL}/parks/by_image_key?image_key=${parkName}`);
         
-        // Iterate through all pages
-        while (nextUrl) {
-          const response = await fetch(nextUrl);
-          if (!response.ok) {
-            throw new Error(`Failed to fetch parks: ${response.status}`);
+        if (!response.ok) {
+          if (response.status === 404) {
+            throw new Error(`Park "${parkName}" not found`);
           }
-          
-          const data = await response.json();
-          allParks = allParks.concat(data.results);
-          nextUrl = data.next; // Get next page URL, will be null when no more pages
+          throw new Error(`Failed to fetch park: ${response.status}`);
         }
-
-        console.log('Total parks found:', allParks.length);
-
-        // Find the specific park
-        const specificPark = allParks.find(park => park.image_key === parkName);
-
-        if (!specificPark) {
-          throw new Error(`Park "${parkName}" not found in the results`);
-        }
+        
+        const specificPark = await response.json();
+        console.log('Found park:', specificPark);
 
         setParkInfo(specificPark);
         

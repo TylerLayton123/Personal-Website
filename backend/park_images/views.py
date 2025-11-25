@@ -17,22 +17,13 @@ class ParkViewSet(viewsets.ReadOnlyModelViewSet):
         return Response(serializer.data)
     
     @action(detail=False, methods=['get'])
-    def by_code(self, request):
-        code = request.query_params.get('code', None)
-        if code:
-            park = get_object_or_404(Park, code=code.lower())
+    def by_image_key(self, request):
+        image_key = request.query_params.get('image_key', None)
+        if image_key:
+            park = get_object_or_404(Park, image_key=image_key)
             serializer = self.get_serializer(park)
             return Response(serializer.data)
-        return Response({'error': 'Park code required'}, status=status.HTTP_400_BAD_REQUEST)
-    
-    @action(detail=False, methods=['get'])
-    def by_state(self, request):
-        state = request.query_params.get('state', None)
-        if state:
-            parks = Park.objects.filter(state__icontains=state)
-            serializer = self.get_serializer(parks, many=True)
-            return Response(serializer.data)
-        return Response({'error': 'State parameter required'}, status=status.HTTP_400_BAD_REQUEST)
+        return Response({'error': 'Park image_key required'}, status=status.HTTP_400_BAD_REQUEST)
 
 class ParkImageViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = ParkImage.objects.all()
@@ -40,12 +31,12 @@ class ParkImageViewSet(viewsets.ReadOnlyModelViewSet):
     
     def get_queryset(self):
         queryset = ParkImage.objects.all()
-        # park_code = self.request.query_params.get('park', None)
+        park_code = self.request.query_params.get('park', None)
         featured_only = self.request.query_params.get('featured', None)
         default_only = self.request.query_params.get('default', None)
         
-        # if park_code:
-        #     queryset = queryset.filter(park__code=park_code.lower())
+        if park_code:
+            queryset = queryset.filter(image_key=park_code)
         if featured_only:
             queryset = queryset.filter(is_featured=True)
         if default_only:
