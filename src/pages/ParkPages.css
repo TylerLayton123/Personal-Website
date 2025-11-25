@@ -11,14 +11,24 @@
 }
 
 
+.header-container {
+  display: flex;
+  align-items: center;
+  justify-content: center; 
+  margin-top: 3rem;
+  position: relative;
+  width: 100%;
+}
+
 .back-button {
-  align-self: flex-start;
-  margin-top: 4rem;
+  position: absolute;
+  left: 0; /* Position on the left edge */
   background: none;
   border: none;
   cursor: pointer;
   transition: all 0.3s ease;
   color: rgb(var(--theme-color4));
+  /* Remove any margin-top that was there before */
 }
 
 .back-arrow-icon {
@@ -28,7 +38,6 @@
 }
 
 .back-button:hover {
-  /* color: rgb(var(--theme-color3)); */
   transform: scale(1.3);
   filter: drop-shadow(3px 3px 3px rgb(var(--theme-color4)));
 }
@@ -40,8 +49,8 @@
   font-size: 2rem;
   text-align: center;
   color: rgb(var(--theme-color4));
-  width: 100%;
-
+  margin: 0;
+  /* The title will be centered by the container's justify-content */
 }
 
 .park-title::after {

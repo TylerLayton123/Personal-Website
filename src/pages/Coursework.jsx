@@ -30,7 +30,6 @@ const CourseWork = () => {
   };
 
 
-  // Sample coursework data
   const courseworkData = [
     {
       semester: "Senior - S25",

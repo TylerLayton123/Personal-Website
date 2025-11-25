@@ -80,24 +80,24 @@ const ParkPages = () => {
 
       <Settings isOpen={settingsOpen} onClose={() => setSettingsOpen(false)} />
 
-      {/* Back arrow */}
-      <button
-        className="back-button"
-        onClick={() => navigate("/", { state: { scrollTo: parkInfo.image_key } })}
-      >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-          strokeWidth={3}
-          stroke="currentColor"
-          className="back-arrow-icon"
+      <div className="header-container">
+        <button
+          className="back-button"
+          onClick={() => navigate("/", { state: { scrollTo: parkInfo.image_key } })}
         >
-          <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
-        </svg>
-      </button>
-
-      <h1 className="park-title">{parkInfo.display_name}</h1>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            strokeWidth={3}
+            stroke="currentColor"
+            className="back-arrow-icon"
+          >
+            <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
+          </svg>
+        </button>
+        <h1 className="park-title">{parkInfo.display_name}</h1>
+      </div>
 
       {/* Image container */}
       <div className="image-container">
