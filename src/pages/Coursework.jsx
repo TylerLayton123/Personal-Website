@@ -31,6 +31,52 @@ const CourseWork = () => {
 
 
   const courseworkData = [
+      {
+      semester: "Graduate - F25",
+      totalCredits: "13",
+      semesterGPA: "3.55",
+      courses: [
+        {
+          name: "MACHINE LEARNING FROM DATA",
+          number: "CSCI 6100",
+          grade: "B+",
+          credit: "4",
+          description: "Introduction to the theory, algorithms, and applications of machine learning (supervised, reinforcement, " +
+            "and unsupervised) from data: What is learning? Is learning feasible? How can it be done? How can it be done well? " + 
+            "The course offers a mix of theory, technique, and application with additional selected topics chosen from Pattern " +
+            "Recognition, Decision Trees, Neural Networks, RBF’s, Bayesian Learning, PAC Learning, Support Vector Machines, " +
+            "Gaussian processes, and Hidden Markov Models."
+        },
+        {
+          name: "APPROXIMATION ALGORITHMS",
+          number: "CSCI 6040",
+          grade: "B+",
+          credit: "4",
+          description: "Algorithms with provable guarantees on the quality of their solutions are a powerful way of dealing " +
+          "with intractable problems. This course covers fundamental techniques for designing approximation algorithms. Possible " +
+          "topics include: semi-definite and linear programming, inapproximability and the PCP theorem, randomized rounding, " +
+          "metrics and cuts, primal-dual methods, and online algorithms."
+        },
+        {
+          name: "FRONTIERS OF NETWORK SCIENCE",
+          number: "CSCI 6250",
+          grade: "A",
+          credit: "4",
+          description: "This course will offer an introduction to network science and a review of current research in this " +
+          "area. Classes will interchangeably present chapters from the textbook and related current research. The emphasis " +
+          "will be on the mathematical background of network science: graphs and networks; random networks and various types " +
+          "of scale-free networks; network properties such as assortativity, mobility, robustness, social networks, and " +
+          "communities; and dynamics of spreading in networks."
+        },
+        {
+          name: "GRADUATE SKILLS",
+          number: "CSCI 6969",
+          grade: "S",
+          credit: "1",
+          description: "Weekly lectures regarding how to present, write a thesis, conduct research, etc."
+        }
+      ]
+    },
     {
       semester: "Senior - S25",
       totalCredits: "15",
@@ -525,9 +571,11 @@ const CourseWork = () => {
           <div className="coursework-header">
             <h1>Academic Coursework</h1>
             <h2>BS in Computer Science & Computer Systems Engineering</h2>
-            <h2>Cumulative GPA: 3.68</h2>
-            <h2>Cum Laude</h2>
             <h2>Currently pursuing a Masters in Computer Science</h2>
+            <h2>Undergraduate GPA: 3.68</h2>
+            <h2>Graduate GPA: 3.41</h2>
+            <h2>Cum Laude</h2>
+            
 
             {/* <p>Detailed overview of my academic journey and completed courses</p> */}
           </div>
