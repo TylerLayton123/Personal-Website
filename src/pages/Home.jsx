@@ -3,30 +3,27 @@ import { useNavigate, useLocation } from "react-router-dom";
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import ParticleBackground from '../components/ParticleBackground';
-// import myPhoto from '../assets/images/myPhoto2.PNG';
+import myPhoto from '../assets/images/myPhoto2.PNG';
 import Settings from '../components/settings/Settings';
 import '../App.css';
 import '../components/Header.css';
 import '../pages/Home.css';
 import '../components/Footer.css';
-
-const API_BASE_URL = process.env.REACT_APP_API_URL;
-
-// import NationalParks from '../components/NationalParks';
+import NationalParks from '../components/NationalParks';
 
 // import all park images
-// const importAll = (r) => {
-//   let images = {};
-//   r.keys().forEach((fileName) => {
-//     const key = fileName.replace('./', '').replace(/\.(png|jpe?g)$/, '');
-//     images[key] = r(fileName);
-//   });
-//   return images;
-// };
+const importAll = (r) => {
+  let images = {};
+  r.keys().forEach((fileName) => {
+    const key = fileName.replace('./', '').replace(/\.(png|jpe?g)$/, '');
+    images[key] = r(fileName);
+  });
+  return images;
+};
 
-// const parkImages = importAll(
-//   require.context('../assets/images/parkimages/DefaultImages', false, /\.(png|jpe?g)$/)
-// );
+const parkImages = importAll(
+  require.context('../assets/images/parkimages/DefaultImages', false, /\.(png|jpe?g)$/)
+);
 
 
 // Constants for typing animation
@@ -56,6 +53,7 @@ const Home = () => {
     {
       title: 'Experience',
       path: '/experience',
+      // description: "sdlfgwoingowinfow",
     },
     {
       title: 'Projects',
@@ -182,61 +180,9 @@ const Home = () => {
       }
     }
   }, [location.state]);
-  
-  const [parkImages, setParkImages] = useState({});
-
-  // get the default photo path for each national park useing the api
-  useEffect(() => {
-    const fetchParkImages = async () => {
-      try {
-        let nextUrl = `${API_BASE_URL}/park-images/?default=true`;
-        const allImages = [];
-        
-        // Fetch all pages
-        while (nextUrl) {
-          const response = await fetch(nextUrl);
-          
-          if (!response.ok) {
-            throw new Error('Failed to fetch park images');
-          }
-          
-          const pageData = await response.json();
-          // console.log('Received page data:', pageData);
-          
-          // Add the results from this page to our collection
-          if (pageData.results && Array.isArray(pageData.results)) {
-            allImages.push(...pageData.results);
-          }
-          
-          // Check if there's a next page
-          nextUrl = pageData.next;
-          
-          // If we're making multiple requests, add a small delay to be nice to the server
-          if (nextUrl) {
-            await new Promise(resolve => setTimeout(resolve, 100));
-          }
-        }
-        
-        // console.log('All images collected:', allImages);
-        // console.log('Total images count:', allImages.length);
-        // console.log(allImages[0].image_path);
-
-        const reversedImages = allImages.reverse();
-
-        setParkImages(reversedImages);
-      } catch (err) {
-        console.error('Error fetching park images:', err);
-      }
-    };
-
-    fetchParkImages();
-  }, []);
 
 
-  // const getParkImage = (imageKey) => {
-  //   const code = imageKey.toLowerCase().replace(/\s+/g, '_');
-  //   return parkImages[code]; 
-  // };
+
 
   return (
     <div className="home-page">
@@ -264,7 +210,7 @@ const Home = () => {
       <div className="about-section">
         <div className="about-container">
           <div className="about-image">
-            <img src={'/images/myPhoto2.PNG'} alt="Tyler Layton" />
+            <img src={myPhoto} alt="Tyler Layton" />
           </div>
           <div className="about-text">
             <h2>About Me</h2>
@@ -318,37 +264,36 @@ const Home = () => {
           <div className="park-text">
             <h2>
               Visited National Parks: {VISITED_PARKS?.size || VISITED_PARKS?.length || 0}/
-              {parkImages?.length || 0}
-            </h2>              
+              {Object.keys(parkImages).length || 0}
+            </h2>
             <div className="park-grid">
-              {Object.entries(parkImages).map(([index, parkData]) => {                
-                return (
+              {NationalParks.map((park, index) => (
+                <div
+                  key={index}
+                  id={park.image_key}
+                  className="park-button-container"
+                  onClick={() =>
+                    navigate(`/park/${park.name.toLowerCase().replace(/\s+/g, '-')}`, {
+                      state: { parkKey: park.image_key }
+                    })
+                  }
+                >
                   <div
-                    key={index}
-                    className="park-button-container"
-                    onClick={() =>
-                      navigate(`/park/${parkData.image_key}`)
-                    }
+                    className="park-button"
+                    style={{
+                      backgroundImage: `url(${parkImages[park.image_key]})`,
+                      filter: VISITED_PARKS.includes(park.image_key) ? "none" : "grayscale(100%)"
+                    }}
                   >
-                    <div
-                      className="park-button"
-                      style={{
-                        backgroundImage: `url(${parkData.image_path})`,
-                        filter: VISITED_PARKS.includes(parkData.image_key) ? "none" : "grayscale(100%)"
-                      }}
-                    >
-                      <div className="park-button-overlay"></div>
+
+                    <div className="park-button-overlay"></div>
+                    {/* minor fixes to certain park names */}
                       <span className="park-button-text">
-                        {parkData.display_name === "Black Canyon of the Gunnison" 
-                          ? "Black Canyon of\nthe Gunnison" 
-                          : parkData.display_name === "Theodore Roosevelt" 
-                          ? "Theodore\nRoosevelt" 
-                          : parkData.display_name}
+                        {park.name === "Black Canyon of the Gunnison" ? "Black Canyon of\nthe Gunnison" : park.name === "Theodore Roosevelt" ? "Theodore\nRoosevelt" : park.name}
                       </span>                  
                     </div>
-                  </div>
-                );
-              })}
+                </div>
+              ))}
             </div>
           </div>
         </div>

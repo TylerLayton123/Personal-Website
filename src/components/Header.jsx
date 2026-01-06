@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-// import myLogo from '.images/logoImage.png';
-// import schoolLogo from '.../images/schoolLogo2.png';
+import myLogo from '../assets/images/logoImage.png';
+import schoolLogo from '../assets/images/schoolLogo2.png';
 import resumePDF from '../assets/TylerLaytonResume25_26.pdf';
 import Settings from '../components/settings/Settings';
 import './Header.css';
@@ -28,7 +28,7 @@ const Header = ({ settingsOpen, setSettingsOpen }) => {
         <div className="logo-container">
           <Link to="/">
             <img
-              src={'/images/logoImage.png'}
+              src={myLogo}
               alt="Tyler Layton Logo"
               className="logo-image"
             />
@@ -41,7 +41,7 @@ const Header = ({ settingsOpen, setSettingsOpen }) => {
             rel="noopener noreferrer"
           >
             <img
-              src={'/images/schoolLogo2.png'}
+              src={schoolLogo}
               alt="RPI Logo"
               className="school-logo"
             />
