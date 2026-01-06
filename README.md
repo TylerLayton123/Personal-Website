@@ -32,3 +32,13 @@ python manage.py migrate
 - load or delete parks into backend, (in venv)
 python manage.py load_parks
 python manage.py delete_all_parks.py
+
+
+
+- on server in backend
+need to copy large link from cPanel site
+
+- start python venv from line in email
+
+- access databse using
+psql -h localhost -U tjlayton_user -d tjlayton_db 
