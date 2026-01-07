@@ -28,18 +28,22 @@ const Extras = () => {
             setError(null);
             setFallbackUsed(false);
 
+            console.log("API Key exists:", !!process.env.REACT_APP_NASA_API_KEY);
+            console.log("API Key (first 5 chars):", process.env.REACT_APP_NASA_API_KEY?.substring(0, 5));
+            
+
             let date = new Date();
-            date.setDate(date.getDate());
+            date.setDate(date.getDate()-5);
             let data = null;
             let attempts = 0;
-            const maxAttempts = 30; 
+            const maxAttempts = 20; 
 
 
             while (attempts < maxAttempts) {
                 attempts++;
                 const dateStr = date.toISOString().split("T")[0];
                 const url = `https://api.nasa.gov/planetary/apod?api_key=${process.env.REACT_APP_NASA_API_KEY}&thumbs=true&date=${dateStr}`;
-
+                
                 try {
                     const response = await fetch(url);
                     if (!response.ok) {
@@ -49,6 +53,8 @@ const Extras = () => {
                     }
 
                     data = await response.json();
+                    
+                    console.log(data);
 
                     if (data.error) {
                         date.setDate(date.getDate() - 1);
@@ -56,7 +62,7 @@ const Extras = () => {
                     }
 
                     // if no copyright, we're done
-                    if (!data.copyright && data.media_type !== 'other' && data.media_type !== 'video') {
+                    if (data.media_type === 'image') {
                         if (dateStr !== new Date().toISOString().split("T")[0]) {
                             setFallbackUsed(true);
                         }
@@ -69,6 +75,7 @@ const Extras = () => {
                     // If there's an error fetching for this date, try previous day
                     date.setDate(date.getDate() - 1);
                 }
+
             }
 
             if (attempts >= maxAttempts && !data) {
