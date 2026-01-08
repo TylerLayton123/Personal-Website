@@ -19,7 +19,7 @@ const Header = ({ settingsOpen, setSettingsOpen }) => {
   }, []);
 
   const openResume = () => {
-    window.open('/TylerLaytonResume25_26.pdf', '_blank');
+    window.open('/TylerLaytonResume26.pdf', '_blank');
   };
 
   return (
