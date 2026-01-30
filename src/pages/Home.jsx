@@ -42,7 +42,7 @@ const TITLES = [
 ];
 
 const VISITED_PARKS = ["Acadia", "Badlands", "Congaree", "Cuyahoga_Valley", "Grand_Canyon", "Great_Smoky_Mountains", "Haleakalā",
-  "Indiana_Dunes", "Isle_Royale", "Mammoth_Cave", "New_River_Gorge", "Shenandoah", "Theodore_Roosevelt", "Voyagers", "Wind_Cave"
+  "Indiana_Dunes", "Isle_Royale", "Mammoth_Cave", "New_River_Gorge", "Shenandoah", "Theodore_Roosevelt", "Voyageurs", "Wind_Cave"
 ];
 
 const Home = () => {
